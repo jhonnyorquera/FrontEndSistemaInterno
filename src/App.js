@@ -20,6 +20,7 @@ import {Documentation} from "./components/Documentation";
 import {Data} from './components/Data';
 
 import GestionHomie from './components/GestionHomie';
+import GestionCliente from './components/ClienteComponents/GestionCliente';
 import 'primereact/resources/themes/nova-light/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
@@ -115,7 +116,14 @@ class App extends Component {
                 items: [
                     {label: 'Registrar', icon: 'pi pi-fw pi-question', command: () => {window.location = "#/gestionHomie"}}
                 ]
+            },
+            {
+                label: 'Clientes', icon: 'pi pi-fw pi-users', 
+                items: [
+                    {label: 'Administrar', icon: 'pi pi-fw pi-question', command: () => {window.location = "#/gestionCliente"}}
+                ]
             }
+
 
         ];
     }
@@ -187,6 +195,7 @@ class App extends Component {
                     <Route path="/empty" component={EmptyPage} />
                     <Route path="/documentation" component={Documentation} />
                     <Route path="/dataTest" component={Data} />
+                    <Route path="/gestionCliente" component={GestionCliente} />
                    
                     <Route path="/gestionHomie" component={GestionHomie} />
                 </div>

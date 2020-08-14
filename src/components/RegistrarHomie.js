@@ -49,7 +49,7 @@ const RegistrarHomie = ({ terminaRegistro }) => {
 
 
     const registrarHomieSubmit = (e) => {
-        console.log('Registra hijo');
+
         e.preventDefault();
         homie.hoModalidad = homie.hoModalidad.mod;
         axios.post(url, homie)
