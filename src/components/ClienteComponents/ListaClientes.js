@@ -40,3 +40,7 @@ const ListaClientes = ({ clienteSelect, estadoCrud }) => {
 
         </Fragment>
 
+    );
+}
+
+export default ListaClientes;
