@@ -3,10 +3,10 @@ import { getClientesList } from '../../service/ClientesService';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 
-const ListaClientes = ({ clienteSelect, estadoCrud }) => {
+const ListaClientes = ({ clienteSelect, estadoCrud, clientes}) => {
 
     const [consulta, activaConsulta] = useState(true)
-    const [clientes, llenaListado] = useState([])
+    const [clientesLista, llenaListado] = useState([])
     // const [clienteSelect, seleccionarCliente] =useState(null);
 
     const seleccionaCliente = (variable) => {
@@ -16,13 +16,26 @@ const ListaClientes = ({ clienteSelect, estadoCrud }) => {
     }
 
     useEffect(() => {
-        if (consulta) {
-            getClientesList().then(data => llenaListado(data));
+        console.log('LISTACLIENTES: USEFFECT')
+        if (consulta)  {
+            console.log('LISTACLIENTES: recarga lista');
+            llenaListado(clientes);
             activaConsulta(false);
         }
-    }, [consulta, clientes]
+    }, []
+    );
 
-    )
+
+    useEffect(() => {
+        console.log('LISTACLIENTES: USEFFECT')
+        if (consulta)  {
+            console.log('LISTACLIENTES: recarga lista');
+            llenaListado(clientes);
+            activaConsulta(false);
+        }
+    }, []
+    );
+
 
 
     return (

@@ -16,6 +16,21 @@ export function saveClient(cliente) {
         .then(res => {
             if (res.data) {
                 console.log('retorna verdadero')
+                return res.data;
+            } else {
+                console.log('retorna falspo')
+                return false;
+            }
+        });
+
+}
+
+
+export function editClient(cliente) {
+    axios.put(url, cliente)
+        .then(res => {
+            if (res.data) {
+                console.log('retorna verdadero')
                 return true;
             } else {
                 console.log('retorna falspo')

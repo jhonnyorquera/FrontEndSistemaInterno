@@ -74,7 +74,7 @@ const ViewCliente = ({ selectedCliente, estadoCrud }) => {
                         <li>
                             <div className="p-grid">
                                 <div style={{ fontWeight: 'bold' }} className="p-col-6">Datos Factura</div>
-                                <div className="p-col-6">{selectedCliente.clFactura}</div>
+                                <div className="p-col-6">{selectedCliente.obFactura}</div>
                             </div>
                         </li>
 

@@ -54,14 +54,14 @@ const GestionHomie = () => {
         cargarRegistroSelected(registroSelectedChild);
     }
 
- const terminaActualiza =(actualiza) =>{
-    actualizarEstadoCrud(null)
-    if(actualiza ){
-        recuperarHomies();
+    const terminaActualiza = (actualiza) => {
+        actualizarEstadoCrud(null)
+        if (actualiza) {
+            recuperarHomies();
+        }
     }
- }
 
-     
+
 
 
 
@@ -69,9 +69,9 @@ const GestionHomie = () => {
         return (
             <ListaHomie
                 homiesLista={homiesLista}
-                homieSeleccion={cargarSelectedHomie} 
+                homieSeleccion={cargarSelectedHomie}
                 estadoCrud={actualizarEstadoCrud}
-                />
+            />
         );
     }
 
@@ -120,15 +120,15 @@ const GestionHomie = () => {
                 </div>
 
                 <div className="p-col-12 p-lg-8">
-                { estadoCrud === 'editar' ?
-                           
-                              <EditarHomie
-                homieEditar={registroSelected}
-                updated={terminaActualiza}
-            /> :null}
+                    {estadoCrud === 'editar' ?
 
-                               
-                       
+                        <EditarHomie
+                            homieEditar={registroSelected}
+                            updated={terminaActualiza}
+                        /> : null}
+
+
+
                 </div>
 
             </div>
