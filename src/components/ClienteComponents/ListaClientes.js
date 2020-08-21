@@ -3,11 +3,10 @@ import { getClientesList } from '../../service/ClientesService';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 
-const ListaClientes = ({ clienteSelect, estadoCrud, clientes}) => {
+const ListaClientes = ({ clienteSelect, estadoCrud, procesando, isProcesando }) => {
 
-    const [consulta, activaConsulta] = useState(true)
+
     const [clientesLista, llenaListado] = useState([])
-    // const [clienteSelect, seleccionarCliente] =useState(null);
 
     const seleccionaCliente = (variable) => {
         clienteSelect(variable);
@@ -15,40 +14,33 @@ const ListaClientes = ({ clienteSelect, estadoCrud, clientes}) => {
 
     }
 
-    useEffect(() => {
-        console.log('LISTACLIENTES: USEFFECT')
-        if (consulta)  {
-            console.log('LISTACLIENTES: recarga lista');
-            llenaListado(clientes);
-            activaConsulta(false);
-        }
-    }, []
-    );
-
 
     useEffect(() => {
-        console.log('LISTACLIENTES: USEFFECT')
-        if (consulta)  {
-            console.log('LISTACLIENTES: recarga lista');
-            llenaListado(clientes);
-            activaConsulta(false);
-        }
-    }, []
+        getClientesList().then(data => llenaListado(data));
+                isProcesando(false);
+    }, [procesando, isProcesando]
     );
 
 
 
     return (
         <Fragment>
-            <h1>Nuestros Clientes</h1>
-            <DataTable value={clientes} paginatorPosition="both" selectionMode="single" rows={10}
-                responsive={true} onSelectionChange={e => seleccionaCliente(e.value)}
 
+            <h1>Nuestros Clientes</h1>
+            <DataTable value={clientesLista}
+                paginator={true}
+                paginatorPosition="both"
+                className="p-datatable-striped"
+                selectionMode="single"
+                sortField="clId" sortOrder={-1}
+                responsive={true}
+                onSelectionChange={e => seleccionaCliente(e.value)}
+                rows={10} rowsPerPageOptions={[10, 20, 50]}
             >
                 <Column field="clCedulaRuc" header="Cédula" sortable={true} filter={true} filterPlaceholder="Digita un número" filterMatchMode="contains" />
                 <Column field="clNombre" header="Nombre" sortable={true} filter={true} filterPlaceholder="Digita una letra" filterMatchMode="contains" />
-                <Column field="clTelefono" header="Fecha Nacimiento" sortable={true} />
-                <Column field="clCorreo" header="Teléfono" sortable={true} />
+                <Column field="clTelefono" header="Teléfono" sortable={true} />
+                <Column field="clCorreo" header="Correo" sortable={true} />
             </DataTable>
 
         </Fragment>

@@ -82,7 +82,7 @@ const GestionHomie = () => {
             recuperarHomies(recupera);
             actualizaReecupera(false);
         }
-    }, [homiesLista, recupera]);
+    }, [recupera, recuperarHomies, actualizaReecupera]);
 
 
     const showSuccess = () => {

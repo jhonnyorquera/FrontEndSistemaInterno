@@ -1,6 +1,6 @@
 
 
-import React, { useState,  Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 
@@ -9,17 +9,17 @@ import { Button } from 'primereact/button';
 
 
 
-const ListarHomie = ({homiesLista, homieSeleccion, estadoCrud}) => {
+const ListarHomie = ({ homiesLista, homieSeleccion, estadoCrud }) => {
 
     const [selectedHomie, setSelectedHomie] = useState(null);
 
-  
+
 
 
     const editHomie = () => {
         setSelectedHomie(null)
         homieSeleccion(selectedHomie)
-        
+
     }
 
 
@@ -82,15 +82,15 @@ const ListarHomie = ({homiesLista, homieSeleccion, estadoCrud}) => {
 
                 <Card style={{ width: '50%' }}>
                     <ul className="activity-list">
-                     
-                    <li>
 
-<div className="p-grid">
-    <div style={{ fontWeight: 'bold' }} className="p-col-6">Sector de residencia</div>
-    <div className="p-col-6">{data.hoSector}</div>
-</div>
-</li>
-                     
+                        <li>
+
+                            <div className="p-grid">
+                                <div style={{ fontWeight: 'bold' }} className="p-col-6">Sector de residencia</div>
+                                <div className="p-col-6">{data.hoSector}</div>
+                            </div>
+                        </li>
+
                         <li>
 
                             <div className="p-grid">
@@ -164,12 +164,12 @@ const ListarHomie = ({homiesLista, homieSeleccion, estadoCrud}) => {
             <div>_______________________________</div>
             <div>
                 {
-                
-               displaySelection(selectedHomie)
-                
+
+                    displaySelection(selectedHomie)
+
                 }
             </div>
-            
+
             {
                 selectedHomie ? <Button onClick={e => editHomie()} label="Editar Homie"> </Button> : <div />
             }

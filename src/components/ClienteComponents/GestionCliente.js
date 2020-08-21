@@ -1,35 +1,21 @@
-import React, { Fragment, useState, useEffect } from 'react'
+import React, { Fragment, useState} from 'react'
 import ListaClientes from './ListaClientes'
 import ViewCliente from './ViewCliente'
 import { Button } from 'primereact/button';
 import { ScrollPanel } from 'primereact/scrollpanel';
 import CreateCliente from './CreateCliente';
 import EditCliente from './EditCliente';
-import { getClientesList } from '../../service/ClientesService';
 
 const GestionCliente = () => {
 
     const [estadoCrud, actualizarEstadoCrud] = useState(null)
-    const [clienteSelect, seleccionarCliente] = useState('');
+    const [clienteSelect, seleccionarCliente] = useState({});
     const [procesando, isProcesando] = useState(true);
-    const [clientes, llenaListado] = useState([]);
+
+    
 
 
-    const seleccinaCliente = (cliente) => {
-        seleccionarCliente(cliente);
-    }
-
-    useEffect(function () {
-        console.log('GESTIONHOMIE: STATUS_PROCESANDO:  ' + procesando);
-        if (procesando) {
-            console.log('GESTIONHOMIE: entra a cargar lista')
-            getClientesList().then(data => llenaListado(data));
-            isProcesando(false)
-        }
-
-    })
-
-
+   
 
 
 
@@ -44,7 +30,8 @@ const GestionCliente = () => {
                         <ListaClientes
                             clienteSelect={seleccionarCliente}
                             estadoCrud={actualizarEstadoCrud}
-                            clientes={clientes}
+                            procesando={procesando}
+                            isProcesando={isProcesando}
                         />
                     </div>
 

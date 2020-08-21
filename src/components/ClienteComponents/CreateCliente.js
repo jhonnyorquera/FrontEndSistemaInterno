@@ -1,16 +1,15 @@
 import React, { useState, Fragment } from 'react';
 import { InputText } from 'primereact/inputtext';
 import { InputTextarea } from 'primereact/inputtextarea';
-import { ScrollPanel } from 'primereact/scrollpanel';
 import { saveClient } from '../../service/ClientesService';
 import { Button } from 'primereact/button';
 import swal from 'sweetalert';
 
-const CreateCliente = ({estadoCrud, seleccionarCliente, isProcesando}) => {
+const CreateCliente = ({ estadoCrud, seleccionarCliente, isProcesando }) => {
 
     const [clCliente, actualizaHomie] = useState({
 
-        clCedulaRuc: '', clTipo: '', clNombre: '', clSector: '', clDireccion: '', clTelefono: '', clCorreo: '', obFactura
+        clId:'', clCedulaRuc: '', clTipo: '', clNombre: '', clSector: '', clDireccion: '', clTelefono: '', clCorreo: '', obFactura:''
     });
 
 
@@ -21,24 +20,40 @@ const CreateCliente = ({estadoCrud, seleccionarCliente, isProcesando}) => {
         })
     }
 
-    const { clCedulaRuc, clTipo, clNombre, clSector, clDireccion, clTelefono, clCorreo, obFactura } = clCliente;
+    const {  clCedulaRuc, clTipo, clNombre, clSector, clDireccion, clTelefono, clCorreo, obFactura } = clCliente;
 
     const crearCliente = (e) => {
-        console.log('CREACLIENTE: se crea cliente');
+
         e.preventDefault();
-        var guardo = false;
-        seleccionarCliente(saveClient(clCliente));
+
+        saveClient(clCliente).then(res => {
+            seleccionarCliente(res);
+            swal("Se registra cliente", "Se ha registrado el usuario: "+res.clId, "success");
+
+        })
+            .catch(error => {
+                if (error.response) {
+                    swal("No se registra cliente", "Aglo ha ocurrido, prueba de nuevo o consulta al administrador", "error");
+
+                } else if (error.request) {
+                    swal("No se registra cliente", "Aglo ha ocurrido, prueba de nuevo o consulta al administrador", "error");
+                }
+
+            }
+
+            );
+
+
         estadoCrud(null);
         isProcesando(true);
-        swal("Cliente Creado!", "Se ha creado el cliente con id!"+clCliente.clNombre, "success");
-        
     }
+
 
     return (
         <Fragment>
-            
+
             <form onSubmit={crearCliente}>
-          
+
                 <h1>Registrar Cliente</h1>
 
                 <div className="p-col-12">
@@ -54,8 +69,8 @@ const CreateCliente = ({estadoCrud, seleccionarCliente, isProcesando}) => {
                     <label htmlFor="clTipo" >Tipo</label>
                 </div>
                 <div className="p-col-12">
-                    <InputText id="clTipo" required={true}
-                          name="clTipo" placeholder="Ej. Hogar"
+                    <InputText id="clTipo"
+                        name="clTipo" placeholder="Ej. Hogar"
                         onChange={actualizarState} value={clTipo} />
                 </div>
 
@@ -63,8 +78,8 @@ const CreateCliente = ({estadoCrud, seleccionarCliente, isProcesando}) => {
                     <label htmlFor="clNombre" >Nombre</label>
                 </div>
                 <div className="p-col-12">
-                    <InputText id="clNombre" required={true}
-                        minLength="10"  name="clNombre" placeholder="Ej. Beatriz Pinzón Solano"
+                    <InputText id="clNombre"
+                        minLength="10" name="clNombre" placeholder="Ej. Beatriz Pinzón Solano"
                         onChange={actualizarState} value={clNombre} />
                 </div>
 
@@ -72,8 +87,8 @@ const CreateCliente = ({estadoCrud, seleccionarCliente, isProcesando}) => {
                     <label htmlFor="clSector" >Sector</label>
                 </div>
                 <div className="p-col-12">
-                    <InputText id="clSector" required={true}
-                        minLength="5"  name="clSector" placeholder="Ej. Batán Alto"
+                    <InputText id="clSector"
+                        minLength="5" name="clSector" placeholder="Ej. Batán Alto"
                         onChange={actualizarState} value={clSector} />
                 </div>
 
@@ -81,8 +96,8 @@ const CreateCliente = ({estadoCrud, seleccionarCliente, isProcesando}) => {
                     <label htmlFor="clDireccion" >Dirección</label>
                 </div>
                 <div className="p-col-12">
-                <InputTextarea rows={5} cols={30} id="clDireccion" required={true}
-                        minLength="10"  name="clDireccion" placeholder="Ej. Toribio Hidalgo y Atanasio Oleas"
+                    <InputTextarea rows={5} cols={30} id="clDireccion"
+                        minLength="10" name="clDireccion" placeholder="Ej. Toribio Hidalgo y Atanasio Oleas"
                         onChange={actualizarState} value={clDireccion} />
                 </div>
 
@@ -90,8 +105,8 @@ const CreateCliente = ({estadoCrud, seleccionarCliente, isProcesando}) => {
                     <label htmlFor="clTelefono" >Teléfono</label>
                 </div>
                 <div className="p-col-12">
-                <InputTextarea rows={2} cols={30} id="clTelefono" required={true}
-                        minLength="10"  name="clTelefono" placeholder="Ej. 0998342369, 022573897"
+                    <InputTextarea rows={2} cols={30} id="clTelefono"
+                        minLength="10" name="clTelefono" placeholder="Ej. 0998342369, 022573897"
                         onChange={actualizarState} value={clTelefono} />
                 </div>
 
@@ -107,8 +122,8 @@ const CreateCliente = ({estadoCrud, seleccionarCliente, isProcesando}) => {
                     <label htmlFor="obFactura" >Factura</label>
                 </div>
                 <div className="p-col-12">
-                <InputTextarea rows={2} cols={30} id="obFactura" required={true}
-                        minLength="10"  name="obFactura" placeholder="Ej. Mismos datos del cliente"
+                    <InputTextarea rows={2} cols={30} id="obFactura"
+                        minLength="10" name="obFactura" placeholder="Ej. Mismos datos del cliente"
                         onChange={actualizarState} value={obFactura} />
                 </div>
 
@@ -116,9 +131,9 @@ const CreateCliente = ({estadoCrud, seleccionarCliente, isProcesando}) => {
                 <div className="p-col-12">
                     <Button type="submit" label="Registrar"> </Button>
                 </div>
-              
+
             </form>
-          
+
         </Fragment>
     );
 }

@@ -62,7 +62,7 @@ const EditarHomie = ({ homieEditar, updated }) => {
     }
 
 
-    const { hoCedula, hoNombre, hoTelefono, hoCorreo, hoNroCuenta, hoModalidad, hoSector, hoDireccion, hoNivelEducativo, hoSueldo, hoHijos, hoFechaNacimiento,  hoFechaSalida } = homieEditado;
+    const { hoCedula, hoNombre, hoTelefono, hoCorreo, hoNroCuenta,  hoSector, hoDireccion, hoNivelEducativo, hoSueldo, hoHijos, hoFechaNacimiento,  hoFechaSalida } = homieEditado;
 
 
     return (

@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { Card } from 'primereact/card';
 import Moment from 'react-moment';
 import 'moment/locale/es';
