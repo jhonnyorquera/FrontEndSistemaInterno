@@ -30,6 +30,7 @@ import '@fullcalendar/daygrid/main.css';
 import '@fullcalendar/timegrid/main.css';
 import './layout/layout.scss';
 import './App.scss';
+import Logo from './images/logo-white.png';
 
 class App extends Component {
 
@@ -112,7 +113,7 @@ class App extends Component {
        
 
             {
-                label: 'Homies', icon: 'pi pi-fw pi-users', 
+                label: 'Homies', icon: 'pi pi-fw pi-align-justify', 
                 items: [
                     {label: 'Registrar', icon: 'pi pi-fw pi-question', command: () => {window.location = "#/gestionHomie"}}
                 ]
@@ -154,7 +155,7 @@ class App extends Component {
     }
 
     render() {
-        const logo = this.state.layoutColorMode === 'dark' ? 'assets/layout/images/logo-white.svg': 'assets/layout/images/logo.svg';
+        const logo ="public/assets/layout/images/logo-white.png";
 
         const wrapperClass = classNames('layout-wrapper', {
             'layout-overlay': this.state.layoutMode === 'overlay',
@@ -174,8 +175,8 @@ class App extends Component {
                 <AppTopbar onToggleMenu={this.onToggleMenu}/>
 
                 <div ref={(el) => this.sidebar = el} className={sidebarClassName} onClick={this.onSidebarClick}>
-                <div className="layout-logo">
-                        <img alt="Logo" src={logo} />
+                <div className="layout-logo"> 
+                        <img alt="Logo" src={Logo} />
                     </div>
                     <AppProfile />
                     <AppMenu model={this.menu} onMenuItemClick={this.onMenuItemClick} />
