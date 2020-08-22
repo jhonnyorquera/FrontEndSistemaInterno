@@ -19,7 +19,7 @@ import {EmptyPage} from './components/EmptyPage';
 import {Documentation} from "./components/Documentation";
 import {Data} from './components/Data';
 
-import GestionHomie from './components/GestionHomie';
+import GestionHomie from './components/HomieComponents/GestionHomie';
 import GestionCliente from './components/ClienteComponents/GestionCliente';
 import 'primereact/resources/themes/nova-light/theme.css';
 import 'primereact/resources/primereact.min.css';
@@ -155,8 +155,7 @@ class App extends Component {
     }
 
     render() {
-        const logo ="public/assets/layout/images/logo-white.png";
-
+       
         const wrapperClass = classNames('layout-wrapper', {
             'layout-overlay': this.state.layoutMode === 'overlay',
             'layout-static': this.state.layoutMode === 'static',

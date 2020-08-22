@@ -33,10 +33,10 @@ const CreateCliente = ({ estadoCrud, seleccionarCliente, isProcesando }) => {
         })
             .catch(error => {
                 if (error.response) {
-                    swal("No se registra cliente", "Aglo ha ocurrido, prueba de nuevo o consulta al administrador", "error");
+                    swal("No se registra cliente", "Algo ha ocurrido, prueba de nuevo o consulta al administrador", "error");
 
                 } else if (error.request) {
-                    swal("No se registra cliente", "Aglo ha ocurrido, prueba de nuevo o consulta al administrador", "error");
+                    swal("No se registra cliente", "Algo ha ocurrido, prueba de nuevo o consulta al administrador", "error");
                 }
 
             }

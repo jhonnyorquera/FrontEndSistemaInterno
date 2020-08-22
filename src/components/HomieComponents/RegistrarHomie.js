@@ -1,20 +1,20 @@
-import React, { useState, Fragment} from 'react';
+import React, { useState, Fragment } from 'react';
 import { InputText } from 'primereact/inputtext';
 import { InputMask } from 'primereact/inputmask';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { Calendar } from 'primereact/calendar';
 import { Button } from 'primereact/button';
 import { Dropdown } from 'primereact/dropdown';
-import axios from 'axios';
-import Global from '../Global'
+
 import { Spinner } from 'primereact/spinner';
+import swal from 'sweetalert';
+import { createHomie } from '../../service/HomieService';
 
 
 
 
-const RegistrarHomie = ({ terminaRegistro }) => {
+const RegistrarHomie = ({ terminaRegistro, actualizarEstadoCrud, isProcesando }) => {
 
-    var url = Global.urlHomie;
     var modalidades = [
         { mod: 'En relación laboral' },
         { mod: 'Freelance' },
@@ -52,24 +52,36 @@ const RegistrarHomie = ({ terminaRegistro }) => {
 
         e.preventDefault();
         homie.hoModalidad = homie.hoModalidad.mod;
-        axios.post(url, homie)
+        createHomie(homie)
             .then(res => {
-                if (res.data) {
+                if (res) {
                     terminaRegistro(false);
+                    swal("Tenemos un nuevo Homie", "Se ha registrado un nuevo Homie", "success");
+
                 } else {
                     terminaRegistro(true);
+                    swal("No se registrado un Homie", "Algo ha ocurrido, prueba de nuevo o consulta al administrador", "error");
+
                 }
             }).catch(error => {
                 if (error.response) {
                     terminaRegistro(true);
+                    swal("No se registrado un Homie", "Algo ha ocurrido, prueba de nuevo o consulta al administrador", "error");
+
                 } else if (error.request) {
                     terminaRegistro(true);
-                }  else{
+                    swal("No se registrado un Homie", "Algo ha ocurrido, prueba de nuevo o consulta al administrador", "error");
+
+                } else {
                     console.log('Error--->', error.message);
-  
+
                 }
-                               
+
             });
+
+        actualizarEstadoCrud('');
+
+        isProcesando(true);
     }
 
 
@@ -86,9 +98,9 @@ const RegistrarHomie = ({ terminaRegistro }) => {
                     <label htmlFor="hoCedula" >Cédula</label>
                 </div>
                 <div className="p-col-12">
-                    <InputText id="hoCedula" required={true} 
-                    minLength="10" maxLength="10" name="hoCedula" placeholder="Ej. 1720508888" 
-                    onChange={actualizarState} value={hoCedula} />
+                    <InputText id="hoCedula" required={true}
+                        minLength="10" maxLength="10" name="hoCedula" placeholder="Ej. 1720508888"
+                        onChange={actualizarState} value={hoCedula} />
                 </div>
                 <div className="p-col-12">
                     <label >Nombres Completos</label>
@@ -155,6 +167,14 @@ const RegistrarHomie = ({ terminaRegistro }) => {
                     <InputText maxLength="150" id="hoNivelEducativo" name="hoNivelEducativo" placeholder="Ej. Bachillerato" onChange={actualizarState} value={hoNivelEducativo} />
                 </div>
 
+
+                <div className="p-col-12">
+                    <label htmlFor="hoFechaIngreso">Fecha de Ingreso</label>
+                </div>
+                <div className="p-col-12">
+                    <Calendar type="time" placeholder="07/15/2020" required={true} name="hoFechaIngreso" id="hoFechaIngreso" onChange={actualizarState} value={hoFechaIngreso} />
+                </div>
+
                 <div className="p-col-12">
                     <label htmlFor="hoSueldo">Sueldo</label>
                 </div>
@@ -178,13 +198,8 @@ const RegistrarHomie = ({ terminaRegistro }) => {
                     <Calendar type="time" placeholder="07/15/2020" name="hoFechaNacimiento" id="hoFechaNacimiento" onChange={actualizarState} value={hoFechaNacimiento} />
                 </div>
 
+                
                 <div className="p-col-12">
-                    <label htmlFor="hoFechaIngreso">Fecha de Ingreso</label>
-                </div>
-                <div className="p-col-12">
-                    <Calendar placeholder="07/15/2020" name="hoFechaIngreso" id="hoFechaIngreso" onChange={actualizarState} value={hoFechaIngreso} />
-                </div>
-         <div className="p-col-12">
                     <Button type="submit" label="Registrar"> </Button>
                 </div>
 
