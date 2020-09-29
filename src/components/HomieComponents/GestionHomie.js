@@ -4,9 +4,6 @@ import ListaHomie from './ListaHomie';
 import ViewHomie from './ViewHomie';
 import { Button } from 'primereact/button';
 import { ScrollPanel } from 'primereact/scrollpanel';
-
-
-
 import EditarHomie from './EditarHomie';
 
 const GestionHomie = () => {
@@ -14,11 +11,6 @@ const GestionHomie = () => {
     const [estadoCrud, actualizarEstadoCrud] = useState(null)
     const [registroSelected, cargarRegistroSelected] = useState(null)
     const [procesando, isProcesando] = useState(true)
-
-
-
-
-
 
     return (
         <Fragment>

@@ -21,6 +21,7 @@ import {Data} from './components/Data';
 
 import GestionHomie from './components/HomieComponents/GestionHomie';
 import GestionCliente from './components/ClienteComponents/GestionCliente';
+import GestionCrearPedido from './components/CrearPedidoComponentes/GestionCrearPedido';
 import 'primereact/resources/themes/nova-light/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
@@ -110,20 +111,26 @@ class App extends Component {
                     {label: 'Overlay Menu', icon: 'pi pi-fw pi-bars',  command: () => this.setState({layoutMode: 'overlay'}) }
                 ]
             }, 
-       
-
             {
+                label: 'Pedidos', icon: 'pi pi-fw pi-folder-open', 
+                items: [
+                    {label: 'Crear Pedido', icon: 'pi pi-fw pi-calendar-plus', command: () => {window.location = "#/crearPedido"}}
+                ]
+            },
+
+            { 
                 label: 'Homies', icon: 'pi pi-fw pi-align-justify', 
                 items: [
-                    {label: 'Registrar', icon: 'pi pi-fw pi-question', command: () => {window.location = "#/gestionHomie"}}
+                    {label: 'Registrar', icon: 'pi pi-fw pi-user-plus', command: () => {window.location = "#/gestionHomie"}}
                 ]
             },
             {
                 label: 'Clientes', icon: 'pi pi-fw pi-users', 
                 items: [
-                    {label: 'Administrar', icon: 'pi pi-fw pi-question', command: () => {window.location = "#/gestionCliente"}}
+                    {label: 'Administrar', icon: 'pi pi-fw pi-user-plus', command: () => {window.location = "#/gestionCliente"}}
                 ]
             }
+           
 
 
         ];
@@ -198,6 +205,7 @@ class App extends Component {
                     <Route path="/gestionCliente" component={GestionCliente} />
                    
                     <Route path="/gestionHomie" component={GestionHomie} />
+                    <Route path="/crearPedido" component={GestionCrearPedido} />
                 </div>
 
                 <AppFooter />
