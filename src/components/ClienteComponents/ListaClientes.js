@@ -16,9 +16,13 @@ const ListaClientes = ({ clienteSelect, estadoCrud, procesando, isProcesando }) 
 
 
     useEffect(() => {
+
+        if(procesando){
         getClientesList().then(data => llenaListado(data));
                 isProcesando(false);
-    }, [procesando, isProcesando]
+            }
+   
+            }, [procesando, isProcesando]
     );
 
 

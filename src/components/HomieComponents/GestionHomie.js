@@ -13,7 +13,7 @@ const GestionHomie = () => {
 
     const [estadoCrud, actualizarEstadoCrud] = useState(null)
     const [registroSelected, cargarRegistroSelected] = useState(null)
-    const [procesando, isProcesando] = useState(false)
+    const [procesando, isProcesando] = useState(true)
 
 
 

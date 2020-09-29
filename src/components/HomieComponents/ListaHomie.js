@@ -16,18 +16,16 @@ const ListarHomie = ({ homieSeleccion, actualizarEstadoCrud, procesando, isProce
     const seleccionaHomie = (variable) => {
         homieSeleccion(variable);
         actualizarEstadoCrud('view')
-
     }
 
-
-
     useEffect(() => {
-
-        getHomiesList()
-            .then(res =>
-                setListaHomie(res)
-            );
-        isProcesando(false)
+        if (procesando) {
+            getHomiesList()
+                .then(res =>
+                    setListaHomie(res)
+                );
+            isProcesando(false)
+        }
     }, [procesando, isProcesando]);
 
 
@@ -37,12 +35,12 @@ const ListarHomie = ({ homieSeleccion, actualizarEstadoCrud, procesando, isProce
         <Fragment>
 
             <h1>Nuestros Homies</h1>
-            <DataTable value={listaHomie}  paginator={true}
+            <DataTable value={listaHomie} paginator={true}
                 paginatorPosition="both"
-                className="p-datatable-striped" 
-            selectionMode="single" 
-            sortField="hoFechaRegistro" sortOrder={-1}
-            rows={10}
+                className="p-datatable-striped"
+                selectionMode="single"
+                sortField="hoFechaRegistro" sortOrder={-1}
+                rows={10}
                 responsive={true} onSelectionChange={e =>
                     seleccionaHomie(e.value)
                 }
