@@ -1,6 +1,6 @@
 var Global={
-    urlHomie: 'http://localhost:8080/api/HoHomie/',
-    urlCliente: 'http://localhost:8080/api/HoCliente/'
+    urlHomie: 'http://localhost:9000/api/HoHomie/',
+    urlCliente: 'http://localhost:9000/api/HoCliente/'
 };
 
 export default Global;
