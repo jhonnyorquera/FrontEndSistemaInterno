@@ -43,10 +43,9 @@ const ListaCatalogo = (catalogoSelect, estadoCrud, procesando, isProcesando) => 
                 onSelectionChange={e => seleccionaCatalogo(e.value)}
                 rows={10} rowsPerPageOptions={[10, 20, 50]}
             >
-                <Column field="clCedulaRuc" header="Cédula" sortable={true} filter={true} filterPlaceholder="Digita un número" filterMatchMode="contains" />
-                <Column field="clNombre" header="Nombre" sortable={true} filter={true} filterPlaceholder="Digita una letra" filterMatchMode="contains" />
-                <Column field="clTelefono" header="Teléfono" sortable={true} />
-                <Column field="clCorreo" header="Correo" sortable={true} />
+                <Column field="seNombre" header="Servicio" sortable={true} filter={true} filterPlaceholder="Digita un número" filterMatchMode="contains" />
+                <Column field="seValor" header="Valor" sortable={true} filter={true} filterPlaceholder="Digita una letra" filterMatchMode="contains" />
+
             </DataTable>
 
 
