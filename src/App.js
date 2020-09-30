@@ -22,6 +22,7 @@ import {Data} from './components/Data';
 import GestionHomie from './components/HomieComponents/GestionHomie';
 import GestionCliente from './components/ClienteComponents/GestionCliente';
 import GestionCrearPedido from './components/CrearPedidoComponentes/GestionCrearPedido';
+import GestionCatalogo from './components/CatalogoComponent/GestionCatalogo';
 import 'primereact/resources/themes/nova-light/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
@@ -131,6 +132,13 @@ class App extends Component {
                 ]
             }
            
+            ,
+            {
+                label: 'Catalogo', icon: 'pi pi-fw pi-users', 
+                items: [
+                    {label: 'Administrar', icon: 'pi pi-fw pi-question', command: () => {window.location = "#/gestionCatalogo"}}
+                ]
+            }
 
 
         ];
@@ -206,6 +214,10 @@ class App extends Component {
                    
                     <Route path="/gestionHomie" component={GestionHomie} />
                     <Route path="/crearPedido" component={GestionCrearPedido} />
+                    <Route path="/gestionCatalogo" component={GestionCatalogo} />
+
+                   
+
                 </div>
 
                 <AppFooter />
