@@ -23,7 +23,7 @@ import GestionHomie from './components/HomieComponents/GestionHomie';
 import GestionCliente from './components/ClienteComponents/GestionCliente';
 import GestionCrearPedido from './components/CrearPedidoComponentes/GestionCrearPedido';
 import GestionCatalogo from './components/CatalogoComponent/GestionCatalogo';
-import 'primereact/resources/themes/nova-light/theme.css';
+import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
@@ -120,7 +120,7 @@ class App extends Component {
             },
 
             { 
-                label: 'Homies', icon: 'pi pi-fw pi-align-justify', 
+                label: 'Homies', icon: 'pi pi-fw pi-id-card', 
                 items: [
                     {label: 'Registrar', icon: 'pi pi-fw pi-user-plus', command: () => {window.location = "#/gestionHomie"}}
                 ]

@@ -25,7 +25,7 @@ const CrearPedido = () => {
 
     });
 
-    const { peFechaPedido, peCantidadHoras, peServicios, peObservacion, peValor, peEstado, hoSector } = pedido;
+    const { peFechaPedido} = pedido;
 
     const actualizarState = e => {
         camposPedido({

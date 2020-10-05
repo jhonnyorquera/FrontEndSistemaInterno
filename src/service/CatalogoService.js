@@ -2,7 +2,7 @@
 import Global from '../Global';
 import axios from 'axios';
 
-var url = Global.urlCliente;
+var url = Global.urlCatalogo;
 
 
 export function getCatalogoList() {
@@ -12,23 +12,22 @@ export function getCatalogoList() {
     return listado;
 }
 
-export function saveCatalogo(catalogo) {
+export function createCatalogo(catalogo) {
     return axios.post(url, catalogo)
         .then(res => res.data);
 }
 
 
-export function editClient(catalogo) {
-    axios.put(url, catalogo)
-        .then(res => {
-            if (res.data) {
-                return true;
-            } else {
-                return false;
-            }
-        });
 
-}
+
+export function editCatalogo(objeto){
+
+    return axios.put(url, objeto)
+     .then(res =>
+         res
+     )
+ 
+ }
 
 
 

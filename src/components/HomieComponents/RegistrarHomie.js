@@ -6,7 +6,6 @@ import { Calendar } from 'primereact/calendar';
 import { Button } from 'primereact/button';
 import { Dropdown } from 'primereact/dropdown';
 
-import { Spinner } from 'primereact/spinner';
 import swal from 'sweetalert';
 import { createHomie } from '../../service/HomieService';
 
@@ -187,7 +186,7 @@ const RegistrarHomie = ({ terminaRegistro, actualizarEstadoCrud, isProcesando })
                     <label htmlFor="hoHijos">Nro de Hijos</label>
                 </div>
                 <div className="p-col-12">
-                    <Spinner id="hoHijos" name="hoHijos" placeholder="Ej. 3" onChange={actualizarState} value={hoHijos} />
+                <InputText id="hoHijos" name="hoHijos" placeholder="Ej. 3" onChange={actualizarState} value={hoHijos} />
                 </div>
 
 

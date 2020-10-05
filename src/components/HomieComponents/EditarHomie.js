@@ -7,7 +7,6 @@ import { Button } from 'primereact/button';
 import { Dropdown } from 'primereact/dropdown';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { Calendar } from 'primereact/calendar';
-import { Spinner } from 'primereact/spinner';
 import { editHomie } from '../../service/HomieService';
 import swal from 'sweetalert';
 
@@ -53,6 +52,7 @@ const EditarHomie = ({ homieEditar, updated, estadoCrud }) => {
     const enviarActualizarSubmit = (e) => {
         e.preventDefault();
         homieEditado.hoModalidad = modalidadSelected.mod;
+        console.log('homieEditado:'+homieEditado)
         editHomie(homieEditado).then(res => {
             if (res.status === 200) {
                 updated(true);
@@ -180,7 +180,7 @@ const EditarHomie = ({ homieEditar, updated, estadoCrud }) => {
                             <div className="p-grid">
                                 <div style={{ fontWeight: 'bold' }} className="p-col-6">Nro de Hijos</div>
                                 <div className="p-col-6">
-                                    <Spinner id="hoHijos" name="hoHijos" placeholder="Ej. 3" onChange={actualizarState} value={hoHijos} />
+                                    <InputText id="hoHijos" name="hoHijos" placeholder="Ej. 3" onChange={actualizarState} value={hoHijos} />
                                 </div>
                             </div>
                         </li>

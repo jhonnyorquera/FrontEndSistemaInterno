@@ -16,7 +16,6 @@ import {PanelMenu} from 'primereact/panelmenu';
 import {InputMask} from 'primereact/inputmask';
 import {Dropdown} from 'primereact/dropdown';
 import {Password} from 'primereact/password';
-import {Spinner} from 'primereact/spinner';
 import {Slider} from 'primereact/slider';
 import {ListBox} from 'primereact/listbox';
 import {RadioButton} from 'primereact/radiobutton';
@@ -376,7 +375,7 @@ export class SampleDemo extends Component {
                                 <div className="p-col-12 p-md-2">
                                     <label htmlFor="input">Input</label>
                                 </div>
-                                <div className="p-col-12 p-md-4">
+                                <div className="p-col-12 p-md-4">Module not found: Can't resolve 'primereact/inputnumber'
                                     <InputText id="input" />
                                 </div>
                                 <div className="p-col-12 p-md-2">
@@ -418,12 +417,7 @@ export class SampleDemo extends Component {
                                 <div className="p-col-12 p-md-4">
                                     <InputMask id="mask" mask="99/99/9999" slotChar="dd/mm/yyyy" placeholder="Date" />
                                 </div>
-                                <div className="p-col-12 p-md-2">
-                                    <label htmlFor="spinner">Spinner</label>
-                                </div>
-                                <div className="p-col-12 p-md-4">
-                                    <Spinner value={this.state.spinnerValue} onChange={event => this.setState({spinnerValue: event.value})} />
-                                </div>
+                               
 
                                 <div className="p-col-12 p-md-2">
                                     Checkbox
