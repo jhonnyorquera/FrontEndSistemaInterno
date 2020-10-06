@@ -26,13 +26,14 @@ const SeleccionHomie = () => {
                 paginatorPosition="bottom"
                 className="p-datatable-striped"
                 selectionMode="single"
-                sortField="hoFechaRegistro" sortOrder={-1}
+                sortField="hoNombre" sortOrder={-1}
                 rows={10}
                 responsive={true} onSelectionChange={e =>
                     e
                 }
 
             >
+                <Column field="hoCedula" header="Nombre" sortable={true} filter={true} filterPlaceholder="Digita una letra" filterMatchMode="contains" />
                 <Column field="hoNombre" header="Nombre" sortable={true} filter={true} filterPlaceholder="Digita una letra" filterMatchMode="contains" />
                 <Column field="hoTelefono" header="Teléfono" sortable={true} />
             </DataTable>
