@@ -25,7 +25,7 @@ const CrearPedido = () => {
 
     });
 
-    const { peFechaPedido} = pedido;
+    const { peFechaPedido } = pedido;
 
     const actualizarState = e => {
         camposPedido({
@@ -41,7 +41,7 @@ const CrearPedido = () => {
             {
                 creaPedido ?
                     <div>
-                        <h1>Crear Pedido</h1>
+
 
                         <form onSubmit={crearPedido}>
 
@@ -50,6 +50,16 @@ const CrearPedido = () => {
                             </div>
                             <div className="p-col-12">
                                 <InputText id="peFechaPedido" required={true}
+                                    minLength="10" maxLength="10" name="peFechaPedido" placeholder="Ej. 1720508888"
+                                    onChange={actualizarState} value={peFechaPedido} />
+                            </div>
+
+                            <div className="p-col-12">
+                                <label htmlFor="peFechaPedido" >Observaciones</label>
+                            </div>
+                            <div className="p-col-12">
+
+                                <InputText id="detallePedido" required={true}
                                     minLength="10" maxLength="10" name="peFechaPedido" placeholder="Ej. 1720508888"
                                     onChange={actualizarState} value={peFechaPedido} />
                             </div>

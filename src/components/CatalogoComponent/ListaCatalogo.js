@@ -27,8 +27,6 @@ const ListaCatalogo = ({llenaLista, cambiaEstadoLlenar, actualizarEstadoCrud}) =
         getCatalogoList().then(data => llenaListado(data));
     }
 
-
-
     let editingCellRows = {};
 
 
