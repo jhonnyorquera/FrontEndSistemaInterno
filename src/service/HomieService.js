@@ -40,3 +40,14 @@ export function createHomie(homie){
         )
         return listado;
 }
+
+export function getHomiesPedidosList  (fechaBuscar)  {
+    var fecha = {fechaBuscar: fechaBuscar};
+    let listado = [];
+    listado=axios.post(Global.urlHomiePedidos, fecha)
+        .then(res =>res.data
+        )
+        return listado;
+}
+
+

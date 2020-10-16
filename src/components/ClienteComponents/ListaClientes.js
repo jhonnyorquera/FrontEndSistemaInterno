@@ -11,7 +11,6 @@ const ListaClientes = ({ clienteSelect, estadoCrud, procesando, isProcesando }) 
     const seleccionaCliente = (variable) => {
         clienteSelect(variable);
         estadoCrud('view')
-
     }
 
 

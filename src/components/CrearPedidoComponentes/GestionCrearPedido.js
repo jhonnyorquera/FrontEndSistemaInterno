@@ -10,23 +10,29 @@ const GestionCrearPedido = () => {
 
     const [estado, cargaEstado] = useState('')
     const [clienteSelect, seleccionarCliente] = useState();
+    const [homies, cargarHomies] = useState([]);
+    const [servicios, cargarServicios] = useState([]);
 
     return (
         <Fragment>
             <div className="p-grid p-fluid dashboard">
-                <div className="p-col-12 p-lg-8">
+                <div className="p-col-12 p-lg-6">
                     <div className="card">
                         <h1>Crear Pedido</h1>
                         <h3>Detalle del Pedido</h3>
                         <CrearPedido
                             cargaEstado={cargaEstado}
                             clienteSelect={clienteSelect}
+                            homies={homies}
+                           
+
                         />
 
-                        <DetalleServicios />
+                        <DetalleServicios 
+                         servicios={servicios}/>
                     </div>
                 </div>
-                <div className="p-col-12 p-lg-4">
+                <div className="p-col-12 p-lg-6">
                     {
                         estado === 'cliente' ?
                             <Panel header="Seleccionar Cliente" >
@@ -43,7 +49,8 @@ const GestionCrearPedido = () => {
                             <Panel header="Seleccionar Homie´s" >
                                 <SeleccionHomie 
                                 seleccionarCliente={seleccionarCliente}
-                              
+                                cargarHomies={cargarHomies}
+                                cargaEstado={cargaEstado}
                                 />
                             
                             </Panel> : null
@@ -53,7 +60,10 @@ const GestionCrearPedido = () => {
 
                     {estado === 'servicios' ?
                         <Panel header="Seleccionar Servicios" >
-                            <SeleccionarServicio />
+                            <SeleccionarServicio 
+                            cargarServicios={cargarServicios}
+                            cargaEstado={cargaEstado}
+                            />
                         </Panel> : null
 
                     }

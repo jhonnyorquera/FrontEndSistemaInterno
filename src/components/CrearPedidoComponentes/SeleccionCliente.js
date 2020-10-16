@@ -38,7 +38,7 @@ const SeleccionCliente = ({clienteSelect, seleccionarCliente, cargaEstado }) => 
                 <DataTable value={clientesLista}
                 selection={clienteSelect}
                     onSelectionChange={e => seleccionarCliente(e.value)} 
-                    className="p-datatable-striped"
+                    className="p-datatable-sm"
                     selectionMode="single"
                     sortField="clId" sortOrder={-1}
                     responsive={true}
