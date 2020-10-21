@@ -61,6 +61,7 @@ const GestionCrearPedido = () => {
                     {estado === 'servicios' ?
                         <Panel header="Seleccionar Servicios" >
                             <SeleccionarServicio 
+                            servicios={servicios}
                             cargarServicios={cargarServicios}
                             cargaEstado={cargaEstado}
                             />

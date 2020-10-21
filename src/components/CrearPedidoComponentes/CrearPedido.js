@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
-import { OrderList } from 'primereact/orderlist';
+import { Calendar } from 'primereact/calendar';
 
 const CrearPedido = ({ cargaEstado, clienteSelect, homies }) => {
 
@@ -28,6 +28,7 @@ const CrearPedido = ({ cargaEstado, clienteSelect, homies }) => {
         peObservacion: '',
         peValor: 0.00,
         peEstado: '',
+        peDireccion: ''
 
     });
 
@@ -55,52 +56,61 @@ const CrearPedido = ({ cargaEstado, clienteSelect, homies }) => {
                             <label htmlFor="peFechaPedido" >Fecha Pedido</label>
                         </div>
                         <div className="p-col-12">
-                            <InputText id="peFechaPedido" required={true}
-                                minLength="10" maxLength="10" name="peFechaPedido" placeholder="Ej. 1720508888"
-                                onChange={actualizarState} value={peFechaPedido} />
+
+
+                            <Calendar showTime hourFormat="24" name="peFechaPedido" value={peFechaPedido} onChange={actualizarState}></Calendar>
                         </div>
 
-                        <div className="p-col-12">
-                            <label >Cliente</label>
-                        </div>
+
 
                         <div className="p-col-12">
+
 
                             <div className="p-grid p-fluid dashboard">
-                                <div className="p-col-2">
-                                    <Button icon="pi pi-search"  onClick={(e) => cargaEstado('cliente')} />
-                                </div>
-                                <div className="p-col-8"><strong>Cliente Seleccionado: </strong>
-                                    <h2> {
-                                        clienteSelect ? clienteSelect.clNombre : null
-                                    }</h2>
-                                </div>
-                            </div>
+                                <div className="p-col-4">
+                                    <label >Cliente</label>
 
-                        </div>
-                        <div className="p-col-12">
-                        <div className="p-grid p-fluid dashboard">
-                            <div className="p-col-12">
-                                <label htmlFor="peFechaPedido" >Homie</label>
-                            </div>
+                                    <div className="p-col-2">
+                                        <Button icon="pi pi-search" onClick={(e) => cargaEstado('cliente')} />
+                                    </div>
+                                    <div className="p-col-4"><strong>Cliente Seleccionado: </strong>
+                                        <h2> {
+                                            clienteSelect ?
+                                                <div>
+                                                    {clienteSelect.clNombre} </div> : null
+                                        }</h2>
 
-                            <div className="p-col-2">
-                                <Button icon="pi pi-search"  onClick={(e) => cargaEstado('homie')} />
+                                        <h2> {
+                                            clienteSelect ?
+                                                <div>
+                                                    {clienteSelect.clDireccion} </div> : null
+                                        }</h2>
+                                    </div>
+
+
+                                </div>
+
+
+                                <div className="p-col-8">
+                                    <label  >Homie</label>
+                                    <div className="p-col-2">
+                                        <Button icon="pi pi-search" onClick={(e) => cargaEstado('homie')} />
+                                    </div>
+                                    <div className="p-col-6"><strong>Homies Seleccionados: </strong>
+                                        <h2> {
+                                            homies ?
+                                                <ul>
+                                                    {homies.map(function (todo, index) {
+                                                        return (
+                                                            <li> {todo.hlHoNombre} </li>
+                                                        )
+                                                    })}
+                                                </ul>
+                                                : null
+                                        }</h2>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="p-col-8"><strong>Homies Seleccionados: </strong>
-                                <h2> {
-                                    homies ?
-                                        <ul>
-                                            {homies.map(function (todo, index) {
-                                                return (
-                                                    <li> {todo.hlHoNombre} </li>
-                                                )
-                                            })}
-                                        </ul>
-                                        : null
-                                }</h2>
-                            </div>
-                        </div>
                         </div>
                         <div className="p-col-12">
                             <label htmlFor="peFechaPedido" >Observaciones</label>
@@ -121,7 +131,7 @@ const CrearPedido = ({ cargaEstado, clienteSelect, homies }) => {
                         </div>
 
 
-                       
+
 
 
                     </div>

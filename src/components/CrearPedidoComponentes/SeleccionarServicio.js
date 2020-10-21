@@ -5,10 +5,12 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 
-const SeleccionarServicio = ({cargarServicios, cargaEstado}) => {
+const SeleccionarServicio = ({ servicios, cargarServicios, cargaEstado }) => {
 
     const [catalogoLista, llenaListado] = useState([])
     const [selectServices, setSelectServices] = useState([]);
+
+
 
 
     const llenarLista = () => {
@@ -16,23 +18,37 @@ const SeleccionarServicio = ({cargarServicios, cargaEstado}) => {
     }
 
     useEffect(() => {
-            llenarLista();
-          
-       
+        llenarLista();
     }, []
     );
 
 
+
+
+
+    const addItem = (newItem) => {
+
+    }
+
+
+
     const seleccionarServicios = e => {
-        cargarServicios(selectServices);
+        e.preventDefault();
+        let aux = servicios
+        for (var valor of selectServices) {
+            const updatedItems = [...aux, valor];
+            aux = updatedItems
+        }
+        cargarServicios(aux);
+
         cargaEstado('')
-      
+
     }
 
 
     return (
         <Fragment>
- <div><Button label="Seleccionar"  onClick={(e) => seleccionarServicios(e)}  className="p-button-raised p-button-rounded" /></div>
+            <div><Button label="Seleccionar" onClick={(e) => seleccionarServicios(e)} className="p-button-raised p-button-rounded" /></div>
 
 
             <DataTable value={catalogoLista}
@@ -42,14 +58,14 @@ const SeleccionarServicio = ({cargarServicios, cargaEstado}) => {
                 className="p-datatable-striped"
                 selectionMode="multiple"
                 sortField="seCodigo" sortOrder={-1}
-                onSelectionChange={e => setSelectServices(e.value)} 
+                onSelectionChange={e => setSelectServices(e.value)}
                 responsive={true}
-               
+
                 rows={10} rowsPerPageOptions={[10, 20, 50]}   >
-                <Column selectionMode="multiple" headerStyle={{ width: '3em' }}></Column>       
+                <Column selectionMode="multiple" headerStyle={{ width: '3em' }}></Column>
                 <Column field="seNombre" header="Cédula" sortable={true} filter={true} filterPlaceholder="Digita un número" filterMatchMode="contains" />
                 <Column field="seValor" header="Nombre" sortable={true} filter={true} filterPlaceholder="Digita una letra" filterMatchMode="contains" />
-               
+
             </DataTable>
 
         </Fragment>

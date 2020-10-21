@@ -4,18 +4,22 @@ import { Column } from 'primereact/column';
 import { InputText } from 'primereact/inputtext';
 import { ColumnGroup } from 'primereact/columngroup';
 import { Row } from 'primereact/row';
+import { Button } from 'primereact/button';
 
 
 
 const DetalleServicios = ({ servicios }) => {
 
     const [detalles, setdetalleServicios] = useState([]);
+
+    const [detallesSelect, setdetalleSelectedServicios] = useState([]);
+
     const columns = [
         { field: 'seNombre', header: 'Servicio' },
-        { field: 'seValor', header: 'Valor' },
+        { field: 'seValor', header: 'Valor' }
     ];
 
- 
+
 
     let editingCellRows = {};
 
@@ -38,7 +42,7 @@ const DetalleServicios = ({ servicios }) => {
 
     const onEditorSubmit = (props) => {
         const { rowIndex: index, field } = props;
-      
+
     }
 
     useEffect(() => {
@@ -70,34 +74,47 @@ const DetalleServicios = ({ servicios }) => {
         let updatedProducts = [...props.value];
         updatedProducts[props.rowIndex][props.field] = value;
         setdetalleServicios(updatedProducts)
-        
+
         totalValor()
     }
 
     const inputTextEditor = (productKey, props, field) => {
-        return <InputText type="text" value={props.rowData[field]} onChange={(e) => onEditorValueChange(productKey, props, e.target.value)} />;
+        if (field === 'seValor') {
+            return <InputText type="text" value={props.rowData[field]} onChange={(e) => onEditorValueChange(productKey, props, e.target.value)} />;
+        } else {
+            return <div className="p-text-bold">{props.rowData[field]}</div>
+        }
+
     }
+ 
 
     const formatCurrency = (value) => {
-        return value.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
+        return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
     }
 
-    const totalValor= () => {
+    const totalValor = () => {
         let total = 0;
-        for(let sale of detalles) {
-            total = total+parseFloat(sale.seValor);
+        for (let sale of detalles) {
+            total = total + parseFloat(sale.seValor);
         }
 
         return formatCurrency(total);
     }
 
+    const eliminarProductos = (e) => {
+        let _products = detalles.filter(val => !detallesSelect.includes(val));
+        setdetalleServicios(_products)
+
+    }
+
+
 
     let footerGroup = <ColumnGroup>
-    <Row>
-        <Column footer="Totals:" colSpan={1} footerStyle={{textAlign: 'right'}}/>
-        <Column footer={totalValor} />
+        <Row>
+            <Column footer="Totals:" colSpan={2} footerStyle={{ textAlign: 'right' }} />
+            <Column footer={totalValor} />
 
-    </Row>
+        </Row>
     </ColumnGroup>;
 
     return (
@@ -105,17 +122,35 @@ const DetalleServicios = ({ servicios }) => {
             <h3>Detalle de Servicios</h3>
             <div>
 
+                <div><Button  onClick={(e) => eliminarProductos(e)} icon="pi pi-times" className="p-button-rounded p-button-danger" 
+                align="right" />
+               
+                </div>
+                <DataTable value={detalles} editMode="cell"
+                    footerColumnGroup={footerGroup}
+                    className="editable-cells-table"
+                    onSelectionChange={e => setdetalleSelectedServicios(e.value)}
+                    selection={detallesSelect}
+                    selectionMode="multiple"
 
-                <DataTable value={detalles} editMode="cell" footerColumnGroup={footerGroup}
-                    className="editable-cells-table">
+                >
+
+                    <Column selectionMode="multiple" headerStyle={{ width: '3em' }}></Column>
                     {
                         columns.map(col => {
                             const { field, header } = col;
-                            const validator = (field === 'quantity' || field === 'price') ? positiveIntegerValidator : emptyValueValidator;
-                            return <Column key={field} field={field} header={header} editor={(props) => inputTextEditor('products2', props, field)} editorValidator={validator}
+                            const validator = (field === 'seValor') ? positiveIntegerValidator : emptyValueValidator;
+
+                            return <Column key={field} field={field} header={header} editor={(props) => inputTextEditor('detalles', props, field)} editorValidator={validator}
                                 onEditorInit={onEditorInit} onEditorCancel={onEditorCancel} onEditorSubmit={onEditorSubmit} />
                         })
                     }
+
+
+
+
+
+
                 </DataTable>
 
             </div>
