@@ -33,13 +33,6 @@ export function createHomie(homie){
  }
 
 
- export function getHomiesDisponiblesList  ()  {
-    let listado = [];
-    listado=axios.get(Global.urlHomieDisponible)
-        .then(res =>res.data
-        )
-        return listado;
-}
 
 export function getHomiesPedidosList  (fechaBuscar)  {
     var fecha = {fechaBuscar: fechaBuscar};

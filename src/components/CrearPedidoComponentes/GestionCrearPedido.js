@@ -15,24 +15,30 @@ const GestionCrearPedido = () => {
 
     return (
         <Fragment>
+  
+
+          
             <div className="p-grid p-fluid dashboard">
+                
                 <div className="p-col-12 p-lg-6">
                     <div className="card">
                         <h1>Crear Pedido</h1>
                         <h3>Detalle del Pedido</h3>
+                      
+                   
                         <CrearPedido
                             cargaEstado={cargaEstado}
                             clienteSelect={clienteSelect}
                             homies={homies}
-                           
-
                         />
+                        
 
                         <DetalleServicios 
-                         servicios={servicios}/>
-                    </div>
+                         servicios={servicios}
+                         cargaEstado={cargaEstado}/>
+                    </div> 
                 </div>
-                <div className="p-col-12 p-lg-6">
+                <div className="p-col-12 p-lg-6"   >
                     {
                         estado === 'cliente' ?
                             <Panel header="Seleccionar Cliente" >

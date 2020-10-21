@@ -8,7 +8,7 @@ import { Button } from 'primereact/button';
 
 
 
-const DetalleServicios = ({ servicios }) => {
+const DetalleServicios = ({cargaEstado, servicios }) => {
 
     const [detalles, setdetalleServicios] = useState([]);
 
@@ -121,6 +121,10 @@ const DetalleServicios = ({ servicios }) => {
         <Fragment>
             <h3>Detalle de Servicios</h3>
             <div>
+
+            <div className="p-col-12">
+                            <Button label="Seleccionar Servicios" onClick={(e) => cargaEstado('servicios')} />
+                        </div>
 
                 <div><Button  onClick={(e) => eliminarProductos(e)} icon="pi pi-times" className="p-button-rounded p-button-danger" 
                 align="right" />

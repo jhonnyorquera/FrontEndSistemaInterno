@@ -1,14 +1,12 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { Calendar } from 'primereact/calendar';
+import { InputNumber } from 'primereact/inputnumber';
 
 const CrearPedido = ({ cargaEstado, clienteSelect, homies }) => {
 
     const [creaPedido, creandoPedido] = useState(true);
-
-
-
 
 
 
@@ -19,6 +17,18 @@ const CrearPedido = ({ cargaEstado, clienteSelect, homies }) => {
     }
 
 
+    useEffect(() => {
+       
+        if (clienteSelect) {
+            camposPedido({
+                ...pedido,
+                peDireccion: clienteSelect.clDireccion
+            })
+
+            
+        }
+    }, [clienteSelect]);
+
 
 
     const [pedido, camposPedido] = useState({
@@ -28,11 +38,11 @@ const CrearPedido = ({ cargaEstado, clienteSelect, homies }) => {
         peObservacion: '',
         peValor: 0.00,
         peEstado: '',
-        peDireccion: ''
+        peDireccion:''
 
     });
 
-    const { peFechaPedido } = pedido;
+    const { peFechaPedido, peCantidadHoras, peObservacion,  peDireccion } = pedido;
 
     const actualizarState = e => {
         camposPedido({
@@ -67,31 +77,27 @@ const CrearPedido = ({ cargaEstado, clienteSelect, homies }) => {
 
 
                             <div className="p-grid p-fluid dashboard">
-                                <div className="p-col-4">
+                                <div className="p-col-6">
                                     <label >Cliente</label>
 
                                     <div className="p-col-2">
                                         <Button icon="pi pi-search" onClick={(e) => cargaEstado('cliente')} />
                                     </div>
-                                    <div className="p-col-4"><strong>Cliente Seleccionado: </strong>
+                                    <div className="p-col-6"><strong>Cliente Seleccionado: </strong>
                                         <h2> {
                                             clienteSelect ?
                                                 <div>
                                                     {clienteSelect.clNombre} </div> : null
                                         }</h2>
 
-                                        <h2> {
-                                            clienteSelect ?
-                                                <div>
-                                                    {clienteSelect.clDireccion} </div> : null
-                                        }</h2>
+
                                     </div>
 
 
                                 </div>
 
 
-                                <div className="p-col-8">
+                                <div className="p-col-6">
                                     <label  >Homie</label>
                                     <div className="p-col-2">
                                         <Button icon="pi pi-search" onClick={(e) => cargaEstado('homie')} />
@@ -113,22 +119,39 @@ const CrearPedido = ({ cargaEstado, clienteSelect, homies }) => {
                             </div>
                         </div>
                         <div className="p-col-12">
-                            <label htmlFor="peFechaPedido" >Observaciones</label>
+                            <label htmlFor="peObservacion" >Observaciones</label>
                         </div>
                         <div className="p-col-12">
 
                             <InputText id="detallePedido" required={true}
-                                minLength="10" maxLength="10" name="peFechaPedido" placeholder="Ej. 1720508888"
-                                onChange={actualizarState} value={peFechaPedido} />
+                                minLength="10" maxLength="10" name="peObservacion" placeholder="Ej. Poner enfasis en las ventanas del cuarto master"
+                                onChange={actualizarState} value={peObservacion} />
+                        </div>
+
+                        <div className="p-col-12">
+                            <label htmlFor="peDireccion" >Direccion</label>
+                        </div>
+                        <div className="p-col-12">
+                            <InputText id="peDireccion"
+                                minLength="10"  name="peDireccion" placeholder="Ej. Toribio Hidalgo y Atansio Oleas"
+                                onChange={actualizarState} value={peDireccion} />
+                        </div>
+
+
+                        <div className="p-col-12">
+                            <label htmlFor="peCantidadHoras" >Cantidad Horas</label>
+                        </div>
+                        <div className="p-col-12">
+                        <InputText  Type="NUMBER" id="peCantidadHoras" required={true}
+                                name="peCantidadHoras" placeholder="5" 
+                                onChange={actualizarState} value={peCantidadHoras} />
                         </div>
 
 
                         <div className="p-col-12">
                             <label htmlFor="peFechaPedido" >Servicios</label>
                         </div>
-                        <div className="p-col-12">
-                            <Button label="Seleccionar Servicios" onClick={(e) => cargaEstado('servicios')} />
-                        </div>
+                       
 
 
 
