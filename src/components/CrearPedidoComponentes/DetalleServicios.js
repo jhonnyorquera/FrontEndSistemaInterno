@@ -122,12 +122,9 @@ const DetalleServicios = ({cargaEstado, servicios }) => {
             <h3>Detalle de Servicios</h3>
             <div>
 
-            <div className="p-col-12">
-                            <Button label="Seleccionar Servicios" onClick={(e) => cargaEstado('servicios')} />
-                        </div>
-
-                <div><Button  onClick={(e) => eliminarProductos(e)} icon="pi pi-times" className="p-button-rounded p-button-danger" 
-                align="right" />
+            <div className="p-col-12" align="right">
+                            <Button  onClick={(e) => cargaEstado('servicios')} icon="pi pi-search" className="p-button-raised p-button-rounded"  />
+                       <Button  onClick={(e) => eliminarProductos(e)} icon="pi pi-times" className="p-button-raised p-button-rounded p-button-danger"    />
                
                 </div>
                 <DataTable value={detalles} editMode="cell"
