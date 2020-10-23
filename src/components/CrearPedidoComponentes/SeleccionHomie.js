@@ -4,6 +4,10 @@ import { getHomiesPedidosList } from '../../service/HomieService';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
+import Moment from 'react-moment';
+import 'moment/locale/es';
+import moment from "moment";
+import 'moment-timezone';
 
 const SeleccionHomie = ({ fechaBuscar, cargarHomies, cargaEstado }) => {
 
@@ -26,9 +30,9 @@ const SeleccionHomie = ({ fechaBuscar, cargarHomies, cargaEstado }) => {
         return (
             <div className="orders-subtable">
                 <h5>Trabajos de {data.hlHoNombre}</h5>
-                <DataTable value={data.pedidos}   className="p-datatable-sm">
-                    <Column field="lpFechaPedido" header="Fecha" ></Column>
-                    <Column field="lpCantidadHoras" header="horas" ></Column>
+                <DataTable value={data.pedidos} className="p-datatable-sm">
+                    <Column field="lpFechaPedido" body={dateBodyTemplate} header="Fecha" > </Column>
+                   
                     <Column field="lpNombreCliente" header="Cliente" ></Column>
                     <Column field="lpEstado" header="Estado"></Column>
 
@@ -44,11 +48,24 @@ const SeleccionHomie = ({ fechaBuscar, cargarHomies, cargaEstado }) => {
 
 
 
+    const dateBodyTemplate = (rowData) => {
+        console.log(rowData)
+        return (
+            <React.Fragment>
+         
+         {moment.utc(rowData.lpFechaPedido).format("dddd, DD MMMM YYYY, h:mm a")}{" "}
+               
+            </React.Fragment>
+        );
+    }
 
+ 
+
+  
 
     return (
         <Fragment>
-            <div><Button label="Seleccionar"  onClick={(e) => seleccionarHomies(e)}  className="p-button-raised p-button-rounded" /></div>
+            <div><Button label="Seleccionar" onClick={(e) => seleccionarHomies(e)} className="p-button-raised p-button-rounded" /></div>
             <div>
                 <DataTable value={listaHomie} paginator={true}
                     paginatorPosition="bottom"
