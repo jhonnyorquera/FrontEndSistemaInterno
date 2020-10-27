@@ -23,26 +23,36 @@ const SeleccionarServicio = ({ servicios, cargarServicios, cargaEstado }) => {
     );
 
 
-
-
-
-    const addItem = (newItem) => {
-
-    }
-
-
-
     const seleccionarServicios = e => {
         e.preventDefault();
+ 
         let aux = servicios
+        
+        var iter = 0;
+        
         for (var valor of selectServices) {
+            iter+=1;
+            valor['seCodigo']  = iter;
             const updatedItems = [...aux, valor];
             aux = updatedItems
         }
-        cargarServicios(aux);
 
+        let listaOrdenada = []
+        for (var valor of aux) {
+            iter+=1;
+            valor['seCodigo']  = iter;
+            const updatedItems = [...listaOrdenada, valor];
+            listaOrdenada = updatedItems
+        }
+
+        
+
+
+        cargarServicios(aux);
         cargaEstado('')
 
+
+     
     }
 
 
@@ -63,9 +73,11 @@ const SeleccionarServicio = ({ servicios, cargarServicios, cargaEstado }) => {
 
                 rows={10} rowsPerPageOptions={[10, 20, 50]}   >
                 <Column selectionMode="multiple" headerStyle={{ width: '3em' }}></Column>
-                <Column field="seNombre" header="Cédula" sortable={true} filter={true} filterPlaceholder="Digita un número" filterMatchMode="contains" />
-                <Column field="seValor" header="Nombre" sortable={true} filter={true} filterPlaceholder="Digita una letra" filterMatchMode="contains" />
+                <Column field="seNombreDetalle" header="Servicio" sortable={true} filter={true} filterPlaceholder="Digita un número" filterMatchMode="contains" />
+                <Column field="seCantidad" header="Cantidad" sortable={true} filter={true} filterPlaceholder="Digita una letra" filterMatchMode="contains" />
+                <Column field="seValor" header="Valor" sortable={true} filter={true} filterPlaceholder="Digita una letra" filterMatchMode="contains" />
 
+          
             </DataTable>
 
         </Fragment>

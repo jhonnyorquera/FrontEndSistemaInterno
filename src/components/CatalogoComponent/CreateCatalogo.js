@@ -12,7 +12,9 @@ const CreateCatalogo = ({cambiaEstadoLlenar, actualizarEstadoCrud}) => {
 
     const [catalogo, actualizaCatalogo] = useState({
         seNombre: '',
-        seValor: ''
+        seValor: '',
+        seNombreDetalle:'',
+        seCantidad :''
     });
 
 
@@ -36,7 +38,7 @@ const CreateCatalogo = ({cambiaEstadoLlenar, actualizarEstadoCrud}) => {
 
     }
 
-    const { seNombre, seValor } = catalogo;
+    const { seNombre, seValor, seCantidad, seNombreDetalle } = catalogo;
 
 
     return (
@@ -48,13 +50,35 @@ const CreateCatalogo = ({cambiaEstadoLlenar, actualizarEstadoCrud}) => {
 
 
                 <div className="p-col-12">
-                    <label htmlFor="seNombre" >Nombre del Servicio</label>
+                    <label htmlFor="seNombre">Categoria del Servicio</label>
                 </div>
                 <div className="p-col-12">
-                    <InputText id="seNombre" required={true}
+                    <InputText id="seNombre" required={true} title="Nombre con el que se registra el detalle de servicio en el pedido"
                         minLength="5"  name="seNombre" placeholder="Dos horas hogar"
                         onChange={actualizarState} value={seNombre} />
                 </div>
+
+
+                <div className="p-col-12">
+                    <label htmlFor="seNombreDetalle" >Nombre del Servicio</label>
+                </div>
+                <div className="p-col-12">
+                    <InputText id="seNombreDetalle" required={true} title="Nombre que saldrá en el catálogo al momento de realizar un pedido"
+                        minLength="5"  name="seNombreDetalle" placeholder="Dos horas hogar"
+                        onChange={actualizarState} value={seNombreDetalle} />
+                </div>
+
+
+                <div className="p-col-12">
+                    <label htmlFor="seCantidad" >Cantidad</label>
+                </div>
+                <div className="p-col-12">
+                    <InputText id="seCantidad" required={true}
+                        
+                        name="seCantidad" title="Cantidad de horas y/o metros"
+                        onChange={actualizarState} value={seCantidad} />
+                </div>
+
 
                 <div className="p-col-12">
                     <label htmlFor="seValor" >Valor</label>
@@ -65,6 +89,11 @@ const CreateCatalogo = ({cambiaEstadoLlenar, actualizarEstadoCrud}) => {
                         name="seValor" 
                         onChange={actualizarState} value={seValor} />
                 </div>
+
+
+
+
+
 
 
                 <div className="p-col-12">

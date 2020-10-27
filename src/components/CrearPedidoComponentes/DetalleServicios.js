@@ -8,15 +8,17 @@ import { Button } from 'primereact/button';
 
 
 
-const DetalleServicios = ({cargaEstado, servicios }) => {
+const DetalleServicios = ({cargaEstado, servicios, cargarServicios }) => {
 
     const [detalles, setdetalleServicios] = useState([]);
 
     const [detallesSelect, setdetalleSelectedServicios] = useState([]);
 
     const columns = [
-        { field: 'seNombre', header: 'Servicio' },
-        { field: 'seValor', header: 'Valor' }
+        { keyC:'seCodigo', field: 'seNombre', header: 'Servicio' },
+        { keyC:'seCodigo', field: 'seCantidad', header: 'Cantidad' },
+        { keyC:'seCodigo', field: 'seValor', header: 'Valor' }
+        
     ];
 
 
@@ -27,7 +29,7 @@ const DetalleServicios = ({cargaEstado, servicios }) => {
         const { rowIndex: index, field, rowData } = props;
         if (!editingCellRows[index]) {
             editingCellRows[index] = { ...rowData };
-        }
+        }                   
         editingCellRows[index][field] = detalles[index][field];
     }
 
@@ -46,7 +48,6 @@ const DetalleServicios = ({cargaEstado, servicios }) => {
     }
 
     useEffect(() => {
-        console.log('valor')
         setdetalleServicios(servicios)
     }, [servicios]);
 
@@ -79,7 +80,7 @@ const DetalleServicios = ({cargaEstado, servicios }) => {
     }
 
     const inputTextEditor = (productKey, props, field) => {
-        if (field === 'seValor') {
+        if (field === 'seValor'  || field === 'seCantidad') {
             return <InputText type="text" value={props.rowData[field]} onChange={(e) => onEditorValueChange(productKey, props, e.target.value)} />;
         } else {
             return <div className="p-text-bold">{props.rowData[field]}</div>
@@ -104,6 +105,8 @@ const DetalleServicios = ({cargaEstado, servicios }) => {
     const eliminarProductos = (e) => {
         let _products = detalles.filter(val => !detallesSelect.includes(val));
         setdetalleServicios(_products)
+        cargarServicios(_products)
+     
 
     }
 
@@ -111,7 +114,7 @@ const DetalleServicios = ({cargaEstado, servicios }) => {
 
     let footerGroup = <ColumnGroup>
         <Row>
-            <Column footer="Totals:" colSpan={2} footerStyle={{ textAlign: 'right' }} />
+            <Column footer="Total:" colSpan={3} footerStyle={{ textAlign: 'right' }} />
             <Column footer={totalValor} />
 
         </Row>
@@ -139,10 +142,10 @@ const DetalleServicios = ({cargaEstado, servicios }) => {
                     <Column selectionMode="multiple" headerStyle={{ width: '3em' }}></Column>
                     {
                         columns.map(col => {
-                            const { field, header } = col;
+                            const { keyC ,field, header } = col;
                             const validator = (field === 'seValor') ? positiveIntegerValidator : emptyValueValidator;
 
-                            return <Column key={field} field={field} header={header} editor={(props) => inputTextEditor('detalles', props, field)} editorValidator={validator}
+                            return <Column key={keyC} field={field} header={header} editor={(props) => inputTextEditor('detalles', props, field)} editorValidator={validator}
                                 onEditorInit={onEditorInit} onEditorCancel={onEditorCancel} onEditorSubmit={onEditorSubmit} />
                         })
                     }

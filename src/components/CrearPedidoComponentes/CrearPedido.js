@@ -1,12 +1,15 @@
 import React, { Fragment, useState, useEffect } from 'react';
+
+import SeleccionarFechas from './SeleccionarFechas';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { Calendar } from 'primereact/calendar';
 import { crearPedido } from '../../service/PedidoService';
 import { InputTextarea } from 'primereact/inputtextarea';
+
 import swal from 'sweetalert';
 
-const CrearPedido = ({ cargaEstado, clienteSelect, homies, servicios, cargaModo }) => {
+const CrearPedido = ({ cargaEstado, clienteSelect, homies, servicios, cargaModo, fechas, cargarFechas }) => {
 
     const [creaPedido, creandoPedido] = useState(true);
 
@@ -53,7 +56,7 @@ const CrearPedido = ({ cargaEstado, clienteSelect, homies, servicios, cargaModo 
     const creacionPedido = (e) => {
 
 
-        if (pedido.peCliente === 0 || pedido.peServicios.length === 0 ||  pedido.peFechaPedido === '') {
+        if (pedido.peCliente === 0 || pedido.peServicios.length === 0 || pedido.peFechaPedido === '', pedido.peCantidadHoras === 0) {
             swal("Falta Completar pedido", "Falta seleccionar servicios, cliente, fecha o cantidad de horas, completa los datos del pedido y continua", "info");
 
         } else {
@@ -85,15 +88,17 @@ const CrearPedido = ({ cargaEstado, clienteSelect, homies, servicios, cargaModo 
         peFechaPedido: '',
         peCliente: 0,
         peServicios: [],
+        peCantidadHoras: 0,
         peObservacion: '',
         peValor: 0.00,
+        peTipo: '',
         peEstado: '',
         cedulasHomies: [],
         peDireccion: ''
 
     });
 
-    const { peFechaPedido,  peObservacion, peDireccion, peCliente, cedulasHomies, peValor } = pedido;
+    const { peFechaPedido, peObservacion, peDireccion, peCliente, cedulasHomies, peValor, peTipo, peCantidadHoras } = pedido;
 
     const actualizarState = e => {
         camposPedido({
@@ -109,16 +114,26 @@ const CrearPedido = ({ cargaEstado, clienteSelect, homies, servicios, cargaModo 
             {
                 creaPedido ?
                     <div>
-
-
-
-
                         <div className="p-col-12">
-                            <label htmlFor="peFechaPedido" >Fecha Pedido</label>
+                            <label htmlFor="peCantidadHoras" >Cantidad de Horas</label>
+                        </div>
+                        
+                        <div className="p-col-12">
+                            <InputText id="peCantidadHoras" required={true}
+                                maxLength="300" name="peCantidadHoras" placeholder="Ej. 5"
+                                onChange={actualizarState} value={peCantidadHoras} />
                         </div>
                         <div className="p-col-12">
-                            <Calendar showTime hourFormat="24" name="peFechaPedido" value={peFechaPedido} onChange={actualizarState}></Calendar>
+                            <label htmlFor="peDetallePagos" >Detalle de Fechas</label>
                         </div>
+                        <div className="p-col-12">
+                            <SeleccionarFechas 
+                            fechas={fechas}
+                            cargarFechas={cargarFechas}
+                             />
+                        </div>
+
+
 
 
 
@@ -127,7 +142,7 @@ const CrearPedido = ({ cargaEstado, clienteSelect, homies, servicios, cargaModo 
                                 <div className="p-col-6">
                                     <label >Cliente</label>
                                     <div className="p-col-2">
-                                        <Button icon="pi pi-search" className="p-button-raised p-button-rounded"  onClick={(e) => cargaEstado('cliente')} />
+                                        <Button icon="pi pi-search" className="p-button-raised p-button-rounded" onClick={(e) => cargaEstado('cliente')} />
                                     </div>
                                     <div className="p-col-6"><strong>Cliente Seleccionado: </strong>
                                         <h2> {
@@ -142,7 +157,7 @@ const CrearPedido = ({ cargaEstado, clienteSelect, homies, servicios, cargaModo 
                                 <div className="p-col-6">
                                     <label  >Homie</label>
                                     <div className="p-col-2">
-                                        <Button icon="pi pi-search" className="p-button-raised p-button-rounded"  onClick={(e) => cargaEstado('homie')} />
+                                        <Button icon="pi pi-search" className="p-button-raised p-button-rounded" onClick={(e) => cargaEstado('homie')} />
                                     </div>
                                     <div className="p-col-6"><strong>Homies Seleccionados: </strong>
                                         <h2> {
@@ -180,7 +195,7 @@ const CrearPedido = ({ cargaEstado, clienteSelect, homies, servicios, cargaModo 
                         </div>
 
 
-                     
+
 
                         <div><Button label="CREAR PEDIDO" onClick={(e) => creacionPedido(e)} className="p-button-raised p-button-rounded" /></div>
 

@@ -20,6 +20,8 @@ const ListaCatalogo = ({llenaLista, cambiaEstadoLlenar, actualizarEstadoCrud}) =
     const columns = [
 
         { field: 'seNombre', header: 'Servicio' },
+        { field: 'seNombreDetalle', header: 'Nombre' },
+        { field: 'seCantidad', header: 'Cantidad' },
         { field: 'seValor', header: 'Costo' }
     ];
 
