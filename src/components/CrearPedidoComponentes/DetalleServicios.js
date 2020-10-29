@@ -8,17 +8,17 @@ import { Button } from 'primereact/button';
 
 
 
-const DetalleServicios = ({cargaEstado, servicios, cargarServicios }) => {
+const DetalleServicios = ({ cargaEstado, servicios, cargarServicios }) => {
 
     const [detalles, setdetalleServicios] = useState([]);
 
     const [detallesSelect, setdetalleSelectedServicios] = useState([]);
 
     const columns = [
-        { keyC:'seCodigo', field: 'seNombre', header: 'Servicio' },
-        { keyC:'seCodigo', field: 'seCantidad', header: 'Cantidad' },
-        { keyC:'seCodigo', field: 'seValor', header: 'Valor' }
-        
+        { keyC: 'seCodigo', field: 'seNombre', header: 'Servicio' },
+        { keyC: 'seCodigo', field: 'seCantidad', header: 'Cantidad' },
+        { keyC: 'seCodigo', field: 'seValor', header: 'Valor' }
+
     ];
 
 
@@ -29,7 +29,7 @@ const DetalleServicios = ({cargaEstado, servicios, cargarServicios }) => {
         const { rowIndex: index, field, rowData } = props;
         if (!editingCellRows[index]) {
             editingCellRows[index] = { ...rowData };
-        }                   
+        }
         editingCellRows[index][field] = detalles[index][field];
     }
 
@@ -80,14 +80,14 @@ const DetalleServicios = ({cargaEstado, servicios, cargarServicios }) => {
     }
 
     const inputTextEditor = (productKey, props, field) => {
-        if (field === 'seValor'  || field === 'seCantidad') {
+        if (field === 'seValor' || field === 'seCantidad') {
             return <InputText type="text" value={props.rowData[field]} onChange={(e) => onEditorValueChange(productKey, props, e.target.value)} />;
         } else {
             return <div className="p-text-bold">{props.rowData[field]}</div>
         }
 
     }
- 
+
 
     const formatCurrency = (value) => {
         return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
@@ -106,7 +106,7 @@ const DetalleServicios = ({cargaEstado, servicios, cargarServicios }) => {
         let _products = detalles.filter(val => !detallesSelect.includes(val));
         setdetalleServicios(_products)
         cargarServicios(_products)
-     
+
 
     }
 
@@ -125,10 +125,8 @@ const DetalleServicios = ({cargaEstado, servicios, cargarServicios }) => {
             <h3>Detalle de Servicios</h3>
             <div>
 
-            <div className="p-col-12" align="right">
-                            <Button  onClick={(e) => cargaEstado('servicios')} icon="pi pi-search" className="p-button-raised p-button-rounded"  />
-                       <Button  onClick={(e) => eliminarProductos(e)} icon="pi pi-times" className="p-button-raised p-button-rounded p-button-danger"    />
-               
+                <div className="p-col-12" align="right">
+                    <Button onClick={(e) => cargaEstado('servicios')} icon="pi pi-search" className="p-button-raised p-button-rounded" />
                 </div>
                 <DataTable value={detalles} editMode="cell"
                     footerColumnGroup={footerGroup}
@@ -136,26 +134,22 @@ const DetalleServicios = ({cargaEstado, servicios, cargarServicios }) => {
                     onSelectionChange={e => setdetalleSelectedServicios(e.value)}
                     selection={detallesSelect}
                     selectionMode="multiple"
-
                 >
-
                     <Column selectionMode="multiple" headerStyle={{ width: '3em' }}></Column>
                     {
                         columns.map(col => {
-                            const { keyC ,field, header } = col;
+                            const { keyC, field, header } = col;
                             const validator = (field === 'seValor') ? positiveIntegerValidator : emptyValueValidator;
 
                             return <Column key={keyC} field={field} header={header} editor={(props) => inputTextEditor('detalles', props, field)} editorValidator={validator}
                                 onEditorInit={onEditorInit} onEditorCancel={onEditorCancel} onEditorSubmit={onEditorSubmit} />
                         })
                     }
-
-
-
-
-
-
                 </DataTable>
+                <div className="p-col-12" align="right">
+                    <Button onClick={(e) => eliminarProductos(e)} icon="pi pi-times" className="p-button-raised p-button-rounded p-button-danger" />
+                </div>
+
 
             </div>
         </Fragment>

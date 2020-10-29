@@ -1,17 +1,21 @@
 import React, { Fragment, useState, useEffect } from 'react';
 
 import SeleccionarFechas from './SeleccionarFechas';
+import SeleccionarFormasPago from './SeleccionarFormasPago';
+
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { Calendar } from 'primereact/calendar';
 import { crearPedido } from '../../service/PedidoService';
 import { InputTextarea } from 'primereact/inputtextarea';
+import useEstadoPedido from '../../hooks/useEstadoPedido';
 
 import swal from 'sweetalert';
 
-const CrearPedido = ({ cargaEstado, clienteSelect, homies, servicios, cargaModo, fechas, cargarFechas }) => {
+const CrearPedido = ({ cargaEstado, clienteSelect, homies, servicios, cargaModo, fechas, cargarFechas, pagos, cargarPagos }) => {
 
     const [creaPedido, creandoPedido] = useState(true);
+    const [estado, SeleccionEstado] = useEstadoPedido('');
 
     useEffect(() => {
         if (clienteSelect) {
@@ -39,10 +43,20 @@ const CrearPedido = ({ cargaEstado, clienteSelect, homies, servicios, cargaModo,
     }, [homies]);
 
     useEffect(() => {
+
         camposPedido({
             ...pedido,
             peServicios: servicios
         })
+
+        if (Object.keys(servicios).length !== 0) {
+
+            var servicio = servicios[0]
+            camposPedido({
+                ...pedido,
+                peCantidadHoras: servicio['seCantidad']
+            })
+        }
     }, [servicios]);
 
     const cargarCliente = (() => {
@@ -117,7 +131,7 @@ const CrearPedido = ({ cargaEstado, clienteSelect, homies, servicios, cargaModo,
                         <div className="p-col-12">
                             <label htmlFor="peCantidadHoras" >Cantidad de Horas</label>
                         </div>
-                        
+
                         <div className="p-col-12">
                             <InputText id="peCantidadHoras" required={true}
                                 maxLength="300" name="peCantidadHoras" placeholder="Ej. 5"
@@ -127,10 +141,29 @@ const CrearPedido = ({ cargaEstado, clienteSelect, homies, servicios, cargaModo,
                             <label htmlFor="peDetallePagos" >Detalle de Fechas</label>
                         </div>
                         <div className="p-col-12">
-                            <SeleccionarFechas 
-                            fechas={fechas}
-                            cargarFechas={cargarFechas}
-                             />
+                            <SeleccionarFechas
+                                fechas={fechas}
+                                cargarFechas={cargarFechas}
+                            />
+                        </div>
+
+
+                        <div className="p-col-12">
+                            <label htmlFor="peDetallePagos" >Detalle de Pagos</label>
+                        </div>
+                        <div className="p-col-12">
+                            <SeleccionarFormasPago
+                                pagos={pagos}
+                                cargarPagos={cargarPagos}
+                            />
+                        </div>
+
+
+                        <div className="p-col-12">
+                            <label htmlFor="estado" >Estado</label>
+                        </div>
+                        <div className="p-col-12">
+                            <SeleccionEstado />
                         </div>
 
 

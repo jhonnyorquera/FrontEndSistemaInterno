@@ -60,10 +60,7 @@ const SeleccionarFechas = ({ cargarFechas, fechas }) => {
             </div>
             <div>
 
-                <div className="p-col-12" align="right">
-                    <Button onClick={(e) => eliminarFechas(e)} icon="pi pi-times" className="p-button-raised p-button-rounded p-button-danger" />
-
-                </div>
+      
 
                 <DataTable value={fechas}
                     selection={fechasSelected}
@@ -80,6 +77,10 @@ const SeleccionarFechas = ({ cargarFechas, fechas }) => {
 
 
                 </DataTable>
+                <div className="p-col-12" align="right">
+                    <Button onClick={(e) => eliminarFechas(e)} icon="pi pi-times" className="p-button-raised p-button-rounded p-button-danger" />
+
+                </div>
             </div>
 
         </Fragment>
