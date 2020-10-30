@@ -73,7 +73,8 @@ const SeleccionarFormasPago = ({ pagos, cargarPagos }) => {
                         <label htmlFor="ppFormaPago" >Forma de Pago</label>
 
                         <Dropdown value={ppFormaPago}
-                            options={formasPago} onChange={(e) => cargarObPago({ ...obPago, ppFormaPago: e.value })}  optionLabel="ppFormaPago" placeholder="Seleccione forma de pago" />
+                            options={formasPago} 
+                            onChange={(e) => cargarObPago({ ...obPago, ppFormaPago: e.value })}  optionLabel="ppFormaPago" placeholder="Seleccione forma de pago" />
 
                     </div>
                     <div className="p-col-4">

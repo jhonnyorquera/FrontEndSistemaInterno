@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { Dropdown } from 'primereact/dropdown';
+import { InputText } from 'primereact/inputtext';
 
 
 
-const useEstadoPedido = (stateInicial) => {
+const useEstadop = (stateInicial) => {
     const [state, actualizarState] = useState(stateInicial);
+
 
 
 
@@ -11,26 +14,38 @@ const useEstadoPedido = (stateInicial) => {
         { estado: 'REGISTRADO', value: 'REGISTRADO' },
         { estado: 'PAGADO', value: 'PAGADO' },
         { estado: 'CANCELADO', value: 'CANCELADO' }
-    ];
+    ]
 
 
 
-    const SelectEstado = () => (
-        <select
-            value={state}
-            onChange={e => actualizarState(e.tarjet.value)}
-        >
-            {opciones.map(opcion => (
-                <option key={opcion.estado} value={opcion.value}>{opcion.value}</option>
+    function SelectEstado ()  {
+       
+       return (
+            /* 
+        <select       value={state} className="browser-default"
+              onChange={e => actualizarState(e.target.value)}
+          >
+              {opciones.map(opcion => (
+                  <option key={opcion.estado} value={opcion.value}>{opcion.value}</option>
+  
+              ))}
+          </select>
+                */
+               
 
-            ))}
+        <Dropdown value={state} optionLabel="value"
+            options={opciones} onChange={(e) => actualizarState(e.value)}
+        ></Dropdown>
 
 
-        </select>
+        )
 
 
 
-    )
+
+
+
+    }
 
 
 
@@ -38,4 +53,4 @@ const useEstadoPedido = (stateInicial) => {
     return [state, SelectEstado];
 }
 
-export default useEstadoPedido;
+export default useEstadop;

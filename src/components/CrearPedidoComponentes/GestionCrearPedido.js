@@ -24,7 +24,8 @@ const GestionCrearPedido = () => {
         e.preventDefault();
         cargarServicios([]);
         cargarHomies([]);
-        seleccionarCliente([])
+        seleccionarCliente([]);
+        cargarFechas([]);
         cargaModo('crear')
 
     }

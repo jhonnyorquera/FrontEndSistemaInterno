@@ -15,9 +15,13 @@ const SeleccionarFechas = ({ cargarFechas, fechas }) => {
 
     const agregarFecha = (e) => {
         e.preventDefault();
-        if (fechaSeleccionada) {
-            fechas.push(fechaSeleccionada);
-        }
+       
+        
+      
+            let auxFech =fechas;
+            auxFech.push(fechaSeleccionada);
+            cargarFechas(auxFech)
+       
     }
 
 
@@ -27,9 +31,6 @@ const SeleccionarFechas = ({ cargarFechas, fechas }) => {
                 {fecha}
             </Moment>
         )
-
-
-
     }
 
 
@@ -37,9 +38,6 @@ const SeleccionarFechas = ({ cargarFechas, fechas }) => {
     const eliminarFechas = (e) => {
         let _products = fechas.filter(val => !fechasSelected.includes(val));
         cargarFechas(_products)
-
-
-
     }
 
 

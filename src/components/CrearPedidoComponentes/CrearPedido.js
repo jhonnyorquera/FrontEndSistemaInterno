@@ -5,23 +5,35 @@ import SeleccionarFormasPago from './SeleccionarFormasPago';
 
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
-import { Calendar } from 'primereact/calendar';
 import { crearPedido } from '../../service/PedidoService';
 import { InputTextarea } from 'primereact/inputtextarea';
 import useEstadoPedido from '../../hooks/useEstadoPedido';
-
 import swal from 'sweetalert';
 
 const CrearPedido = ({ cargaEstado, clienteSelect, homies, servicios, cargaModo, fechas, cargarFechas, pagos, cargarPagos }) => {
 
     const [creaPedido, creandoPedido] = useState(true);
-    const [estado, SeleccionEstado] = useEstadoPedido('');
+    const [estado, SeleccionEstado] = useEstadoPedido('estado');
 
     useEffect(() => {
         if (clienteSelect) {
-            cargarCliente()
+            camposPedido({
+                ...pedido,
+                peDireccion: clienteSelect.clDireccion,
+                peCliente: clienteSelect.clId
+            })
         }
     }, [clienteSelect]);
+
+
+    useEffect(() => {
+        console.log(fechas)
+        camposPedido({
+            ...pedido,
+            peFechaPedido: fechas
+        })
+
+    }, [fechas]);
 
 
 
@@ -43,63 +55,41 @@ const CrearPedido = ({ cargaEstado, clienteSelect, homies, servicios, cargaModo,
     }, [homies]);
 
     useEffect(() => {
-
-        camposPedido({
-            ...pedido,
-            peServicios: servicios
-        })
-
         if (Object.keys(servicios).length !== 0) {
-
             var servicio = servicios[0]
             camposPedido({
                 ...pedido,
-                peCantidadHoras: servicio['seCantidad']
+                peCantidadHoras: servicio['seCantidad'],
+                peServicios: servicios
             })
         }
     }, [servicios]);
 
-    const cargarCliente = (() => {
-        camposPedido({
-            ...pedido,
-            peDireccion: clienteSelect.clDireccion,
-            peCliente: clienteSelect.clId
-        })
-    });
+
 
     const creacionPedido = (e) => {
-
-
         if (pedido.peCliente === 0 || pedido.peServicios.length === 0 || pedido.peFechaPedido === '', pedido.peCantidadHoras === 0) {
             swal("Falta Completar pedido", "Falta seleccionar servicios, cliente, fecha o cantidad de horas, completa los datos del pedido y continua", "info");
-
         } else {
             e.preventDefault();
             //asgina atributos a objeto
             crearPedido(pedido).then(res => {
                 swal("Se registra cliente", "Se ha registrado el PEDIDO: " + res, "success");
-            })
-                .catch(error => {
-                    if (error.response) {
-                        swal("No se registra cliente", "Algo ha ocurrido, prueba de nuevo o consulta al administrador", "error");
-
-                    } else if (error.request) {
-                        swal("No se registra cliente", "Algo ha ocurrido, prueba de nuevo o consulta al administrador", "error");
-                    }
+            }).catch(error => {
+                if (error.response) {
+                    swal("No se registra cliente", "Algo ha ocurrido, prueba de nuevo o consulta al administrador", "error");
+                } else if (error.request) {
+                    swal("No se registra cliente", "Algo ha ocurrido, prueba de nuevo o consulta al administrador", "error");
                 }
-                );
+            }
+            );
             cargaEstado(null);
             cargaModo('terminado');
         }
     }
 
-
-
-
-
-
     const [pedido, camposPedido] = useState({
-        peFechaPedido: '',
+        peFechaPedido: [],
         peCliente: 0,
         peServicios: [],
         peCantidadHoras: 0,
@@ -109,7 +99,6 @@ const CrearPedido = ({ cargaEstado, clienteSelect, homies, servicios, cargaModo,
         peEstado: '',
         cedulasHomies: [],
         peDireccion: ''
-
     });
 
     const { peFechaPedido, peObservacion, peDireccion, peCliente, cedulasHomies, peValor, peTipo, peCantidadHoras } = pedido;
@@ -131,7 +120,6 @@ const CrearPedido = ({ cargaEstado, clienteSelect, homies, servicios, cargaModo,
                         <div className="p-col-12">
                             <label htmlFor="peCantidadHoras" >Cantidad de Horas</label>
                         </div>
-
                         <div className="p-col-12">
                             <InputText id="peCantidadHoras" required={true}
                                 maxLength="300" name="peCantidadHoras" placeholder="Ej. 5"
