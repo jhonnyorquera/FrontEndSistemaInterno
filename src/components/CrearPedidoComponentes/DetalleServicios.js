@@ -8,7 +8,7 @@ import { Button } from 'primereact/button';
 
 
 
-const DetalleServicios = ({ cargaEstado, servicios, cargarServicios }) => {
+const DetalleServicios = ({ cargaEstado, servicios, cargarServicios, pedido, camposPedido, cargaValorTotal }) => {
 
     const [detalles, setdetalleServicios] = useState([]);
 
@@ -23,6 +23,9 @@ const DetalleServicios = ({ cargaEstado, servicios, cargarServicios }) => {
 
 
 
+
+
+
     let editingCellRows = {};
 
     const onEditorInit = (props) => {
@@ -34,21 +37,19 @@ const DetalleServicios = ({ cargaEstado, servicios, cargarServicios }) => {
     }
 
     const onEditorCancel = (props) => {
-        const { rowIndex: index, field } = props;
+        const { rowIndex: index2, field } = props;
         let products = [...detalles];
-        products[index][field] = editingCellRows[index][field];
-        delete editingCellRows[index][field];
+        products[index2][field] = editingCellRows[index2][field];
+        delete editingCellRows[index2][field];
 
         setdetalleServicios(products);
     }
 
-    const onEditorSubmit = (props) => {
-        const { rowIndex: index, field } = props;
-
-    }
+   
 
     useEffect(() => {
         setdetalleServicios(servicios)
+
     }, [servicios]);
 
     const positiveIntegerValidator = (props) => {
@@ -102,6 +103,7 @@ const DetalleServicios = ({ cargaEstado, servicios, cargarServicios }) => {
         return formatCurrency(total);
     }
 
+
     const eliminarProductos = (e) => {
         let _products = detalles.filter(val => !detallesSelect.includes(val));
         setdetalleServicios(_products)
@@ -142,7 +144,7 @@ const DetalleServicios = ({ cargaEstado, servicios, cargarServicios }) => {
                             const validator = (field === 'seValor') ? positiveIntegerValidator : emptyValueValidator;
 
                             return <Column key={keyC} field={field} header={header} editor={(props) => inputTextEditor('detalles', props, field)} editorValidator={validator}
-                                onEditorInit={onEditorInit} onEditorCancel={onEditorCancel} onEditorSubmit={onEditorSubmit} />
+                                onEditorInit={onEditorInit} onEditorCancel={onEditorCancel}  />
                         })
                     }
                 </DataTable>

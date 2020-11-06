@@ -11,11 +11,22 @@ export function getClientesList() {
     return listado;
 }
 
+export function getClientesByNombre(name) {
+    console.log('busqueda: ' + name)
+    console.log('url: ' + Global.urlClienteByName + name)
+    let listado = [];
+    listado = axios.get(Global.urlClienteByName + name)
+        .then(res => listado = res.data);
+
+    console.log('tamaño desde service: ' + listado.length)
+    return listado;
+}
+
 export function saveClient(cliente) {
-    
-   return axios.post(url, cliente)
-        .then(res =>  res.data);
-        
+
+    return axios.post(url, cliente)
+        .then(res => res.data);
+
 
 }
 
@@ -33,6 +44,18 @@ export function editClient(cliente) {
         });
 
 }
+
+
+export function getEstados() {
+    var estados = ' [' +
+        '{ "estado":"REGISTRADO"},' +
+        '{ "estado":"AGENDADO"},' +
+        '{ "estado":"PAGADO"},' +
+        '{ "estado":"CANCELADO"} ]';
+    return JSON.parse(estados)
+
+}
+
 
 
 

@@ -1,28 +1,29 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import classNames from 'classnames';
-import {AppTopbar} from './AppTopbar';
-import {AppFooter} from './AppFooter';
-import {AppMenu} from './AppMenu';
-import {AppProfile} from './AppProfile';
-import {Route} from 'react-router-dom';
-import {Dashboard} from './components/Dashboard';
-import {FormsDemo} from './components/FormsDemo';
-import {SampleDemo} from './components/SampleDemo';
-import {DataDemo} from './components/DataDemo';
-import {PanelsDemo} from './components/PanelsDemo';
-import {OverlaysDemo} from './components/OverlaysDemo';
-import {MenusDemo} from './components/MenusDemo';
-import {MessagesDemo} from './components/MessagesDemo';
-import {ChartsDemo} from './components/ChartsDemo';
-import {MiscDemo} from './components/MiscDemo';
-import {EmptyPage} from './components/EmptyPage';
-import {Documentation} from "./components/Documentation";
-import {Data} from './components/Data';
+import { AppTopbar } from './AppTopbar';
+import { AppFooter } from './AppFooter';
+import { AppMenu } from './AppMenu';
+import { AppProfile } from './AppProfile';
+import { Route } from 'react-router-dom';
+import { Dashboard } from './components/Dashboard';
+import { FormsDemo } from './components/FormsDemo';
+import { SampleDemo } from './components/SampleDemo';
+import { DataDemo } from './components/DataDemo';
+import { PanelsDemo } from './components/PanelsDemo';
+import { OverlaysDemo } from './components/OverlaysDemo';
+import { MenusDemo } from './components/MenusDemo';
+import { MessagesDemo } from './components/MessagesDemo';
+import { ChartsDemo } from './components/ChartsDemo';
+import { MiscDemo } from './components/MiscDemo';
+import { EmptyPage } from './components/EmptyPage';
+import { Documentation } from "./components/Documentation";
+import { Data } from './components/Data';
 
 import GestionHomie from './components/HomieComponents/GestionHomie';
 import GestionCliente from './components/ClienteComponents/GestionCliente';
 import GestionCrearPedido from './components/CrearPedidoComponentes/GestionCrearPedido';
 import GestionCatalogo from './components/CatalogoComponent/GestionCatalogo';
+import GestionPedido from './components/GestionPedidoComponentes/GestionPedido';
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
@@ -85,7 +86,7 @@ class App extends Component {
                 mobileMenuActive: !mobileMenuActive
             });
         }
-       
+
         event.preventDefault();
     }
 
@@ -94,7 +95,7 @@ class App extends Component {
     }
 
     onMenuItemClick(event) {
-        if(!event.item.items) {
+        if (!event.item.items) {
             this.setState({
                 overlayMenuActive: false,
                 mobileMenuActive: false
@@ -104,39 +105,29 @@ class App extends Component {
 
     createMenu() {
         this.menu = [
-            {label: 'Dashboard', icon: 'pi pi-fw pi-home', command: () => {window.location = '#/'}},
+            { label: 'Dashboard', icon: 'pi pi-fw pi-home', command: () => { window.location = '#/' } },
             {
                 label: 'Menu Modes', icon: 'pi pi-fw pi-cog',
                 items: [
-                    {label: 'Static Menu', icon: 'pi pi-fw pi-bars',  command: () => this.setState({layoutMode: 'static'}) },
-                    {label: 'Overlay Menu', icon: 'pi pi-fw pi-bars',  command: () => this.setState({layoutMode: 'overlay'}) }
+                    { label: 'Static Menu', icon: 'pi pi-fw pi-bars', command: () => this.setState({ layoutMode: 'static' }) },
+                    { label: 'Overlay Menu', icon: 'pi pi-fw pi-bars', command: () => this.setState({ layoutMode: 'overlay' }) }
                 ]
-            }, 
+            },
             {
-                label: 'Pedidos', icon: 'pi pi-fw pi-folder-open', 
+                label: 'Pedidos', icon: 'pi pi-fw pi-folder-open',
                 items: [
-                    {label: 'Crear Pedido', icon: 'pi pi-fw pi-calendar-plus', command: () => {window.location = "#/crearPedido"}}
+                    { label: 'Crear Pedido', icon: 'pi pi-fw pi-calendar-plus', command: () => { window.location = "#/crearPedido" } },
+                    { label: 'Gestionar Pedidos', icon: 'pi pi-fw pi-calendar-plus', command: () => { window.location = "#/gestionPedido" } }
+
                 ]
             },
 
-            { 
-                label: 'Homies', icon: 'pi pi-fw pi-id-card', 
-                items: [
-                    {label: 'Registrar', icon: 'pi pi-fw pi-user-plus', command: () => {window.location = "#/gestionHomie"}}
-                ]
-            },
             {
-                label: 'Clientes', icon: 'pi pi-fw pi-users', 
+                label: 'Catalogos', icon: 'pi pi-fw pi-id-card',
                 items: [
-                    {label: 'Administrar', icon: 'pi pi-fw pi-user-plus', command: () => {window.location = "#/gestionCliente"}}
-                ]
-            }
-           
-            ,
-            {
-                label: 'Catalogo', icon: 'pi pi-fw pi-users', 
-                items: [
-                    {label: 'Administrar', icon: 'pi pi-fw pi-question', command: () => {window.location = "#/gestionCatalogo"}}
+                    { label: 'Homies', icon: 'pi pi-fw pi-user-plus', command: () => { window.location = "#/gestionHomie" } },
+                    { label: 'Clientes', icon: 'pi pi-fw pi-user-plus', command: () => { window.location = "#/gestionCliente" } },
+                    { label: 'Servicios', icon: 'pi pi-fw pi-question', command: () => { window.location = "#/gestionCatalogo" } }
                 ]
             }
 
@@ -170,7 +161,7 @@ class App extends Component {
     }
 
     render() {
-       
+
         const wrapperClass = classNames('layout-wrapper', {
             'layout-overlay': this.state.layoutMode === 'overlay',
             'layout-static': this.state.layoutMode === 'static',
@@ -186,10 +177,10 @@ class App extends Component {
 
         return (
             <div className={wrapperClass} onClick={this.onWrapperClick}>
-                <AppTopbar onToggleMenu={this.onToggleMenu}/>
+                <AppTopbar onToggleMenu={this.onToggleMenu} />
 
                 <div ref={(el) => this.sidebar = el} className={sidebarClassName} onClick={this.onSidebarClick}>
-                <div className="layout-logo"> 
+                    <div className="layout-logo">
                         <img alt="Logo" src={Logo} />
                     </div>
                     <AppProfile />
@@ -211,12 +202,14 @@ class App extends Component {
                     <Route path="/documentation" component={Documentation} />
                     <Route path="/dataTest" component={Data} />
                     <Route path="/gestionCliente" component={GestionCliente} />
-                   
+
                     <Route path="/gestionHomie" component={GestionHomie} />
                     <Route path="/crearPedido" component={GestionCrearPedido} />
                     <Route path="/gestionCatalogo" component={GestionCatalogo} />
+                    <Route path="/gestionPedido" component={GestionPedido} />
 
-                   
+
+
 
                 </div>
 

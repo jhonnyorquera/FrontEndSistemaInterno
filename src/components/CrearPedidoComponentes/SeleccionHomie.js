@@ -4,7 +4,6 @@ import { getHomiesPedidosList } from '../../service/HomieService';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
-import Moment from 'react-moment';
 import 'moment/locale/es';
 import moment from "moment";
 import 'moment-timezone';

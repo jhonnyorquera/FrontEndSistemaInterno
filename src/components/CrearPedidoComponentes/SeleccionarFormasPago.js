@@ -1,20 +1,20 @@
 import React, { Fragment, useState } from 'react';
-
-
-import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { DataTable } from 'primereact/datatable';
 import { InputNumber } from 'primereact/inputnumber';
 import { Column } from 'primereact/column';
 import { Dropdown } from 'primereact/dropdown';
+import { InputTextarea } from 'primereact/inputtextarea';
 
-const SeleccionarFormasPago = ({ pagos, cargarPagos }) => {
+const SeleccionarFormasPago = ({ pedido, camposPedido }) => {
 
     const [pagosSelected, setPagosSelected] = useState();
+    
 
     const [obPago, cargarObPago] = useState({
         ppFormaPago: '',
-        ppValor: 0
+        ppValor: 0, 
+        ppComentario:''
     });
 
 
@@ -25,39 +25,42 @@ const SeleccionarFormasPago = ({ pagos, cargarPagos }) => {
         { ppFormaPago: 'Transferencia Guayaquil' }
     ];
 
-    const { ppFormaPago, ppValor } = obPago;
+    const { ppFormaPago, ppValor, ppComentario } = obPago;
 
-    const actualizarState = e => {
-        cargarObPago({ ...obPago, [e.target.name]: e.target.value })
-    }
+
 
     const agregarPagos = e => {
         e.preventDefault();
-        var auxPago = pagos;
+        var auxPago = pedido['pePagos'];
 
         var objPago2 = {
             ppFormaPago: obPago.ppFormaPago.ppFormaPago,
-            ppValor: obPago.ppValor
+            ppValor: obPago.ppValor,
+            ppComentario: ppComentario
 
         };
         
         auxPago.push(objPago2)
-        cargarPagos(auxPago)
-        cargarObPago('')
+        
+        camposPedido({
+            ...pedido, 
+            pePagos : auxPago
+        })
+        cargarObPago({ ppFormaPago: '',
+        ppValor: 0, 
+        ppComentario:''})
 
     }
-
-    const onFormaPagoChange = (e) => {
-        cargarObPago({ ...obPago, [ppFormaPago]: e.value })
-       
-
-    }
-
 
     const eliminarFechas = (e) => {
-        let _fechasFinales = pagos.filter(val => !pagosSelected.includes(val));
-        cargarPagos(_fechasFinales)
 
+        let pagosPedido= pedido['pePagos']
+        let _fechasFinales = pagosPedido.filter(val => !pagosSelected.includes(val));
+    
+        camposPedido({
+            ...pedido, 
+            pePagos : _fechasFinales
+        })
 
 
     }
@@ -82,6 +85,13 @@ const SeleccionarFormasPago = ({ pagos, cargarPagos }) => {
                         <InputNumber id="ppValor"
                             name="ppFormaPago" value={ppValor} onValueChange={(e) => cargarObPago({ ...obPago, ppValor: e.value })} mode="currency" currency="USD" locale="en-US" />
                     </div>
+
+                    <div className="p-col-4">
+                        <label htmlFor="ppComentario" >Comentario</label>
+                        <InputTextarea id="ppComentario"
+                            name="ppComentario" value={ppComentario} onChange={(e) => cargarObPago({ ...obPago, ppComentario: e.target.value})}  />
+                    </div>
+
                     <div className="p-col-4" >
                     
                     <p></p>
@@ -94,7 +104,7 @@ const SeleccionarFormasPago = ({ pagos, cargarPagos }) => {
 
         <div className="p-col-12">
 
-            <DataTable value={pagos}
+            <DataTable value={pedido['pePagos']}
                 selection={pagosSelected}
                 className="p-datatable-striped"
                 selectionMode="multiple"
@@ -106,6 +116,7 @@ const SeleccionarFormasPago = ({ pagos, cargarPagos }) => {
                 <Column selectionMode="multiple" headerStyle={{ width: '3em' }}></Column>
                 <Column field="ppFormaPago" header="Forma Pago" sortable={true} />
                 <Column field="ppValor" header="Valor" sortable={true} />
+                <Column field="ppComentario" header="Valor" sortable={true} />
 
 
             </DataTable>

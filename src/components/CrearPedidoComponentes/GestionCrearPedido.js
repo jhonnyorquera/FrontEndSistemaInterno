@@ -3,7 +3,7 @@ import CrearPedido from './CrearPedido';
 import SeleccionHomie from './SeleccionHomie';
 import SeleccionCliente from './SeleccionCliente';
 import SeleccionarServicio from './SeleccionarServicio';
-import DetalleServicios from './DetalleServicios';
+
 import { Button } from 'primereact/button';
 import { Panel } from 'primereact/panel';
 
@@ -14,7 +14,6 @@ const GestionCrearPedido = () => {
     const [homies, cargarHomies] = useState([]);
     const [servicios, cargarServicios] = useState([]);
     const [pagos, cargarPagos] = useState([]);
-    const [fechas, cargarFechas] = useState([]);
    
 
     const [modo, cargaModo] = useState('crear');
@@ -25,7 +24,6 @@ const GestionCrearPedido = () => {
         cargarServicios([]);
         cargarHomies([]);
         seleccionarCliente([]);
-        cargarFechas([]);
         cargaModo('crear')
 
     }
@@ -42,21 +40,16 @@ const GestionCrearPedido = () => {
                             <h1>Crear Pedido</h1>
 
 
-                            <DetalleServicios
-                                servicios={servicios}
-                                cargaEstado={cargaEstado} 
-                                cargarServicios={cargarServicios}/>
-
+                         
                             <CrearPedido
                                 cargaEstado={cargaEstado}
                                 clienteSelect={clienteSelect}
                                 homies={homies}
                                 servicios={servicios}
                                 cargaModo={cargaModo}
-                                fechas={fechas}
-                                cargarFechas={cargarFechas}
                                 pagos ={pagos}
                                 cargarPagos ={cargarPagos}
+                                cargarServicios={cargarServicios}
                             />
 
 

@@ -38,10 +38,10 @@ const SeleccionarServicio = ({ servicios, cargarServicios, cargaEstado }) => {
         }
 
         let listaOrdenada = []
-        for (var valor of aux) {
+        for (var val of aux) {
             iter+=1;
-            valor['seCodigo']  = iter;
-            const updatedItems = [...listaOrdenada, valor];
+            val['seCodigo']  = iter;
+            const updatedItems = [...listaOrdenada, val];
             listaOrdenada = updatedItems
         }
 

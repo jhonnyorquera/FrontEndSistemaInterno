@@ -10,4 +10,7 @@ export class CountryService {
                 return data;
             });
     }
+
+    getProductsSmall() {
+       }
 }
