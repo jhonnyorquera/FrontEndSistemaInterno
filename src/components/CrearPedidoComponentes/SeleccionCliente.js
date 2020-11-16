@@ -10,7 +10,11 @@ const SeleccionCliente = ({clienteSelect, seleccionarCliente, cargaEstado }) => 
 
     const [clientesLista, llenaListado] = useState([])
     const [modo, seleccionarModo] = useState('seleccion');
-    const [estadoCrud, actualizarEstadoCrud] = useState('seleccionando')
+  
+    
+    const actualizarEstadoCrud= ()=>{
+        
+    }; 
 
     const [procesando, isProcesando] = useState(false);
 

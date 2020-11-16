@@ -14,3 +14,16 @@ export function getEstados() {
 
 
 
+export function getPagos() {
+    const opciones = [
+        { ppFormaPago: 'Efectivo', value: 'Efectivo'},
+        { ppFormaPago: 'TRANSFERENCIA PICHINCHA' , value: 'TRANSFERENCIA PICHINCHA'},
+        { ppFormaPago: 'TRANSFERENCIA PACÍFICO', value: 'TRANSFERENCIA PACÍFICO' },
+        { ppFormaPago: 'TRANSFERENCIA GUAYAQUIL' , value:'TRANSFERENCIA GUAYAQUIL' }
+    ]
+    return opciones;
+
+}
+
+
+

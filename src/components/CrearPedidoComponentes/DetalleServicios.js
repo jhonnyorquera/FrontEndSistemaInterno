@@ -143,7 +143,9 @@ const DetalleServicios = ({ cargaEstado, servicios, cargarServicios, pedido, cam
                             const { keyC, field, header } = col;
                             const validator = (field === 'seValor') ? positiveIntegerValidator : emptyValueValidator;
 
-                            return <Column key={keyC} field={field} header={header} editor={(props) => inputTextEditor('detalles', props, field)} editorValidator={validator}
+                            return <Column key={keyC} field={field} header={header} 
+                            editor={(props) => inputTextEditor('detalles', props, field)} 
+                            editorValidator={validator}
                                 onEditorInit={onEditorInit} onEditorCancel={onEditorCancel}  />
                         })
                     }

@@ -4,7 +4,12 @@ var Global={
     urlClienteByName: 'http://localhost:9000/api/HoCliente/findByNombre/',
     urlCatalogo: 'http://localhost:9000/api/HoCatalogo/',
     urlHomiePedidos: 'http://localhost:9000/api/HoPedidoHomie/HoPedidosPorHomie',
-    urlCrearPedido: 'http://localhost:9000/api/HoPedido/HoCrearPedido'
+    urlHomiePedidoCod: 'http://localhost:9000/api/HoPedido/',
+    urlPedidoHomie: 'http://localhost:9000/api/HoPedidoHomie/',
+    urlCrearPedido: 'http://localhost:9000/api/HoPedido/HoCrearPedido',
+    urlListarPedido: 'http://localhost:9000/api/HoPedido/pedidos',
+    urlPedidoPago : 'http://localhost:9000/api/HoPedidoPagos'
+
 };
 
 export default Global;

@@ -12,13 +12,11 @@ export function getClientesList() {
 }
 
 export function getClientesByNombre(name) {
-    console.log('busqueda: ' + name)
-    console.log('url: ' + Global.urlClienteByName + name)
+
     let listado = [];
     listado = axios.get(Global.urlClienteByName + name)
         .then(res => listado = res.data);
 
-    console.log('tamaño desde service: ' + listado.length)
     return listado;
 }
 
