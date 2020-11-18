@@ -62,8 +62,7 @@ const DetallePedido = ({ pedidoInfo }) => {
                                     <div className="p-col-12">
 
                                         <ServicioPedido
-                                            hoPedidoServicioList={hoPedidoServicioList}
-
+                                          pedidoInfo={pedidoInfo}
                                         ></ServicioPedido>
 
                                     </div>

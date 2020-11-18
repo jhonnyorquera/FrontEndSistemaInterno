@@ -168,8 +168,11 @@ const DetallePagos = ({ pedidoInfo }) => {
                 <div >
                     <div className="p-grid">
                         <div className="p-col-12">     <label htmlFor="ppValor" >Valor Cancelado</label></div>
-                        <div className="p-col-12">      <InputNumber id="ppValor"
-                            name="ppFormaPago" value={ppValor} onValueChange={(e) => setItemEditar({ ...itemEditar, ppValor: e.value })} mode="currency" currency="USD" locale="en-US" />
+                        <div className="p-col-12">      
+                        <InputNumber id="ppValor"
+                            name="ppFormaPago" value={ppValor} 
+                            onValueChange={(e) => setItemEditar({ ...itemEditar, ppValor: e.value })} 
+                            mode="currency" currency="USD" locale="en-US" />
                         </div></div>
                 </div>
 

@@ -8,7 +8,7 @@ import { Button } from 'primereact/button';
 
 
 
-const DetalleServicios = ({ cargaEstado, servicios, cargarServicios, pedido, camposPedido, cargaValorTotal }) => {
+const DetalleServicios = ({ cargaEstado, servicios, cargarServicios }) => {
 
     const [detalles, setdetalleServicios] = useState([]);
 

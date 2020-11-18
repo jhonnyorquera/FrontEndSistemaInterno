@@ -72,6 +72,17 @@ export function editarComentarioPedido(entidad) {
 }
 
 
+export function guardarPedidoServicio(entidad) {
+        return axios.post(Global.urlPedidoServicio, entidad)
+                .then(res => res.data);
+}
+
+export function editarPedidoServicio(entidad) {
+        return axios.put(Global.urlPedidoServicio, entidad)
+                .then(res => res.data);
+}
+
+
 
 
 
