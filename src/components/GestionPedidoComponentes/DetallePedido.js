@@ -3,6 +3,7 @@ import PedidoHomie from './PedidoHomie'
 import ServicioPedido from './ServicioPedido';
 import DetallePagos from './DetallePagos';
 import DetallesPedido from './DetallesPedido';
+import ComentarioPedido from './ComentarioPedido';
 import { Panel } from 'primereact/panel';
 
 
@@ -11,12 +12,12 @@ import { Panel } from 'primereact/panel';
 
 const DetallePedido = ({ pedidoInfo }) => {
 
-   
 
 
 
-    const { peCodigo,  hoHomieList,
-        hoPedidoServicioList, hoPedidoPagoList } = pedidoInfo;
+
+    const { peCodigo, hoHomieList,
+        hoPedidoServicioList } = pedidoInfo;
 
     return (
 
@@ -24,7 +25,7 @@ const DetallePedido = ({ pedidoInfo }) => {
 
 
 
-     
+
             { peCodigo ?
                 <div>
 
@@ -47,13 +48,11 @@ const DetallePedido = ({ pedidoInfo }) => {
                             <Panel header="Homies Asignados">
                                 {hoHomieList ?
                                     <div className="p-col-12">
-                                      
-                                            <PedidoHomie
-                                              
-                                                hoHomieList={hoHomieList}
-                                                codigoPedido ={pedidoInfo.peCodigo}
-                                            ></PedidoHomie>
-                                        
+
+                                        <PedidoHomie
+                                            pedidoInfo={pedidoInfo}
+                                        ></PedidoHomie>
+
                                     </div>
                                     : 'No existen Homies Asignados'}
                             </Panel>
@@ -64,39 +63,41 @@ const DetallePedido = ({ pedidoInfo }) => {
 
                                         <ServicioPedido
                                             hoPedidoServicioList={hoPedidoServicioList}
-                                         
-                                      ></ServicioPedido>
+
+                                        ></ServicioPedido>
 
                                     </div>
                                     : 'No existen Servicios Asignados'}
                             </Panel>
-                           
-                                {pedidoInfo.peTipo === 'PRINCIPAL'  ?
-                                 <Panel header="Pagos Realizados">
+
+                            {pedidoInfo.peTipo === 'PRINCIPAL' ?
+                                <Panel header="Pagos Realizados">
                                     <div className="p-col-12">
 
                                         <DetallePagos
-                                           
-                                           pedidoInfo={pedidoInfo}
+
+                                            pedidoInfo={pedidoInfo}
                                         ></DetallePagos>
 
                                     </div> </Panel>
-                                    : null }
-                           
+                                : null}
+
                         </div>
 
 
                         <div className="p-col-3">
-                           
 
+                            <ComentarioPedido
+                                pedidoInfo={pedidoInfo}
+                            ></ComentarioPedido>
                         </div>
 
 
                     </div>
 
 
-              
-                </div> :null
+
+                </div> : null
             }
 
         </Fragment>);

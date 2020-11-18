@@ -10,10 +10,9 @@ import 'moment-timezone';
 const ListaBusqueda = ({ busqueda, pedidoSelected, setPedidoSelected }) => {
 
     const dateBodyTemplate = (rowData) => {
-        console.log(rowData)
         return (
             <React.Fragment>
-                {moment.utc(rowData.lpFechaPedido).format("dddd, DD MMMM YYYY, h:mm a")}{" "}
+                {moment.utc(rowData.peFecha).format("dddd, DD MMMM YYYY")}{" "}
             </React.Fragment>
         );
     }
@@ -25,7 +24,7 @@ const ListaBusqueda = ({ busqueda, pedidoSelected, setPedidoSelected }) => {
             paginatorPosition="bottom"
             className="p-datatable-sm"
             sortField="peCodigo" sortOrder={-1}
-            rows={10}
+            rows={5}
 
             selection={pedidoSelected}
             onSelectionChange={e => setPedidoSelected(e.value)} selectionMode="single"

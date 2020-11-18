@@ -32,7 +32,7 @@ const Busqueda = ({ setBusqueda }) => {
         }, 250);
     }
     const [camposBusqueda, setCamposBusqueda] = useState({
-        cliente: 0,
+        cliente: '',
         fechaInicio: '',
         fechaFin: '',
         estado: '',
@@ -43,9 +43,11 @@ const Busqueda = ({ setBusqueda }) => {
 
     const buscar = (e) => {
         console.log('entra a buscar');
+        
         e.preventDefault();
+        setBusqueda([])
         if (clienteSelect) {
-            setCamposBusqueda({ ...camposBusqueda, cliente: clienteSelect.clId })
+            setCamposBusqueda({ ...camposBusqueda, cliente: clienteSelect.clNombre })
         }
        
         
@@ -95,7 +97,7 @@ const Busqueda = ({ setBusqueda }) => {
             </div>
             <div className="p-col-12">
                 <div className="p-col-12">
-                    <Calendar name="fechaInicio" value={fechaInicio} onChange={a => setCamposBusqueda({ ...camposBusqueda, fechaInicio: a.value })}  ></Calendar>
+                    <Calendar name="fechaInicio"  value={fechaInicio} onChange={a => setCamposBusqueda({ ...camposBusqueda, fechaInicio: a.value })}  ></Calendar>
                 </div>
             </div>
 

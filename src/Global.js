@@ -8,7 +8,8 @@ var Global={
     urlPedidoHomie: 'http://localhost:9000/api/HoPedidoHomie/',
     urlCrearPedido: 'http://localhost:9000/api/HoPedido/HoCrearPedido',
     urlListarPedido: 'http://localhost:9000/api/HoPedido/pedidos',
-    urlPedidoPago : 'http://localhost:9000/api/HoPedidoPagos'
+    urlPedidoPago : 'http://localhost:9000/api/HoPedidoPagos',
+    urlComentario : 'http://localhost:9000/api/HoComentario'
 
 };
 

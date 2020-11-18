@@ -36,7 +36,8 @@ const SeleccionarFormasPago = ({ pedido, camposPedido }) => {
         var objPago2 = {
             ppFormaPago: obPago.ppFormaPago.ppFormaPago,
             ppValor: obPago.ppValor,
-            ppComentario: ppComentario
+            ppComentario: ppComentario,
+            ppEstado : true
 
         };
         

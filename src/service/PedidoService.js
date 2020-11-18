@@ -61,6 +61,16 @@ export function guardarPedidoPagoHomie(entidad) {
 }
 
 
+export function guardarComentarioPedido(entidad) {
+        return axios.post(Global.urlComentario, entidad)
+                .then(res => res.data);
+}
+
+export function editarComentarioPedido(entidad) {
+        return axios.put(Global.urlComentario, entidad)
+                .then(res => res.data);
+}
+
 
 
 

@@ -10,8 +10,6 @@ import swal from 'sweetalert';
 import Moment from 'react-moment';
 import 'moment/locale/es';
 
-
-import 'moment/locale/es';
 import moment from "moment";
 import 'moment-timezone';
 
@@ -72,8 +70,6 @@ const DetallesPedido = ({ pedidoInfo }) => {
     }
 
     const fecha = (fecha) => {
-        console.log('fecha ddd' + fecha)
-
         return (
 
             <Moment format="dddd DD MMMM YYYY HH:mm">
@@ -114,7 +110,7 @@ const DetallesPedido = ({ pedidoInfo }) => {
                             <div style={{ fontWeight: 'bold' }} className="p-col-12">Fecha Pedido </div>
 
                             <div className="p-col-12">
-                                <Calendar name="peFechaPedido" value={peFechaPedido} onChange={actualizarState} showTime ></Calendar>
+                                <Calendar name="peFechaPedido" stepMinute={10} value={peFechaPedido} onChange={actualizarState} showTime ></Calendar>
                                 <label htmlhtmlFor="peFechaPedido" style={{ fontWeight: 'bold' }} >{fecha(peFechaPedido)}</label>
 
 

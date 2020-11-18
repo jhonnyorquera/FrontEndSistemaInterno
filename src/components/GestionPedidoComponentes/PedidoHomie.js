@@ -11,7 +11,7 @@ import { Button } from 'primereact/button';
 import { InputSwitch } from 'primereact/inputswitch';
 import { Rating } from 'primereact/rating';
 
-const PedidoHomie = ({ hoHomieList,codigoPedido  }) => {
+const PedidoHomie = ({  pedidoInfo }) => {
 
    
     const [itemEditar, setItemEditar] = useState(null);
@@ -22,9 +22,9 @@ const PedidoHomie = ({ hoHomieList,codigoPedido  }) => {
 
 
     const [proceso, setProceso] = useState('');
-    const [listaPedidoHomie, setListaPedidoHomie] = useState(hoHomieList);
+    const [listaPedidoHomie, setListaPedidoHomie] = useState( pedidoInfo.hoHomieList);
     const [itemNuevo, setItemNuevo] = useState({
-        peCodigo: codigoPedido,
+        peCodigo:  pedidoInfo.peCodigo,
         cedulaHomies: []
 
     });
@@ -39,6 +39,11 @@ const PedidoHomie = ({ hoHomieList,codigoPedido  }) => {
                     
     },[homiesSelected])
 
+
+    useEffect(() => {
+        setListaPedidoHomie(pedidoInfo.hoHomieList)
+        setItemNuevo({...itemNuevo, peCodigo:  pedidoInfo.peCodigo})
+    }, [pedidoInfo])
 
 
 
@@ -79,7 +84,9 @@ const PedidoHomie = ({ hoHomieList,codigoPedido  }) => {
         return (
             <div>
                 <Button label="Cancelar" icon="pi pi-times" onClick={() => onHide('no')} className="p-button-text" />
+                {homiesSelected.length > 0 ?
                 <Button label="Agregar" icon="pi pi-check" onClick={() => agregarHomiesFunc('yes')} autoFocus />
+            :null}
             </div>
         );
     }

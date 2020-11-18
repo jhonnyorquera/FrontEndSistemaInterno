@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import Moment from 'react-moment';
 import 'moment/locale/es';
 import { Button } from 'primereact/button';
@@ -9,8 +9,11 @@ import { Column } from 'primereact/column';
 const SeleccionarFechas = ({ pedido, camposPedido }) => {
 
     const [fechasSelected, setFechasSelected] = useState([]);
-    const [fechaSeleccionada, setFechaSeleccionada] = useState(null);
+    const [fechaSeleccionada, setFechaSeleccionada] = useState('');
 
+
+
+    
 
     const agregarFecha = (e) => {
         e.preventDefault();
@@ -57,9 +60,9 @@ const SeleccionarFechas = ({ pedido, camposPedido }) => {
 
 
     const fechaGrilla = (fecha) => {
-        console.log('fecha: '+fecha);
+        console.log('fecha: ' + fecha);
         return (
-            
+
             <Moment format="dddd DD MMMM YYYY HH:mm">
                 {fecha}
             </Moment>

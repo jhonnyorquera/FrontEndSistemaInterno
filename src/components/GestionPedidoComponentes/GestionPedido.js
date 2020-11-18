@@ -15,8 +15,6 @@ const GestionPedido = () => {
     useEffect(() => {
 
         if (pedidoSelected) {
-console.log('entra a')
-
             buscarPedidoByCodigo(pedidoSelected.peCodigo)
                 .then(
                     (res) => {
@@ -59,10 +57,10 @@ console.log('entra a')
         {pedidoInfo ?
             <div className="p-col-12 p-lg-12">
                 <div className="card">
-                    <DetallePedido 
-                    pedidoInfo={pedidoInfo} />
+                    <DetallePedido
+                        pedidoInfo={pedidoInfo} />
                 </div>
-            </div> : null }
+            </div> : null}
 
 
 

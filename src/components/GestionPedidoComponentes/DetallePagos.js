@@ -33,6 +33,13 @@ const DetallePagos = ({ pedidoInfo }) => {
 
     });
 
+   
+
+    useEffect(() => {
+        setListaPago(pedidoInfo.hoPedidoPagoList)
+        setItemEditar({...itemEditar, hoPedidoCodigo: pedidoInfo.peCodigo})
+    }, [pedidoInfo])
+
 
     const iniciarCreacion = () => {
         setProceso('crear');
@@ -48,7 +55,6 @@ const DetallePagos = ({ pedidoInfo }) => {
                 total = total + parseFloat(sale.ppValor);
             }
         }
-        console.log('total_ ' + total)
         setTotalPago(total);
     }, [listaPago])
 
