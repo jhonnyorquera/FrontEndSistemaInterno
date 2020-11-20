@@ -36,7 +36,7 @@ const GestionHomie = () => {
                                 <ScrollPanel style={{ width: '100%', height: '700px' }}>
                                     <div className="card">
                                         <RegistrarHomie
-                                            terminaRegistro={isProcesando}
+                                          
                                             actualizarEstadoCrud={actualizarEstadoCrud}
                                             isProcesando={isProcesando} />  </div>
                                 </ScrollPanel>

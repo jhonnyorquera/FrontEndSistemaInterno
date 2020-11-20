@@ -11,7 +11,7 @@ import { InputTextarea } from 'primereact/inputtextarea';
 import SeleccionarEstado from './SeleccionarEstado';
 import swal from 'sweetalert';
 
-const CrearPedido = ({ cargaEstado, clienteSelect, homies, servicios, cargaModo, fechas, cargarFechas, pagos, cargarPagos, cargarServicios }) => {
+const CrearPedido = ({ cargaEstado, clienteSelect, homies, servicios, cargaModo, cargarServicios }) => {
 
    
     useEffect(() => {
@@ -19,7 +19,8 @@ const CrearPedido = ({ cargaEstado, clienteSelect, homies, servicios, cargaModo,
             camposPedido({
                 ...pedido,
                 peDireccion: clienteSelect.clDireccion,
-                peCliente: clienteSelect.clId
+                peCliente: clienteSelect.clId,
+                peFactura: clienteSelect.obFactura
             })
         }
     }, [clienteSelect]);
@@ -75,12 +76,12 @@ const CrearPedido = ({ cargaEstado, clienteSelect, homies, servicios, cargaModo,
             e.preventDefault();
             //asgina atributos a objeto
             crearPedido(pedido).then(res => {
-                swal("Se registra cliente", "Se ha registrado el PEDIDO: " + res, "success");
+                swal("Se registra Pedido", "Se ha registrado el PEDIDO: " + res, "success");
             }).catch(error => {
                 if (error.response) {
-                    swal("No se registra cliente", "Algo ha ocurrido, prueba de nuevo o consulta al administrador", "error");
+                    swal("No se registra pedido", "Algo ha ocurrido, prueba de nuevo o consulta al administrador", "error");
                 } else if (error.request) {
-                    swal("No se registra cliente", "Algo ha ocurrido, prueba de nuevo o consulta al administrador", "error");
+                    swal("No se registra pedido", "Algo ha ocurrido, prueba de nuevo o consulta al administrador", "error");
                 }
             }
             );
@@ -100,13 +101,14 @@ const CrearPedido = ({ cargaEstado, clienteSelect, homies, servicios, cargaModo,
         peObservacion: '',
         peValor: 0,
         peTipo: '',
-        peEstado: '',
+        peEstado: 'REGISTRADO',
+        peFactura:'',
         cedulasHomies: [],
         peDireccion: '',
         pePagos: []
     });
 
-    const { peObservacion, peDireccion,  peValor,  peCantidadHoras } = pedido;
+    const { peObservacion, peDireccion,  peValor,  peCantidadHoras, peFactura } = pedido;
 
     const actualizarState = e => {
         camposPedido({
@@ -130,60 +132,7 @@ const CrearPedido = ({ cargaEstado, clienteSelect, homies, servicios, cargaModo,
                             pedido={pedido}
                             camposPedido={camposPedido} />
 
-
-                        <div className="p-col-12">
-                            <label htmlFor="peValor" ><strong>Valor Total </strong></label>
-                        </div>
-                        <div className="p-col-12">
-                            <label id="peValor" >{peValor}</label>
-                        </div>
-
-                        <div className="p-col-12">
-                            <label htmlFor="peCantidadHoras" ><strong>Cantidad de Horas</strong></label>
-                        </div>
-                        <div className="p-col-12">
-                            <InputText id="peCantidadHoras" required={true}
-                                maxLength="300" name="peCantidadHoras" placeholder="Ej. 5"
-                                onChange={actualizarState} value={peCantidadHoras} />
-                        </div>
-                        <div className="p-col-12">
-                            <label htmlFor="peDetallePagos" ><strong> Detalle de Fechas</strong></label>
-                        </div>
-                        <div className="p-col-12">
-                            <SeleccionarFechas
-                                pedido={pedido}
-                                camposPedido={camposPedido}
-                            />
-                        </div>
-
-
-                        <div className="p-col-12">
-                            <label htmlFor="peDetallePagos" > <strong>  Detalle de Pagos</strong></label>
-                        </div>
-                        <div className="p-col-12">
-                            <SeleccionarFormasPago
-                                pedido={pedido}
-                                camposPedido={camposPedido}
-                            />
-                        </div>
-
-
-
-
-                        <div className="p-col-12">
-                            <label htmlFor="estado" ><strong>Estado</strong></label>
-                        </div>
-                        <div className="p-col-12">
-                            <SeleccionarEstado
-                                pedido={pedido}
-                                camposPedido={camposPedido} />
-                        </div>
-
-
-
-
-
-                        <div className="p-col-12">
+<div className="p-col-12">
                             <div className="p-grid p-fluid dashboard">
                                 <div className="p-col-6">
                                     <label ><strong> Cliente</strong></label>
@@ -221,6 +170,62 @@ const CrearPedido = ({ cargaEstado, clienteSelect, homies, servicios, cargaModo,
                                 </div>
                             </div>
                         </div>
+
+                        <div className="p-col-12">
+                            <label  ><strong> Detalle de Fechas</strong></label>
+                        </div>
+                        <div className="p-col-12">
+                            <SeleccionarFechas
+                                pedido={pedido}
+                                camposPedido={camposPedido}
+                            />
+                        </div>
+
+                        <div className="p-col-12">
+                            <label htmlFor="peValor" ><strong>Valor Total </strong></label>
+                        </div>
+                        <div className="p-col-12">
+                            <h1 id="peValor" >{peValor}</h1>
+                        </div>
+
+                        <div className="p-col-12">
+                            <label htmlFor="peCantidadHoras" ><strong>Cantidad de Horas</strong></label>
+                        </div>
+                        <div className="p-col-12">
+                            <InputText id="peCantidadHoras" required={true}
+                                maxLength="300" name="peCantidadHoras" placeholder="Ej. 5"
+                                onChange={actualizarState} value={peCantidadHoras} />
+                        </div>
+                      
+
+
+                        <div className="p-col-12">
+                            <label htmlFor="peDetallePagos" > <strong>  Detalle de Pagos</strong></label>
+                        </div>
+                        <div className="p-col-12">
+                            <SeleccionarFormasPago
+                                pedido={pedido}
+                                camposPedido={camposPedido}
+                            />
+                        </div>
+
+
+
+
+                        <div className="p-col-12">
+                            <label htmlFor="estado" ><strong>Estado</strong></label>
+                        </div>
+                        <div className="p-col-12">
+                            <SeleccionarEstado
+                                pedido={pedido}
+                                camposPedido={camposPedido} />
+                        </div>
+
+
+
+
+
+                     
                         <div className="p-col-12">
                             <label htmlFor="peObservacion" ><strong>Observaciones</strong></label>
                         </div>
@@ -240,6 +245,15 @@ const CrearPedido = ({ cargaEstado, clienteSelect, homies, servicios, cargaModo,
                                 onChange={actualizarState} value={peDireccion} />
                         </div>
 
+
+                        <div className="p-col-12">
+                            <label htmlFor="peFactura" ><strong>Factura</strong></label>
+                        </div>
+                        <div className="p-col-12">
+                            <InputTextarea rows={5} cols={30} id="peFactura"
+                                minLength="10" maxLength="300" name="peFactura" placeholder="Mismos datos del cliente"
+                                onChange={actualizarState} value={peFactura} />
+                        </div>
 
 
 

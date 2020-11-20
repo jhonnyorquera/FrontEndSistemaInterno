@@ -19,7 +19,18 @@ export function getPagos() {
         { ppFormaPago: 'EFECTIVO', value: 'EFECTIVO'},
         { ppFormaPago: 'TRANSFERENCIA PICHINCHA' , value: 'TRANSFERENCIA PICHINCHA'},
         { ppFormaPago: 'TRANSFERENCIA PACÍFICO', value: 'TRANSFERENCIA PACÍFICO' },
-        { ppFormaPago: 'TRANSFERENCIA GUAYAQUIL' , value:'TRANSFERENCIA GUAYAQUIL' }
+        { ppFormaPago: 'TRANSFERENCIA GUAYAQUIL' , value:'TRANSFERENCIA GUAYAQUIL' },
+        { ppFormaPago: 'PAYMENTEZ' , value:'PAYMENTEZ' }
+    ]
+    return opciones;
+
+}
+
+
+export function getNodalidadesContrato() {
+    const opciones = [
+        { hoModalidad: 'EN RELACIÓN LABORAL', value:'EN RELACIÓN LABORAL' },
+        { hoModalidad: 'FREELANCE', value:'FREELANCE' }
     ]
     return opciones;
 

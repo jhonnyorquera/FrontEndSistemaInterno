@@ -9,8 +9,14 @@ import { Column } from 'primereact/column';
 const SeleccionarFechas = ({ pedido, camposPedido }) => {
 
     const [fechasSelected, setFechasSelected] = useState([]);
-    const [fechaSeleccionada, setFechaSeleccionada] = useState('');
+    const [fechaSeleccionada, setFechaSeleccionada] = useState(fecha());
 
+    function fecha(){
+      var a= new Date();
+      a.setMinutes(0);
+      return a
+     }
+    
 
 
     
@@ -77,7 +83,8 @@ const SeleccionarFechas = ({ pedido, camposPedido }) => {
         <Fragment>
             <div className="p-grid p-fluid dashboard">
                 <div className="p-col-4">
-                    <Calendar name="fechaSeleccionada" value={fechaSeleccionada} onChange={a => setFechaSeleccionada(a.value)} showTime ></Calendar>
+                    <Calendar name="fechaSeleccionada" value={fechaSeleccionada} stepMinute ={30}
+                     onChange={a => setFechaSeleccionada(a.value)} showTime ></Calendar>
                 </div>
                 <div className="p-col-4">
                     <Button icon="pi pi-plus" className="p-button-raised p-button-rounded" onClick={(e) => agregarFecha(e)} />

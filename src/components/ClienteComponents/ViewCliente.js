@@ -18,12 +18,7 @@ const ViewCliente = ({ selectedCliente, estadoCrud }) => {
                                 <div className="p-col-6">{selectedCliente.clCedulaRuc}</div>
                             </div>
                         </li>
-                        <li>
-                            <div className="p-grid">
-                                <div style={{ fontWeight: 'bold' }} className="p-col-6">Tipo</div>
-                                <div className="p-col-6">{selectedCliente.clTipo}</div>
-                            </div>
-                        </li>
+                    
 
                         <li>
                             <div className="p-grid">

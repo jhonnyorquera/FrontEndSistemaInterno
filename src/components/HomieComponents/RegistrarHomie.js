@@ -8,16 +8,14 @@ import { Dropdown } from 'primereact/dropdown';
 
 import swal from 'sweetalert';
 import { createHomie } from '../../service/HomieService';
+import { getNodalidadesContrato } from '../../service/VariablesService';
 
 
 
 
-const RegistrarHomie = ({ terminaRegistro, actualizarEstadoCrud, isProcesando }) => {
+const RegistrarHomie = ({  actualizarEstadoCrud, isProcesando }) => {
 
-    var modalidades = [
-        { mod: 'En relación laboral' },
-        { mod: 'Freelance' },
-    ];
+    const [modalidades] = useState(getNodalidadesContrato());
 
     const [homie, actualizaHomie] = useState({
         hoCedula: '',
@@ -54,21 +52,17 @@ const RegistrarHomie = ({ terminaRegistro, actualizarEstadoCrud, isProcesando })
         createHomie(homie)
             .then(res => {
                 if (res) {
-                    terminaRegistro(false);
+                    isProcesando(true);
                     swal("Tenemos un nuevo Homie", "Se ha registrado un nuevo Homie", "success");
 
                 } else {
-                    terminaRegistro(true);
                     swal("No se registrado un Homie", "Algo ha ocurrido, prueba de nuevo o consulta al administrador", "error");
-
                 }
             }).catch(error => {
                 if (error.response) {
-                    terminaRegistro(true);
                     swal("No se registrado un Homie", "Algo ha ocurrido, prueba de nuevo o consulta al administrador", "error");
 
                 } else if (error.request) {
-                    terminaRegistro(true);
                     swal("No se registrado un Homie", "Algo ha ocurrido, prueba de nuevo o consulta al administrador", "error");
 
                 } else {
@@ -83,6 +77,7 @@ const RegistrarHomie = ({ terminaRegistro, actualizarEstadoCrud, isProcesando })
         isProcesando(true);
     }
 
+  
 
 
 
@@ -102,16 +97,16 @@ const RegistrarHomie = ({ terminaRegistro, actualizarEstadoCrud, isProcesando })
                         onChange={actualizarState} value={hoCedula} />
                 </div>
                 <div className="p-col-12">
-                    <label >Nombres Completos</label>
+                    <label >Nombres y Apellidos Completos</label>
                 </div>
                 <div className="p-col-12">
-                    <InputText id="hoNombre" required={true} name="hoNombre" maxLength="50" placeholder="Ej. Daniela Andrea Ortiz Vaca" onChange={actualizarState} value={hoNombre} />
+                    <InputText id="hoNombre" required={true} name="hoNombre" maxLength="70" placeholder="Ej. Daniela Andrea Ortiz Vaca" onChange={actualizarState} value={hoNombre} />
                 </div>
                 <div className="p-col-12">
                     <label >Teléfono Celular</label>
                 </div>
                 <div className="p-col-12">
-                    <InputMask id="hoTelefono" name='hoTelefono' mask='999-9999-999' placeholder='099-8342-369' onChange={actualizarState} value={hoTelefono} />
+                    <InputMask id="hoTelefono" required={true} name='hoTelefono' mask='999-9999-999' placeholder='099-8342-369' onChange={actualizarState} value={hoTelefono} />
                 </div>
 
 
@@ -121,18 +116,27 @@ const RegistrarHomie = ({ terminaRegistro, actualizarEstadoCrud, isProcesando })
                     <label htmlFor="hoCorreo">Correo Electrónico</label>
                 </div>
                 <div className="p-col-12">
-                    <InputText id="hoCorreo" type="email" name="hoCorreo" maxLength="30" placeholder="Ej. unombre@hotmail.com" onChange={actualizarState} value={hoCorreo} />
+                    <InputText id="hoCorreo" type="email" required={true} name="hoCorreo" maxLength="30" placeholder="Ej. unombre@hotmail.com" onChange={actualizarState} value={hoCorreo} />
                 </div>
 
                 <div className="p-col-12">
                     <label htmlFor="hoModalidad">Modalidad</label>
                 </div>
                 <div className="p-col-12">
-                    <Dropdown name="hoModalidad" id="hoModalidad" value={hoModalidad}
-                        options={modalidades} onChange={actualizarState} placeholder="Seleccione una Modalidad"
-                        optionLabel="mod" style={{ width: '12em' }} />
+                    <Dropdown name="hoModalidad" id="hoModalidad" 
+                    value={hoModalidad} required={true}
+                        options={modalidades} onChange={actualizarState} 
+                        placeholder="Seleccione una Modalidad"
+                        optionLabel="value" style={{ width: '12em' }} />
                 </div>
 
+                <div className="p-col-12">
+                    <label htmlFor="hoFechaIngreso">Fecha de Ingreso</label>
+                </div>
+                <div className="p-col-12">
+                    <Calendar type="time" placeholder="07/15/2020" required={true} name="hoFechaIngreso" id="hoFechaIngreso"
+                    onChange={actualizarState} value={hoFechaIngreso} monthNavigator />
+                </div>
 
 
 
@@ -140,22 +144,24 @@ const RegistrarHomie = ({ terminaRegistro, actualizarEstadoCrud, isProcesando })
                     <label htmlFor="hoNroCuenta">Cuenta Bancaria</label>
                 </div>
                 <div className="p-col-12">
-                    <InputTextarea rows={5} cols={30} maxLength="150" id="hoNroCuenta" name="hoNroCuenta"
+                    <InputTextarea rows={5} cols={30} maxLength="150" id="hoNroCuenta" name="hoNroCuenta" 
                         placeholder="Ej. Banco Pichincha, Cuenta de ahorros nro: 222222222222" onChange={actualizarState} value={hoNroCuenta} />
                 </div>
+
+                
 
                 <div className="p-col-12">
                     <label htmlFor="hoSector">Sector de residencia</label>
                 </div>
                 <div className="p-col-12">
-                    <InputText id="hoSector" maxLength="150" name="hoSector" placeholder="Ej. El Inca" onChange={actualizarState} value={hoSector} />
+                    <InputText id="hoSector" required={true} maxLength="150" name="hoSector" placeholder="Ej. El Inca" onChange={actualizarState} value={hoSector} />
                 </div>
 
                 <div className="p-col-12">
                     <label htmlFor="hoDireccion">Dirección</label>
                 </div>
                 <div className="p-col-12">
-                    <InputTextarea rows={5} cols={30} maxLength="50" id="hoDireccion" name="hoDireccion"
+                    <InputTextarea rows={5} cols={30} maxLength="50" id="hoDireccion" name="hoDireccion" required={true}
                         placeholder="Ej. Toribio Hidalgo N17 y Atanasio Oleas, atrás del parque central de la Vicentina" onChange={actualizarState} value={hoDireccion} />
                 </div>
 
@@ -166,13 +172,16 @@ const RegistrarHomie = ({ terminaRegistro, actualizarEstadoCrud, isProcesando })
                     <InputText maxLength="150" id="hoNivelEducativo" name="hoNivelEducativo" placeholder="Ej. Bachillerato" onChange={actualizarState} value={hoNivelEducativo} />
                 </div>
 
+                <div className="p-col-12">
+                    <label htmlFor="hoFechaNacimiento">Fecha de Nacimiento</label>
+                </div>
+                <div className="p-col-12">
+                    <Calendar type="time" placeholder="07/15/2020"  required={true} name="hoFechaNacimiento" id="hoFechaNacimiento" onChange={actualizarState} 
+                    value={hoFechaNacimiento} monthNavigator yearNavigator  yearRange="1960:2006"/>
+                </div>
 
-                <div className="p-col-12">
-                    <label htmlFor="hoFechaIngreso">Fecha de Ingreso</label>
-                </div>
-                <div className="p-col-12">
-                    <Calendar type="time" placeholder="07/15/2020" required={true} name="hoFechaIngreso" id="hoFechaIngreso" onChange={actualizarState} value={hoFechaIngreso} />
-                </div>
+
+
 
                 <div className="p-col-12">
                     <label htmlFor="hoSueldo">Sueldo</label>
@@ -190,13 +199,7 @@ const RegistrarHomie = ({ terminaRegistro, actualizarEstadoCrud, isProcesando })
                 </div>
 
 
-                <div className="p-col-12">
-                    <label htmlFor="hoFechaNacimiento">Fecha de Nacimiento</label>
-                </div>
-                <div className="p-col-12">
-                    <Calendar type="time" placeholder="07/15/2020" name="hoFechaNacimiento" id="hoFechaNacimiento" onChange={actualizarState} value={hoFechaNacimiento} />
-                </div>
-
+              
                 
                 <div className="p-col-12">
                     <Button type="submit" label="Registrar"> </Button>

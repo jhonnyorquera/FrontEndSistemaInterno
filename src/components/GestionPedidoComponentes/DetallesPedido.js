@@ -110,7 +110,7 @@ const DetallesPedido = ({ pedidoInfo }) => {
                             <div style={{ fontWeight: 'bold' }} className="p-col-12">Fecha Pedido </div>
 
                             <div className="p-col-12">
-                                <Calendar name="peFechaPedido" stepMinute={10} value={peFechaPedido} onChange={actualizarState} showTime ></Calendar>
+                                <Calendar name="peFechaPedido" stepMinute={10} value={peFechaPedido} stepMinute ={30} onChange={actualizarState} showTime ></Calendar>
                                 <label htmlhtmlFor="peFechaPedido" style={{ fontWeight: 'bold' }} >{fecha(peFechaPedido)}</label>
 
 

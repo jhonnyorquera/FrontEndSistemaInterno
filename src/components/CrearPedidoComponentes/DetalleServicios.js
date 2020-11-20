@@ -59,7 +59,7 @@ const DetalleServicios = ({ cargaEstado, servicios, cargarServicios }) => {
 
     const emptyValueValidator = (props) => {
         const { rowData, field } = props;
-        return rowData[field].trim().length > 0;
+        return rowData[field] !== '';
     }
     const isPositiveInteger = (val) => {
         let str = String(val);

@@ -9,7 +9,7 @@ const CreateCliente = ({ estadoCrud, seleccionarCliente, isProcesando }) => {
 
     const [clCliente, actualizaHomie] = useState({
 
-        clId:'', clCedulaRuc: '', clTipo: '', clNombre: '', clSector: '', clDireccion: '', clTelefono: '', clCorreo: '', obFactura:''
+        clId:'', clCedulaRuc: '',  clNombre: '', clSector: '', clDireccion: '', clTelefono: '', clCorreo: '', obFactura:''
     });
 
 
@@ -20,7 +20,7 @@ const CreateCliente = ({ estadoCrud, seleccionarCliente, isProcesando }) => {
         })
     }
 
-    const {  clCedulaRuc, clTipo, clNombre, clSector, clDireccion, clTelefono, clCorreo, obFactura } = clCliente;
+    const {  clCedulaRuc, clNombre, clSector, clDireccion, clTelefono, clCorreo, obFactura } = clCliente;
 
     const crearCliente = (e) => {
 
@@ -29,6 +29,7 @@ const CreateCliente = ({ estadoCrud, seleccionarCliente, isProcesando }) => {
         saveClient(clCliente).then(res => {
             seleccionarCliente(res);
             swal("Se registra cliente", "Se ha registrado el usuario: "+res.clId, "success");
+            isProcesando(true);
 
         })
             .catch(error => {
@@ -45,7 +46,7 @@ const CreateCliente = ({ estadoCrud, seleccionarCliente, isProcesando }) => {
 
 
         estadoCrud(null);
-        isProcesando(true);
+     
     }
 
 
@@ -65,15 +66,7 @@ const CreateCliente = ({ estadoCrud, seleccionarCliente, isProcesando }) => {
                         onChange={actualizarState} value={clCedulaRuc} />
                 </div>
 
-                <div className="p-col-12">
-                    <label htmlFor="clTipo" >Tipo</label>
-                </div>
-                <div className="p-col-12">
-                    <InputText id="clTipo"
-                        name="clTipo" placeholder="Ej. Hogar"
-                        onChange={actualizarState} value={clTipo} />
-                </div>
-
+               
                 <div className="p-col-12">
                     <label htmlFor="clNombre" >Nombre</label>
                 </div>

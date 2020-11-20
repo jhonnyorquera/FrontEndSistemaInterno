@@ -16,7 +16,7 @@ const EditCliente = ({ selectedCliente, estadoCrud, isProcesando }) => {
     }, [selectedCliente]);
 
     const [clClienteEdit, actualizaCliente] = useState({
-        clCedulaRuc: '', clTipo: '', clNombre: '', clSector: '', clDireccion: '', clTelefono: '', clCorreo: '', obFactura:''
+        clCedulaRuc: '', clNombre: '', clSector: '', clDireccion: '', clTelefono: '', clCorreo: '', obFactura:''
     })
 
 
@@ -27,7 +27,7 @@ const EditCliente = ({ selectedCliente, estadoCrud, isProcesando }) => {
         })
     }
 
-    const { clCedulaRuc, clTipo, clNombre, clSector, clDireccion, clTelefono, clCorreo, obFactura } = clClienteEdit;
+    const { clCedulaRuc,  clNombre, clSector, clDireccion, clTelefono, clCorreo, obFactura } = clClienteEdit;
 
     const editarCliente = (e) => {
         e.preventDefault();
@@ -53,12 +53,7 @@ const EditCliente = ({ selectedCliente, estadoCrud, isProcesando }) => {
                         onChange={actualizarState} value={clCedulaRuc} />
                 </div>
 
-                <div className="p-col-12">
-                    <label htmlFor="clTipo" >Tipo</label>
-                    <InputText id="clTipo" required={true}
-                         name="clTipo" 
-                        onChange={actualizarState} value={clTipo} />
-                </div>
+          
 
                 <div className="p-col-12">
                     <label htmlFor="clNombre" >Nombre</label>

@@ -8,38 +8,22 @@ import { Dropdown } from 'primereact/dropdown';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { Calendar } from 'primereact/calendar';
 import { editHomie } from '../../service/HomieService';
+import { getNodalidadesContrato } from '../../service/VariablesService';
 import swal from 'sweetalert';
 
 const EditarHomie = ({ homieEditar, updated, estadoCrud }) => {
 
 
-    let modalidades = [
-        { mod: 'En relación laboral' },
-        { mod: 'Freelance' },
-    ];
+    const [modalidades] = useState(getNodalidadesContrato());
 
-    const [modalidadSelected, cargarModalidadSelected] = useState({ mod: homieEditar.hoModalidad })
+
 
     useEffect(() => {
         actualizaHomieAEditar(homieEditar);
     }, [homieEditar]);
 
-    const [homieEditado, actualizaHomieAEditar] = useState({
-        hoCedula: '',
-        hoNombre: '',
-        hoTelefono: '',
-        hoCorreo: '',
-        hoNroCuenta: '',
-        hoModalidad: '',
-        hoSector: '',
-        hoDireccion: '',
-        hoNivelEducativo: '',
-        hoSueldo: '',
-        hoHijos: '',
-        hoFechaNacimiento: '',
-        hoFechaIngreso: '',
-        hoFechaSalida: ''
-    });
+    const [homieEditado, actualizaHomieAEditar] = useState(homieEditar)
+
 
 
     const actualizarState = e => {
@@ -51,16 +35,16 @@ const EditarHomie = ({ homieEditar, updated, estadoCrud }) => {
 
     const enviarActualizarSubmit = (e) => {
         e.preventDefault();
-        homieEditado.hoModalidad = modalidadSelected.mod;
-        console.log('homieEditado:'+homieEditado)
+
+        console.log('homieEditado:' + homieEditado)
         editHomie(homieEditado).then(res => {
             if (res.status === 200) {
                 updated(true);
                 estadoCrud('');
-                swal("Cliente Editado!", "Se ha editado el cliente: " + res.data.hoNombre, "success");
+                swal("Homie Editado!", "Se ha editado el Homie: " + res.data.hoNombre, "success");
 
             } else {
-                swal("Algo paso!", "No se ha editado el cliente: " + res.data.hoNombre, "error");
+                swal("Algo paso!", "No se ha editado el Homie: " + res.data.hoNombre, "error");
 
             }
         })
@@ -72,7 +56,7 @@ const EditarHomie = ({ homieEditar, updated, estadoCrud }) => {
     }
 
 
-    const { hoCedula, hoNombre, hoTelefono, hoCorreo, hoNroCuenta, hoSector, hoDireccion,
+    const { hoCedula, hoNombre, hoTelefono, hoCorreo, hoNroCuenta, hoSector, hoDireccion, hoModalidad,
         hoNivelEducativo, hoSueldo, hoHijos, hoFechaNacimiento, hoFechaSalida, hoFechaIngreso } = homieEditado;
 
 
@@ -125,9 +109,14 @@ const EditarHomie = ({ homieEditar, updated, estadoCrud }) => {
                             <div className="p-grid">
                                 <div style={{ fontWeight: 'bold' }} className="p-col-6">Modalidad</div>
                                 <div className="p-col-6">
-                                    <Dropdown name="modalidadSelected" id="hoModalidad" value={modalidadSelected} showClear={true}
-                                        options={modalidades} onChange={(e) => cargarModalidadSelected(e.value)}
-                                        optionLabel="mod" style={{ width: '12em' }} />
+                                    <Dropdown name="hoModalidad" id="hoModalidad"
+                                        value={hoModalidad}
+                                        options={modalidades}
+                                        onChange={(e) => actualizaHomieAEditar({
+                                            ...homieEditado,
+                                            hoModalidad: e.value
+                                        })}
+                                        optionLabel="value" style={{ width: '12em' }} />
                                 </div>
                             </div>
                         </li>
@@ -160,7 +149,6 @@ const EditarHomie = ({ homieEditar, updated, estadoCrud }) => {
                             </div>
                         </li>
 
-
                         <li>
                             <div className="p-grid">
                                 <div style={{ fontWeight: 'bold' }} className="p-col-6">Direccion</div>
@@ -172,9 +160,6 @@ const EditarHomie = ({ homieEditar, updated, estadoCrud }) => {
                                 </div>
                             </div>
                         </li>
-
-
-
 
                         <li>
                             <div className="p-grid">
@@ -190,7 +175,9 @@ const EditarHomie = ({ homieEditar, updated, estadoCrud }) => {
                                     <label htmlFor="hoFechaIngreso">Fecha de Ingreso</label>
                                 </div>
                                 <div className="p-col-6">
-                                    <Calendar type="time" placeholder="07/15/2020" required={true} name="hoFechaIngreso" id="hoFechaIngreso" onChange={actualizarState} value={hoFechaIngreso} />
+                                    <Calendar placeholder={hoFechaIngreso}   defaultValue ={hoFechaIngreso}
+                                    name="hoFechaIngreso" id="hoFechaIngreso" 
+                                    onChange={actualizarState} value={hoFechaIngreso} />
                                 </div>
                             </div>
                         </li>
@@ -199,7 +186,8 @@ const EditarHomie = ({ homieEditar, updated, estadoCrud }) => {
                             <div className="p-grid">
                                 <div style={{ fontWeight: 'bold' }} className="p-col-6">Sueldo</div>
                                 <div className="p-col-6">
-                                    <InputText maxLength="5" id="hoSueldo" name="hoSueldo" placeholder="Ej. 400" onChange={actualizarState} value={hoSueldo} />
+                                    <InputText maxLength="5" id="hoSueldo" name="hoSueldo" 
+                                    placeholder="Ej. 400" onChange={actualizarState} value={hoSueldo} />
                                 </div>
                             </div>
                         </li>
@@ -209,7 +197,9 @@ const EditarHomie = ({ homieEditar, updated, estadoCrud }) => {
                             <div className="p-grid">
                                 <div style={{ fontWeight: 'bold' }} className="p-col-6">Fecha Nacimiento</div>
                                 <div className="p-col-6">
-                                    <Calendar type="time" placeholder="07/15/2020" name="hoFechaNacimiento" id="hoFechaNacimiento" onChange={actualizarState} value={hoFechaNacimiento} />
+                                    <Calendar type="time" placeholder={hoFechaNacimiento} 
+                                    name="hoFechaNacimiento" id="hoFechaNacimiento" 
+                                    onChange={actualizarState} value={hoFechaNacimiento} />
 
                                 </div>
                             </div>
