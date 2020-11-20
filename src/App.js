@@ -24,6 +24,8 @@ import GestionCliente from './components/ClienteComponents/GestionCliente';
 import GestionCrearPedido from './components/CrearPedidoComponentes/GestionCrearPedido';
 import GestionCatalogo from './components/CatalogoComponent/GestionCatalogo';
 import GestionPedido from './components/GestionPedidoComponentes/GestionPedido';
+import PedidoPago from './components/PedidoPagoComponentes/PedidoPago';
+
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
@@ -117,7 +119,8 @@ class App extends Component {
                 label: 'Pedidos', icon: 'pi pi-fw pi-folder-open',
                 items: [
                     { label: 'Crear Pedido', icon: 'pi pi-fw pi-calendar-plus', command: () => { window.location = "#/crearPedido" } },
-                    { label: 'Gestionar Pedidos', icon: 'pi pi-fw pi-calendar-plus', command: () => { window.location = "#/gestionPedido" } }
+                    { label: 'Gestionar Pedidos', icon: 'pi pi-fw pi-list', command: () => { window.location = "#/gestionPedido" } },
+                    { label: 'Pagos por Pedido', icon: 'pi pi-fw pi-money-bill', command: () => { window.location = "#/pedidoPago" } }
 
                 ]
             },
@@ -129,7 +132,8 @@ class App extends Component {
                     { label: 'Clientes', icon: 'pi pi-fw pi-user-plus', command: () => { window.location = "#/gestionCliente" } },
                     { label: 'Servicios', icon: 'pi pi-fw pi-question', command: () => { window.location = "#/gestionCatalogo" } }
                 ]
-            }
+            },
+            
 
 
         ];
@@ -202,11 +206,11 @@ class App extends Component {
                     <Route path="/documentation" component={Documentation} />
                     <Route path="/dataTest" component={Data} />
                     <Route path="/gestionCliente" component={GestionCliente} />
-
+                    <Route path="/gestionPedido" component={GestionPedido} />
                     <Route path="/gestionHomie" component={GestionHomie} />
                     <Route path="/crearPedido" component={GestionCrearPedido} />
                     <Route path="/gestionCatalogo" component={GestionCatalogo} />
-                    <Route path="/gestionPedido" component={GestionPedido} />
+                    <Route path="/pedidoPago" component={PedidoPago} />
 
 
 

@@ -21,7 +21,7 @@ const CreateCatalogo = ({cambiaEstadoLlenar, actualizarEstadoCrud}) => {
     const actualizarState = e => {
         actualizaCatalogo({
             ...catalogo,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value.toUpperCase()
         })
     }
 
@@ -53,7 +53,10 @@ const CreateCatalogo = ({cambiaEstadoLlenar, actualizarEstadoCrud}) => {
                     <label htmlFor="seNombre">Categoria del Servicio</label>
                 </div>
                 <div className="p-col-12">
-                    <InputText id="seNombre" required={true} title="Nombre con el que se registra el detalle de servicio en el pedido"
+                    <InputText id="seNombre" 
+                  
+                     required={true} 
+                    title="Nombre con el que se registra el detalle de servicio en el pedido"
                         minLength="5"  name="seNombre" placeholder="Dos horas hogar"
                         onChange={actualizarState} value={seNombre} />
                 </div>

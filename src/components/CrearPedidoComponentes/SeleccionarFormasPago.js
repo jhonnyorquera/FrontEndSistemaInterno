@@ -5,25 +5,22 @@ import { InputNumber } from 'primereact/inputnumber';
 import { Column } from 'primereact/column';
 import { Dropdown } from 'primereact/dropdown';
 import { InputTextarea } from 'primereact/inputtextarea';
+import { getPagos } from '../../service/VariablesService';
 
 const SeleccionarFormasPago = ({ pedido, camposPedido }) => {
 
     const [pagosSelected, setPagosSelected] = useState();
-    
+
 
     const [obPago, cargarObPago] = useState({
         ppFormaPago: '',
-        ppValor: 0, 
-        ppComentario:''
+        ppValor: 0,
+        ppComentario: ''
     });
 
 
-    const formasPago = [
-        { ppFormaPago: 'Efectivo' },
-        { ppFormaPago: 'Transferencia Pichincha' },
-        { ppFormaPago: 'Transferencia Pacifico' },
-        { ppFormaPago: 'Transferencia Guayaquil' }
-    ];
+    const [formasPago] = useState(getPagos());
+
 
     const { ppFormaPago, ppValor, ppComentario } = obPago;
 
@@ -31,36 +28,40 @@ const SeleccionarFormasPago = ({ pedido, camposPedido }) => {
 
     const agregarPagos = e => {
         e.preventDefault();
-        var auxPago = pedido['pePagos'];
 
-        var objPago2 = {
-            ppFormaPago: obPago.ppFormaPago.ppFormaPago,
-            ppValor: obPago.ppValor,
-            ppComentario: ppComentario,
-            ppEstado : true
+        if (ppFormaPago !== '' && ppValor !== 0 && ppComentario !== '' ) {
+            var auxPago = pedido['pePagos'];
 
-        };
-        
-        auxPago.push(objPago2)
-        
-        camposPedido({
-            ...pedido, 
-            pePagos : auxPago
-        })
-        cargarObPago({ ppFormaPago: '',
-        ppValor: 0, 
-        ppComentario:''})
+            var objPago2 = {
+                ppFormaPago: obPago.ppFormaPago,
+                ppValor: obPago.ppValor,
+                ppComentario: ppComentario,
+                ppEstado: true
 
+            };
+
+            auxPago.push(objPago2)
+
+            camposPedido({
+                ...pedido,
+                pePagos: auxPago
+            })
+            cargarObPago({
+                ppFormaPago: '',
+                ppValor: 0,
+                ppComentario: ''
+            })
+        }
     }
 
     const eliminarFechas = (e) => {
 
-        let pagosPedido= pedido['pePagos']
+        let pagosPedido = pedido['pePagos']
         let _fechasFinales = pagosPedido.filter(val => !pagosSelected.includes(val));
-    
+
         camposPedido({
-            ...pedido, 
-            pePagos : _fechasFinales
+            ...pedido,
+            pePagos: _fechasFinales
         })
 
 
@@ -77,8 +78,10 @@ const SeleccionarFormasPago = ({ pedido, camposPedido }) => {
                         <label htmlFor="ppFormaPago" >Forma de Pago</label>
 
                         <Dropdown value={ppFormaPago}
-                            options={formasPago} 
-                            onChange={(e) => cargarObPago({ ...obPago, ppFormaPago: e.value })}  optionLabel="ppFormaPago" placeholder="Seleccione forma de pago" />
+                            options={formasPago}
+                            onChange={(e) => cargarObPago({ ...obPago, ppFormaPago:  e.target.value })}
+                            optionLabel="value"
+                        />
 
                     </div>
                     <div className="p-col-4">
@@ -90,13 +93,13 @@ const SeleccionarFormasPago = ({ pedido, camposPedido }) => {
                     <div className="p-col-4">
                         <label htmlFor="ppComentario" >Comentario</label>
                         <InputTextarea id="ppComentario"
-                            name="ppComentario" value={ppComentario} onChange={(e) => cargarObPago({ ...obPago, ppComentario: e.target.value})}  />
+                            name="ppComentario" value={ppComentario} onChange={(e) => cargarObPago({ ...obPago, ppComentario: e.target.value })} />
                     </div>
 
                     <div className="p-col-4" >
-                    
-                    <p></p>
-                        <Button onClick={(e) => agregarPagos(e)} icon="pi pi-plus" className="p-button-raised p-button-rounded"/>
+
+                        <p></p>
+                        <Button onClick={(e) => agregarPagos(e)} icon="pi pi-plus" className="p-button-raised p-button-rounded" />
                     </div>
                 </div>
 
@@ -117,15 +120,15 @@ const SeleccionarFormasPago = ({ pedido, camposPedido }) => {
                 <Column selectionMode="multiple" headerStyle={{ width: '3em' }}></Column>
                 <Column field="ppFormaPago" header="Forma Pago" sortable={true} />
                 <Column field="ppValor" header="Valor" sortable={true} />
-                <Column field="ppComentario" header="Valor" sortable={true} />
+                <Column field="ppComentario" header="Comentario" sortable={true} />
 
 
             </DataTable>
 
             <div className="p-col-12" align="right">
-                    <Button onClick={(e) => eliminarFechas(e)} icon="pi pi-times" className="p-button-raised p-button-rounded p-button-danger" />
+                <Button onClick={(e) => eliminarFechas(e)} icon="pi pi-times" className="p-button-raised p-button-rounded p-button-danger" />
 
-                </div>
+            </div>
 
 
         </div>

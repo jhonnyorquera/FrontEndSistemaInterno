@@ -8,6 +8,7 @@ import { AutoComplete } from 'primereact/autocomplete';
 import { Dropdown } from 'primereact/dropdown';
 import { Calendar } from 'primereact/calendar';
 import { Button } from 'primereact/button';
+import swal from 'sweetalert';
 
 
 const Busqueda = ({ setBusqueda }) => {
@@ -23,7 +24,6 @@ const Busqueda = ({ setBusqueda }) => {
 
 
     const searchCliente = (event) => {
-        console.log('busca cliente')
         setTimeout(() => {
             let filteredCliente;
             getClientesByNombre(event.query.toUpperCase()).then(res => setFilteredCliente(res));
@@ -42,17 +42,19 @@ const Busqueda = ({ setBusqueda }) => {
 
 
     const buscar = (e) => {
-        console.log('entra a buscar');
-        
+
         e.preventDefault();
         setBusqueda([])
         if (clienteSelect) {
             setCamposBusqueda({ ...camposBusqueda, cliente: clienteSelect.clNombre })
         }
+    
        
-        
         buscarListaPedido(camposBusqueda).then(res => {
             setBusqueda(res)
+            if(res.length === 0){
+                swal("No existen Registros", "No existen registros con esos campos de busqueda", "info");
+            }
         })
 
 
