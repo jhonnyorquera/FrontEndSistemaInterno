@@ -1,17 +1,19 @@
+var fatherLink ='https://homiebackend.herokuapp.com'
 var Global={
-    urlHomie: 'http://localhost:9000/api/HoHomie/',
-    urlCliente: 'http://localhost:9000/api/HoCliente/',
-    urlClienteByName: 'http://localhost:9000/api/HoCliente/findByNombre/',
-    urlCatalogo: 'http://localhost:9000/api/HoCatalogo/',
-    urlHomiePedidos: 'http://localhost:9000/api/HoPedidoHomie/HoPedidosPorHomie',
-    urlHomiePedidoCod: 'http://localhost:9000/api/HoPedido/',
-    urlPedidoHomie: 'http://localhost:9000/api/HoPedidoHomie/',
-    urlCrearPedido: 'http://localhost:9000/api/HoPedido/HoCrearPedido',
-    urlListarPedido: 'http://localhost:9000/api/HoPedido/pedidos',
-    urlPedidoPago : 'http://localhost:9000/api/HoPedidoPagos',
-    urlComentario : 'http://localhost:9000/api/HoComentario',
-    urlPedidoServicio : 'http://localhost:9000/api/HoPedidoServicio',
-    urlResumenPedidoPago : 'http://localhost:9000/api/HoPedidoPagos/saldo'
+
+    urlHomie: fatherLink+'/api/HoHomie/',
+    urlCliente: fatherLink+'/api/HoCliente/',
+    urlClienteByName: fatherLink+'/api/HoCliente/findByNombre/',
+    urlCatalogo: fatherLink+'/api/HoCatalogo/',
+    urlHomiePedidos: fatherLink+'/api/HoPedidoHomie/HoPedidosPorHomie',
+    urlHomiePedidoCod: fatherLink+'/api/HoPedido/',
+    urlPedidoHomie: fatherLink+'/api/HoPedidoHomie/',
+    urlCrearPedido: fatherLink+'/api/HoPedido/HoCrearPedido',
+    urlListarPedido: fatherLink+'/api/HoPedido/pedidos',
+    urlPedidoPago : fatherLink+'/api/HoPedidoPagos',
+    urlComentario : fatherLink+'/api/HoComentario',
+    urlPedidoServicio : fatherLink+'/api/HoPedidoServicio',
+    urlResumenPedidoPago : fatherLink+'/api/HoPedidoPagos/saldo'
 
 };
 
