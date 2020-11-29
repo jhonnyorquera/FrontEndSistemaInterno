@@ -13,7 +13,8 @@ var Global={
     urlPedidoPago : fatherLink+'/api/HoPedidoPagos',
     urlComentario : fatherLink+'/api/HoComentario',
     urlPedidoServicio : fatherLink+'/api/HoPedidoServicio',
-    urlResumenPedidoPago : fatherLink+'/api/HoPedidoPagos/saldo'
+    urlResumenPedidoPago : fatherLink+'/api/HoPedidoPagos/saldo',
+    urlResumenPedidosXHomie : fatherLink+'/api/HoPedidoHomie/HoPedidosPorHomieFecha'
 
 };
 
