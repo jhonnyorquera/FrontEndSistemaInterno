@@ -12,4 +12,13 @@ export function getResumenPagos ()  {
 }
 
 
+export function getPedidosHomieFecha(requestBody)  {
+    let listado = [];
+    listado=axios.put( Global.urlResumenPedidosXHomie, requestBody)
+        .then(res =>res.data
+        )
+        return listado;
+}
+
+
 
