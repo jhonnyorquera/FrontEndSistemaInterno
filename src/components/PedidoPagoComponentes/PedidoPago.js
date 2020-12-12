@@ -11,11 +11,10 @@ const PedidoPago = () => {
     const [listaPago, setListaPago] = useState({});
     const [recarga, setRecarga] = useState(true);
 
-
+   /*eslint-disable */
     useEffect(() => {
         if (recarga) {
             getResumenPagos().then(data => setListaPago(data));
-
             setRecarga(false);
         }
 

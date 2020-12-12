@@ -23,6 +23,7 @@ const CrearPedido = ({ cargaEstado, clienteSelect, homies, servicios, cargaModo,
                 peFactura: clienteSelect.obFactura
             })
         }
+         /*eslint-disable */
     }, [clienteSelect]);
 
 

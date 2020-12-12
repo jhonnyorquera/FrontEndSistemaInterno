@@ -3,7 +3,6 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import swal from 'sweetalert';
 import { Dialog } from 'primereact/dialog';
-import { InputTextarea } from 'primereact/inputtextarea';
 import { InputText } from 'primereact/inputtext';
 import { InputNumber } from 'primereact/inputnumber';
 import { Button } from 'primereact/button';
@@ -23,7 +22,7 @@ const ServicioPedido = ({ pedidoInfo }) => {
     })
 
 
-    const { psCodigo, psNombre, psCantidad, psValor, hoPedidoCod } = pedido;
+    const { psNombre, psCantidad, psValor } = pedido;
 
 
 
@@ -39,8 +38,9 @@ const ServicioPedido = ({ pedidoInfo }) => {
     useEffect(() => {
         setPedidos(pedidoInfo.hoPedidoServicioList)
         setPedido({ ...pedido, hoPedidoCod: pedidoInfo.peCodigo })
+        /*eslint-disable */
     }, [pedidoInfo])
-
+    /*eslint-disable */
 
     const iniciarEdicion = (item) => {
 
@@ -102,16 +102,16 @@ const ServicioPedido = ({ pedidoInfo }) => {
                     </div></div>
                 <div className="p-grid">
                     <div className="p-col-12">    <label htmlFor="psCantidad" >Cantidad</label></div>
-                    <div className="p-col-12">  
-                      <InputNumber id="psCantidad"
-                        name="psCantidad" value={psCantidad} onChange={(e) => setPedido({ ...pedido, psCantidad: e.value })} />
+                    <div className="p-col-12">
+                        <InputNumber id="psCantidad"
+                            name="psCantidad" value={psCantidad} onChange={(e) => setPedido({ ...pedido, psCantidad: e.value })} />
                     </div>
                 </div>
                 <div className="p-grid">
                     <div className="p-col-12">    <label htmlFor="psValor" >Valor</label></div>
-                    <div className="p-col-12">    
-                    <InputNumber id="psValor"   mode="currency" currency="USD" locale="en-US"
-                        name="psValor" value={psValor} onChange={(e) => setPedido({ ...pedido, psValor: e.value })} />
+                    <div className="p-col-12">
+                        <InputNumber id="psValor" mode="currency" currency="USD" locale="en-US"
+                            name="psValor" value={psValor} onChange={(e) => setPedido({ ...pedido, psValor: e.value })} />
                     </div>
                 </div>
 

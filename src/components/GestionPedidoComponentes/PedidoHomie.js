@@ -36,7 +36,7 @@ const PedidoHomie = ({  pedidoInfo }) => {
             homiesSelected.forEach(homie=>cedulas.push(homie.hHoCedula));
             setItemNuevo({...itemNuevo, cedulaHomies:cedulas})
             }
-                    
+          /*eslint-disable */           
     },[homiesSelected])
 
 

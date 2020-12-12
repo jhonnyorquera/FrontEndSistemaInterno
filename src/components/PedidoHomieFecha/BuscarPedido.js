@@ -4,6 +4,7 @@ import { getHomiesList } from '../../service/HomieService';
 import { Dropdown } from 'primereact/dropdown';
 import { getPedidosHomieFecha } from '../../service/ResumeService';
 import { Button } from 'primereact/button';
+import swal from 'sweetalert';
 
 const BuscarPedido = ({ setBusqueda }) => {
 
@@ -17,7 +18,8 @@ const BuscarPedido = ({ setBusqueda }) => {
 
     const [homie, setHomie] = useState({})
     const [homieSelected, setHomieSelected] = useState({})
-
+  
+    /*eslint-disable */
     useEffect(() => {
         if (inicio) {
             getHomiesList()
@@ -49,6 +51,9 @@ const BuscarPedido = ({ setBusqueda }) => {
 
             getPedidosHomieFecha(camposBusqueda).then(res => {
                 setBusqueda(res)
+                if(res.length === 0){
+                    swal("No existen Registros", "No existen registros con esos campos de busqueda", "info");
+                }
             })
 
         }

@@ -38,7 +38,9 @@ const DetallePagos = ({ pedidoInfo }) => {
     useEffect(() => {
         setListaPago(pedidoInfo.hoPedidoPagoList)
         setItemEditar({...itemEditar, hoPedidoCodigo: pedidoInfo.peCodigo})
+         /*eslint-disable */
     }, [pedidoInfo])
+     /*eslint-disable */
 
 
     const iniciarCreacion = () => {

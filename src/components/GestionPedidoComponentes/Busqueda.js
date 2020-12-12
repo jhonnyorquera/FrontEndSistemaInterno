@@ -25,10 +25,7 @@ const Busqueda = ({ setBusqueda }) => {
 
     const searchCliente = (event) => {
         setTimeout(() => {
-            let filteredCliente;
             getClientesByNombre(event.query.toUpperCase()).then(res => setFilteredCliente(res));
-
-
         }, 250);
     }
     const [camposBusqueda, setCamposBusqueda] = useState({
@@ -56,6 +53,8 @@ const Busqueda = ({ setBusqueda }) => {
                 swal("No existen Registros", "No existen registros con esos campos de busqueda", "info");
             }
         })
+
+        
 
 
     }

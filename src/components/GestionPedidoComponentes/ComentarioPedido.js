@@ -40,8 +40,11 @@ const ComentarioPedido = ({ pedidoInfo }) => {
 
     useEffect(() => {
         setComentarios(pedidoInfo.hoComentarioList)
-        setComentario({...comentario, hoPedidoCod: pedidoInfo.peCodigo})
+
+        setComentario({ ...comentario, hoPedidoCod: pedidoInfo.peCodigo }) // eslint-disable-line no-use-before-define
+        /*eslint-disable */
     }, [pedidoInfo])
+    /*eslint-enable */
 
 
     const iniciarEdicion = (item) => {
@@ -87,14 +90,7 @@ const ComentarioPedido = ({ pedidoInfo }) => {
 
 
 
-    const fecha = (fecha) => {
-        return (
 
-            <Moment format="dddd DD MMMM YYYY HH:mm">
-                {fecha}
-            </Moment>
-        )
-    }
 
     return (<Fragment>
 
@@ -127,9 +123,9 @@ const ComentarioPedido = ({ pedidoInfo }) => {
 
                     <div className="p-grid">
                         <label className="p-col-12" style={{ fontWeight: 'bold' }} >
-                      
-                        <Moment fromNow>{cmt.obFechaComentario}</Moment> </label>
-                           
+
+                            <Moment fromNow>{cmt.obFechaComentario}</Moment> </label>
+
                     </div>
 
                     <div className="p-grid">
@@ -138,7 +134,7 @@ const ComentarioPedido = ({ pedidoInfo }) => {
                     </div>
 
 
-                   
+
                     <div style={{ textAlign: 'right' }} >
                         <Button icon="pi pi-pencil" onClick={() => iniciarEdicion(cmt)} className="p-button-rounded p-button-text" />
                     </div>

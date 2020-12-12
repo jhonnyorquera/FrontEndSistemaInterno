@@ -6,15 +6,15 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 
-const SeleccionCliente = ({clienteSelect, seleccionarCliente, cargaEstado }) => {
+const SeleccionCliente = ({ clienteSelect, seleccionarCliente, cargaEstado }) => {
 
     const [clientesLista, llenaListado] = useState([])
     const [modo, seleccionarModo] = useState('seleccion');
-  
-    
-    const actualizarEstadoCrud= ()=>{
-        
-    }; 
+
+
+    const actualizarEstadoCrud = () => {
+
+    };
 
     const [procesando, isProcesando] = useState(false);
 
@@ -29,10 +29,12 @@ const SeleccionCliente = ({clienteSelect, seleccionarCliente, cargaEstado }) => 
             seleccionarModo('')
             cargaEstado('')
         }
-        
 
+        /*eslint-disable */
     }, [procesando]
+
     );
+    /*eslint-disable */
 
     return (
 
@@ -40,8 +42,8 @@ const SeleccionCliente = ({clienteSelect, seleccionarCliente, cargaEstado }) => 
             {modo === 'seleccion' ?
 
                 <DataTable value={clientesLista}
-                selection={clienteSelect}
-                    onSelectionChange={e => seleccionarCliente(e.value)} 
+                    selection={clienteSelect}
+                    onSelectionChange={e => seleccionarCliente(e.value)}
                     className="p-datatable-sm"
                     selectionMode="single"
                     sortField="clId" sortOrder={-1}

@@ -6,18 +6,7 @@ import { AppMenu } from './AppMenu';
 import { AppProfile } from './AppProfile';
 import { Route } from 'react-router-dom';
 import { Dashboard } from './components/Dashboard';
-import { FormsDemo } from './components/FormsDemo';
-import { SampleDemo } from './components/SampleDemo';
-import { DataDemo } from './components/DataDemo';
-import { PanelsDemo } from './components/PanelsDemo';
-import { OverlaysDemo } from './components/OverlaysDemo';
-import { MenusDemo } from './components/MenusDemo';
-import { MessagesDemo } from './components/MessagesDemo';
-import { ChartsDemo } from './components/ChartsDemo';
-import { MiscDemo } from './components/MiscDemo';
-import { EmptyPage } from './components/EmptyPage';
-import { Documentation } from "./components/Documentation";
-import { Data } from './components/Data';
+
 
 import GestionHomie from './components/HomieComponents/GestionHomie';
 import GestionCliente from './components/ClienteComponents/GestionCliente';
@@ -37,7 +26,6 @@ import '@fullcalendar/timegrid/main.css';
 import './layout/layout.scss';
 import './App.scss';
 import Logo from './images/logo-white.png';
-import PedidoHomie from './components/GestionPedidoComponentes/PedidoHomie';
 
 class App extends Component {
 
@@ -110,13 +98,7 @@ class App extends Component {
     createMenu() {
         this.menu = [
             { label: 'Dashboard', icon: 'pi pi-fw pi-home', command: () => { window.location = '#/' } },
-            {
-                label: 'Menu Modes', icon: 'pi pi-fw pi-cog',
-                items: [
-                    { label: 'Static Menu', icon: 'pi pi-fw pi-bars', command: () => this.setState({ layoutMode: 'static' }) },
-                    { label: 'Overlay Menu', icon: 'pi pi-fw pi-bars', command: () => this.setState({ layoutMode: 'overlay' }) }
-                ]
-            },
+          
             {
                 label: 'Pedidos', icon: 'pi pi-fw pi-folder-open',
                 items: [
@@ -196,18 +178,7 @@ class App extends Component {
 
                 <div className="layout-main">
                     <Route path="/" exact component={Dashboard} />
-                    <Route path="/forms" component={FormsDemo} />
-                    <Route path="/sample" component={SampleDemo} />
-                    <Route path="/data" component={DataDemo} />
-                    <Route path="/panels" component={PanelsDemo} />
-                    <Route path="/overlays" component={OverlaysDemo} />
-                    <Route path="/menus" component={MenusDemo} />
-                    <Route path="/messages" component={MessagesDemo} />
-                    <Route path="/charts" component={ChartsDemo} />
-                    <Route path="/misc" component={MiscDemo} />
-                    <Route path="/empty" component={EmptyPage} />
-                    <Route path="/documentation" component={Documentation} />
-                    <Route path="/dataTest" component={Data} />
+                    
                     <Route path="/gestionCliente" component={GestionCliente} />
                     <Route path="/gestionPedido" component={GestionPedido} />
                     <Route path="/gestionHomie" component={GestionHomie} />
@@ -215,15 +186,11 @@ class App extends Component {
                     <Route path="/gestionCatalogo" component={GestionCatalogo} />
                     <Route path="/pedidoPago" component={PedidoPago} />
                     <Route path="/pedidoHomie" component={PedidoHomieFecha} />
-
-
-
-
                 </div>
 
                 <AppFooter />
 
-                <div className="layout-mask"></div>
+              
             </div>
         );
     }
