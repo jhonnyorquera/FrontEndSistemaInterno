@@ -1,12 +1,19 @@
-import React from 'react';
-import { InputText } from 'primereact/inputtext';
+import React,{useContext} from 'react';
+import AuthContext from '../../context/autenticacion/authContext';
+import swal from 'sweetalert';
 
 export const AppTopbar = (props) => {
+    const authContext = useContext(AuthContext);
+    const {   cerrarSesion } = authContext;
+
    
     const onClick = (event) => {
         console.log('saleeeeeeeee')
         event.preventDefault();
         localStorage.clear();
+        swal("Somos Homie ", "Ten un Buen dia", "success");
+
+        cerrarSesion();
     }
 
 

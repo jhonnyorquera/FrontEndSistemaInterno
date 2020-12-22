@@ -12,6 +12,7 @@ import '@fullcalendar/daygrid/main.css';
 import '@fullcalendar/timegrid/main.css';
 import './layout/layout.scss';
 import './App.scss';
+import RutaPrivada from './config/RutaPrivada'
 
 
 
@@ -25,13 +26,13 @@ const App = () => {
         <div>
 
             <AuthState>
-       
+
                 <Router>
 
-                <Switch>
-                    <Route exact path="/" component={Login} />
-                    
-                    <Aplication></Aplication>
+                    <Switch>
+                        <Route exact path="/" component={Login} />
+                        <RutaPrivada  path="/inicio#/" component={Aplication} />
+                        <Aplication/>
                     </Switch>
                 </Router>
             </AuthState>

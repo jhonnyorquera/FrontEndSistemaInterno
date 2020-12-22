@@ -19,7 +19,7 @@ const Login = (props) => {
        
         if (autenticado) {
 
-            props.history.push('/inicio');
+            props.history.push('/inicio#/');
 
 
         } 
@@ -67,8 +67,8 @@ const Login = (props) => {
 
         // Validar que no haya campos vacios
         if (user.trim() === '' || pwd.trim() === '') {
-            swal("Tenemos un nuevo Homie",
-                "Se ha registrado un nuevo Homie",
+            swal("Ingresa datos",
+                "Ingresa Datos de usuarios",
                 "success");
         }
         // Pasarlo al action

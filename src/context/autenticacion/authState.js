@@ -15,11 +15,12 @@ import {
 
 const AuthState = props => {
     const initialState = {
+        
         token: localStorage.getItem('token'),
-        autenticado: null,
-        usuario: null,
+        autenticado: localStorage.getItem('user') !== null ? true : false,
+        usuario: localStorage.getItem('user'),
         mensaje: null,
-        cargando: true,
+        cargando: false,
         intento: 0
     }
 
