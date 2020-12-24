@@ -1,5 +1,3 @@
-
-
 import React, { useState, Fragment, useEffect, useContext} from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -29,7 +27,7 @@ const ListarHomie = ({ homieSeleccion, actualizarEstadoCrud, procesando, isProce
                     setListaHomie(res)
                 );
             isProcesando(false)
-        }
+        }   // eslint-disable-next-line
     }, [procesando, isProcesando]);
 
 

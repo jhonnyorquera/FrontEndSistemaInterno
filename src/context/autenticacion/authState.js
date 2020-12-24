@@ -3,11 +3,9 @@ import AuthContext from './authContext';
 import AuthReducer from './authReducer';
 
 import clienteAxios from '../../config/axios';
-import tokenAuth from '../../config/token';
 
 import {
 
-    OBTENER_USUARIO,
     LOGIN_EXITOSO,
     LOGIN_ERROR,
     CERRAR_SESION

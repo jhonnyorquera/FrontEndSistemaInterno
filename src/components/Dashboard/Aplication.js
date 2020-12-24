@@ -4,10 +4,7 @@ import { AppTopbar } from './AppTopbar';
 import { AppFooter } from './AppFooter';
 import { AppMenu } from './AppMenu';
 import { AppProfile } from './AppProfile';
-import { Route } from 'react-router-dom';
-
 import { CSSTransition } from 'react-transition-group';
-
 import Dashboard  from './Dashboard';
 import GestionHomie from '../HomieComponents/GestionHomie';
 import GestionCliente from '../ClienteComponents/GestionCliente';
@@ -194,13 +191,13 @@ const Aplication = () => {
 
                 <div className="layout-main">
                 <RutaPrivada path="/inicio"  component={Dashboard} />
-                <Route path="/gestionCliente" component={GestionCliente} />
-                  <Route path="/gestionPedido" component={GestionPedido} />
-                    <Route path="/gestionHomie" component={GestionHomie} />
-                    <Route path="/crearPedido" component={GestionCrearPedido} />
-                    <Route path="/gestionCatalogo" component={GestionCatalogo} />
-                    <Route path="/pedidoPago" component={PedidoPago} />
-                    <Route path="/pedidoHomie" component={PedidoHomieFecha} />
+                <RutaPrivada path="/gestionCliente" component={GestionCliente} />
+                <RutaPrivada path="/gestionPedido" component={GestionPedido} />
+                <RutaPrivada path="/gestionHomie" component={GestionHomie} />
+                <RutaPrivada path="/crearPedido" component={GestionCrearPedido} />
+                <RutaPrivada path="/gestionCatalogo" component={GestionCatalogo} />
+                <RutaPrivada path="/pedidoPago" component={PedidoPago} />
+                <RutaPrivada path="/pedidoHomie" component={PedidoHomieFecha} />
                   
                 </div>
 

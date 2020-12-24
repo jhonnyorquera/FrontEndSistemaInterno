@@ -31,6 +31,7 @@ const App = () => {
 
                     <Switch>
                         <Route exact path="/" component={Login} />
+                        
                         <RutaPrivada  path="/inicio#/" component={Aplication} />
                         <Aplication/>
                     </Switch>

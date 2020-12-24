@@ -1,8 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import AuthContext from '../../context/autenticacion/authContext';
 import swal from 'sweetalert';
-import { Route, Redirect } from 'react-router-dom';
-import { useHistory } from "react-router-dom";
 
 const Login = (props) => {
 
@@ -10,36 +8,23 @@ const Login = (props) => {
 
 
     const authContext = useContext(AuthContext);
-    const {  mensaje, autenticado, iniciarSesion } = authContext;
+    const { mensaje, autenticado, iniciarSesion } = authContext;
 
-    const [intentoInterno, setintentoInterno] = useState(0);
     // En caso de que el pwd o usuario no exista
     useEffect(() => {
-        
-       
         if (autenticado) {
-
             props.history.push('/inicio#/');
-
-
-        } 
-
-
+        }
         // eslint-disable-next-line
     }, [mensaje, autenticado, props.history]);
 
-
-
     useEffect(() => {
         return () => {
-     
-            if(autenticado){
+            if (autenticado) {
                 swal("Somos Homie ", "Bienvenido al Sistema", "success");
-            }   else{
+            } else {
                 swal("Login Fallido", "Revisa tus credenciales y vuelve a intentar", "warning");
-            } 
-            
-
+            }
         }
     }, [mensaje, autenticado])
 
@@ -62,7 +47,7 @@ const Login = (props) => {
     // Cuando el usuario quiere iniciar sesión
     const onSubmit = e => {
         e.preventDefault();
-    
+
 
 
         // Validar que no haya campos vacios

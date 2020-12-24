@@ -1,12 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import AuthContext from '../context/autenticacion/authContext';
 
 const RutaPrivada = ({ component: Component, ...props  }) => {
 
     const authContext = useContext(AuthContext);
-    const { autenticado, cargando, iniciarSesion } = authContext;
-    const[aut, setAut]=useState(false)
+    const { autenticado, cargando} = authContext;
 
     useEffect(() => {
         console.log('RUTA PRIVADA')

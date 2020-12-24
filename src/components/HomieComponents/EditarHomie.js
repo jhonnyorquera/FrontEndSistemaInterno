@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Card } from 'primereact/card';
 import { InputText } from 'primereact/inputtext';
 import { InputMask } from 'primereact/inputmask';
@@ -10,9 +10,13 @@ import { Calendar } from 'primereact/calendar';
 import { editHomie } from '../../service/HomieService';
 import { getNodalidadesContrato } from '../../service/VariablesService';
 import swal from 'sweetalert';
+import AuthContext from '../../context/autenticacion/authContext';
+
 
 const EditarHomie = ({ homieEditar, updated, estadoCrud }) => {
-
+    
+    const authContext = useContext(AuthContext);
+    const {  token } = authContext;
 
     const [modalidades] = useState(getNodalidadesContrato());
 
@@ -36,8 +40,7 @@ const EditarHomie = ({ homieEditar, updated, estadoCrud }) => {
     const enviarActualizarSubmit = (e) => {
         e.preventDefault();
 
-        console.log('homieEditado:' + homieEditado)
-        editHomie(homieEditado).then(res => {
+        editHomie(homieEditado, token).then(res => {
             if (res.status === 200) {
                 updated(true);
                 estadoCrud('');

@@ -1,7 +1,6 @@
 import {
 
     REGISTRO_ERROR,
-    OBTENER_USUARIO,
     LOGIN_EXITOSO,
     LOGIN_ERROR,
     CERRAR_SESION
@@ -21,14 +20,14 @@ export default (state, action) => {
                     mensaje: 'Bienvenido',
                     cargando: false,
                     usuario: action.payload.usuario,
-                    token: action.payload.token, 
-                    intento:0
+                    token: action.payload.token,
+                    intento: 0
 
                 }
             }
-
+            break
         case CERRAR_SESION:
-          
+
             return {
                 ...state,
                 autenticado: false,
@@ -39,9 +38,9 @@ export default (state, action) => {
             return {
                 ...state,
                 autenticado: false,
-                token: null, 
-                mensaje : 'Ha ocurrido una Falla', 
-                intento : 1
+                token: null,
+                mensaje: 'Ha ocurrido una Falla',
+                intento: 1
             }
         case REGISTRO_ERROR:
             localStorage.removeItem('token');

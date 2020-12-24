@@ -12,9 +12,9 @@ export function getHomiesList  (token)  {
         return listado;
 }
 
-export function editHomie(homie){
+export function editHomie(homie, token){
 
-   return axios.put(url, homie)
+   return axios.put(url, homie, { headers: {"Authorization" : `Bearer ${token}`} })
     .then(res =>
         res
     )

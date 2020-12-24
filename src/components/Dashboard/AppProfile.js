@@ -1,14 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react';
-import classNames from 'classnames';
-import { CSSTransition } from 'react-transition-group';
 import AuthContext from '../../context/autenticacion/authContext'
 
 export const AppProfile = () => {
 
-    const [expanded, setExpanded] = useState(false);
-
     const authContext = useContext(AuthContext);
-    const { usuario, autenticado, cerrarSesion } = authContext;
+    const { usuario} = authContext;
 
     const [user, setUser] = useState(localStorage.getItem('user'))
 
