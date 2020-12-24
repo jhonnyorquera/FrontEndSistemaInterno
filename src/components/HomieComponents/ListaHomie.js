@@ -1,15 +1,19 @@
 
 
-import React, { useState, Fragment, useEffect } from 'react';
+import React, { useState, Fragment, useEffect, useContext} from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-
+import AuthContext from '../../context/autenticacion/authContext';
 import { getHomiesList } from '../../service/HomieService';
 
 
 
-const ListarHomie = ({ homieSeleccion, actualizarEstadoCrud, procesando, isProcesando }) => {
 
+const ListarHomie = ({ homieSeleccion, actualizarEstadoCrud, procesando, isProcesando }) => {
+  
+  
+    const authContext = useContext(AuthContext);
+    const {  token } = authContext;
 
     const [listaHomie, setListaHomie] = useState([]);
 
@@ -20,7 +24,7 @@ const ListarHomie = ({ homieSeleccion, actualizarEstadoCrud, procesando, isProce
 
     useEffect(() => {
         if (procesando) {
-            getHomiesList()
+            getHomiesList(token)
                 .then(res =>
                     setListaHomie(res)
                 );

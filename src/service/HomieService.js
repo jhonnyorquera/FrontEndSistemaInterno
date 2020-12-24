@@ -1,13 +1,12 @@
 import Global from '../Global';
 import axios from 'axios';
 
-
 var url = Global.urlHomie;
 
 
-export function getHomiesList  ()  {
+export function getHomiesList  (token)  {
     let listado = [];
-    listado=axios.get(url)
+    listado=axios.get(url, { headers: {"Authorization" : `Bearer ${token}`} })
         .then(res =>res.data
         )
         return listado;
@@ -23,9 +22,9 @@ export function editHomie(homie){
 }
 
 
-export function createHomie(homie){
+export function createHomie(homie, token){
 
-    return axios.post(url, homie)
+    return axios.post(url, homie, { headers: {"Authorization" : `Bearer ${token}`} })
      .then(res =>
          res.data
      )

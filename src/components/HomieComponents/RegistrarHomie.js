@@ -1,10 +1,11 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useContext } from 'react';
 import { InputText } from 'primereact/inputtext';
 import { InputMask } from 'primereact/inputmask';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { Calendar } from 'primereact/calendar';
 import { Button } from 'primereact/button';
 import { Dropdown } from 'primereact/dropdown';
+import AuthContext from '../../context/autenticacion/authContext';
 
 import swal from 'sweetalert';
 import { createHomie } from '../../service/HomieService';
@@ -14,6 +15,8 @@ import { getNodalidadesContrato } from '../../service/VariablesService';
 
 
 const RegistrarHomie = ({  actualizarEstadoCrud, isProcesando }) => {
+    const authContext = useContext(AuthContext);
+    const {  token } = authContext;
 
     const [modalidades] = useState(getNodalidadesContrato());
 
@@ -49,7 +52,7 @@ const RegistrarHomie = ({  actualizarEstadoCrud, isProcesando }) => {
 
         e.preventDefault();
         homie.hoModalidad = homie.hoModalidad.mod;
-        createHomie(homie)
+        createHomie(homie, token )
             .then(res => {
                 if (res) {
                     isProcesando(true);
