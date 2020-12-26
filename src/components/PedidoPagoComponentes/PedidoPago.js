@@ -1,5 +1,5 @@
-import React, { Fragment, useEffect, useState } from 'react';
-
+import React, { Fragment, useEffect, useState, useContext} from 'react';
+import AuthContext from '../../context/autenticacion/authContext';
 import { getResumenPagos } from '../../service/ResumeService';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -7,6 +7,8 @@ import { ProgressBar } from 'primereact/progressbar';
 
 
 const PedidoPago = () => {
+    const authContext = useContext(AuthContext);
+    const {  token } = authContext;
 
     const [listaPago, setListaPago] = useState({});
     const [recarga, setRecarga] = useState(true);
@@ -14,7 +16,7 @@ const PedidoPago = () => {
    /*eslint-disable */
     useEffect(() => {
         if (recarga) {
-            getResumenPagos().then(data => setListaPago(data));
+            getResumenPagos(token).then(data => setListaPago(data));
             setRecarga(false);
         }
 

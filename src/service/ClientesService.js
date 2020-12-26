@@ -4,33 +4,33 @@ import axios from 'axios';
 var url = Global.urlCliente;
 
 
-export function getClientesList() {
+export function getClientesList(token) {
     let listado = [];
-    listado = axios.get(url)
+    listado = axios.get(url, { headers: {"Authorization" : `Bearer ${token}`} })
         .then(res => res.data);
     return listado;
 }
 
-export function getClientesByNombre(name) {
+export function getClientesByNombre(name, token) {
 
     let listado = [];
-    listado = axios.get(Global.urlClienteByName + name)
+    listado = axios.get(Global.urlClienteByName + name, { headers: {"Authorization" : `Bearer ${token}`} })
         .then(res => listado = res.data);
 
     return listado;
 }
 
-export function saveClient(cliente) {
+export function saveClient(cliente, token) {
 
-    return axios.post(url, cliente)
+    return axios.post(url, cliente, { headers: {"Authorization" : `Bearer ${token}`} })
         .then(res => res.data);
 
 
 }
 
 
-export function editClient(cliente) {
-    axios.put(url, cliente)
+export function editClient(cliente, token) {
+    axios.put(url, cliente, { headers: {"Authorization" : `Bearer ${token}`} })
         .then(res => {
             if (res.data) {
 

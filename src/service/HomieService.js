@@ -33,10 +33,10 @@ export function createHomie(homie, token){
 
 
 
-export function getHomiesPedidosList  (fechaBuscar)  {
+export function getHomiesPedidosList  (fechaBuscar, token)  {
     var fecha = {fechaBuscar: fechaBuscar};
     let listado = [];
-    listado=axios.post(Global.urlHomiePedidos, fecha)
+    listado=axios.post(Global.urlHomiePedidos, fecha, { headers: {"Authorization" : `Bearer ${token}`} })
         .then(res =>res.data
         )
         return listado;

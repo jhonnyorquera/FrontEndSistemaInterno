@@ -14,7 +14,7 @@ import { guardarComentarioPedido } from '../../service/PedidoService';
 
 import { editarComentarioPedido } from '../../service/PedidoService';
 
-const ComentarioPedido = ({ pedidoInfo }) => {
+const ComentarioPedido = ({ pedidoInfo, token }) => {
 
 
     const [comentarios, setComentarios] = useState(pedidoInfo.hoComentarioList)
@@ -58,14 +58,14 @@ const ComentarioPedido = ({ pedidoInfo }) => {
         if (name === 'yes') {
             if (proceso === 'editar') {
                 const listaAux = comentarios.filter(n => n.obFechaComentario !== comentario.obFechaComentario)
-                editarComentarioPedido(comentario).then((res) => { setComentario(res) });
+                editarComentarioPedido(comentario, token).then((res) => { setComentario(res) });
                 listaAux.push(comentario);
                 setComentarios(listaAux);
                 swal("Comentario Editado", "Se ha editado un Comentario", "success");
             }
             if (proceso === 'crear') {
                 const listaAux = comentarios
-                guardarComentarioPedido(comentario).then((res) => { setComentario(res) })
+                guardarComentarioPedido(comentario, token).then((res) => { setComentario(res) })
                 listaAux.push(comentario);
                 setComentarios(listaAux)
                 swal("Comentario Creado", "Se añadió un Comentario", "success");

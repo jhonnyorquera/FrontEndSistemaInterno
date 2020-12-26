@@ -6,7 +6,7 @@ import { getPedidosHomieFecha } from '../../service/ResumeService';
 import { Button } from 'primereact/button';
 import swal from 'sweetalert';
 
-const BuscarPedido = ({ setBusqueda }) => {
+const BuscarPedido = ({ setBusqueda, token }) => {
 
     const [camposBusqueda, setCamposBusqueda] = useState({
         cliente: '',
@@ -22,7 +22,7 @@ const BuscarPedido = ({ setBusqueda }) => {
     /*eslint-disable */
     useEffect(() => {
         if (inicio) {
-            getHomiesList()
+            getHomiesList(token)
                 .then(res =>
                     setHomie(res)
                 )
@@ -49,7 +49,7 @@ const BuscarPedido = ({ setBusqueda }) => {
         if (cliente !== '' && fechaInicio !== '' && fechaFin !== '') {
 
 
-            getPedidosHomieFecha(camposBusqueda).then(res => {
+            getPedidosHomieFecha(camposBusqueda, token).then(res => {
                 setBusqueda(res)
                 if(res.length === 0){
                     swal("No existen Registros", "No existen registros con esos campos de busqueda", "info");

@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState, useContext  } from 'react';
 import { getHomiesPedidosList } from '../../service/HomieService';
 
 import { DataTable } from 'primereact/datatable';
@@ -7,6 +7,9 @@ import { Button } from 'primereact/button';
 import 'moment/locale/es';
 import moment from "moment";
 import 'moment-timezone';
+import AuthContext from '../../context/autenticacion/authContext';
+
+
 
 const SeleccionHomie = ({ fechaBuscar, cargarHomies, cargaEstado }) => {
 
@@ -16,13 +19,17 @@ const SeleccionHomie = ({ fechaBuscar, cargarHomies, cargaEstado }) => {
 
     const [selectHomie, setSelectHomie] = useState([]);
 
+    const authContext = useContext(AuthContext);
+    const {  token } = authContext;
+
+
     useEffect(() => {
 
-        getHomiesPedidosList(fechaBuscar)
+        getHomiesPedidosList(fechaBuscar, token)
             .then(res =>
                 setListaHomie(res)
             );
-
+         // eslint-disable-next-line
     }, [fechaBuscar]);
 
     const rowExpansionTemplate = (data) => {

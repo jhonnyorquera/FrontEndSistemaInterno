@@ -16,7 +16,7 @@ import { Row } from 'primereact/row';
 import swal from 'sweetalert';
 
 
-const DetallePagos = ({ pedidoInfo }) => {
+const DetallePagos = ({ pedidoInfo , token}) => {
 
     const [opciones] = useState(getPagos());
     const [proceso, setProceso] = useState('');
@@ -96,7 +96,7 @@ const DetallePagos = ({ pedidoInfo }) => {
 
         if (name === 'yes' && itemEditar.ppPagoId !== null && proceso === 'editar') {
             const listaAux = listaPago.filter(n => n.ppPagoId !== itemEditar.ppPagoId)
-            editarPedidoPagoHomie(itemEditar).then((res) => { setItemEditar(res) });
+            editarPedidoPagoHomie(itemEditar, token).then((res) => { setItemEditar(res) });
             listaAux.push(itemEditar);
             setListaPago(listaAux);
             swal("Pago Editado", "Se ha editado un Pago", "success");
@@ -131,7 +131,7 @@ const DetallePagos = ({ pedidoInfo }) => {
 
         if (name === 'yes' && itemEditar.hoPedidoCodigo !== null && proceso === 'crear') {
             const listaAux = listaPago.filter(n => n.ppPagoId !== itemEditar.ppPagoId)
-            guardarPedidoPagoHomie(itemEditar).then((res) => { setItemEditar(res) });
+            guardarPedidoPagoHomie(itemEditar, token).then((res) => { setItemEditar(res) });
             listaAux.push(itemEditar);
             setListaPago(listaAux);
             swal("Pago Editado", "Se ha editado un Pago", "success");

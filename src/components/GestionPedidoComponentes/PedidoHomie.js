@@ -11,7 +11,7 @@ import { Button } from 'primereact/button';
 import { InputSwitch } from 'primereact/inputswitch';
 import { Rating } from 'primereact/rating';
 
-const PedidoHomie = ({  pedidoInfo }) => {
+const PedidoHomie = ({  pedidoInfo, token }) => {
 
    
     const [itemEditar, setItemEditar] = useState(null);
@@ -97,7 +97,7 @@ const PedidoHomie = ({  pedidoInfo }) => {
  
         setProceso('');
     if (acc === 'yes') {
-        crearPedidoHomie(itemNuevo).then((res) => {  setListaPedidoHomie(res) });
+        crearPedidoHomie(itemNuevo, token).then((res) => {  setListaPedidoHomie(res) });
         swal("Homie agregado", "Se agrega un Homie al pedido", "success");
     }
     
@@ -119,7 +119,7 @@ const PedidoHomie = ({  pedidoInfo }) => {
 
         if (name === 'yes') {
             const listaAux = listaPedidoHomie.filter(n => n.hoPeHoId !== itemEditar.hoPeHoId)
-            editarPedidoHomie(itemEditar).then((res) => { setItemEditar(res) });
+            editarPedidoHomie(itemEditar, token).then((res) => { setItemEditar(res) });
             listaAux.push(itemEditar);
             setListaPedidoHomie(listaAux);
             swal("Homie Editado", "Se edita un Homie", "success");

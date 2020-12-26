@@ -1,11 +1,12 @@
-import React, { Fragment, useState, useEffect } from 'react'
+import React, { Fragment, useState, useEffect, useContext } from 'react'
 import { getClientesList } from '../../service/ClientesService';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
+import AuthContext from '../../context/autenticacion/authContext';
 
 const ListaClientes = ({ clienteSelect, estadoCrud, procesando, isProcesando }) => {
-
-
+    const authContext = useContext(AuthContext);
+    const {  token } = authContext;
     const [clientesLista, llenaListado] = useState([])
 
     const seleccionaCliente = (variable) => {
@@ -17,10 +18,10 @@ const ListaClientes = ({ clienteSelect, estadoCrud, procesando, isProcesando }) 
     useEffect(() => {
 
         if(procesando){
-        getClientesList().then(data => llenaListado(data));
+        getClientesList(token).then(data => llenaListado(data));
                 isProcesando(false);
             }
-   
+              // eslint-disable-next-line
             }, [procesando, isProcesando]
     );
 

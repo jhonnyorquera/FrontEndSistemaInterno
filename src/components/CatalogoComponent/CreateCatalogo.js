@@ -7,7 +7,7 @@ import swal from 'sweetalert';
 
 
 
-const CreateCatalogo = ({cambiaEstadoLlenar, actualizarEstadoCrud}) => {
+const CreateCatalogo = ({cambiaEstadoLlenar, actualizarEstadoCrud, token}) => {
 
 
     const [catalogo, actualizaCatalogo] = useState({
@@ -27,7 +27,7 @@ const CreateCatalogo = ({cambiaEstadoLlenar, actualizarEstadoCrud}) => {
 
     const registraCatalogo = (e) => {
         e.preventDefault();
-        createCatalogo(catalogo)
+        createCatalogo(catalogo, token)
             .then(result => {
                 if (result) {
                     actualizarEstadoCrud('');

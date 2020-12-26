@@ -1,9 +1,10 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useContext } from 'react';
 import ListaCatalogo from './ListaCatalogo';
 import CreateCatalogo from './CreateCatalogo';
 
 import { Button } from 'primereact/button';
 import { ScrollPanel } from 'primereact/scrollpanel';
+import AuthContext from '../../context/autenticacion/authContext';
 
 
 const GestionCatalogo = () => {
@@ -12,6 +13,8 @@ const GestionCatalogo = () => {
     const [estadoCrud, actualizarEstadoCrud] = useState(null)
     const [llenaLista, cambiaEstadoLlenar] = useState(true);
 
+    const authContext = useContext(AuthContext);
+    const {  token } = authContext;
 
 
     return (
@@ -25,6 +28,7 @@ const GestionCatalogo = () => {
                             llenaLista={llenaLista}
                             cambiaEstadoLlenar={cambiaEstadoLlenar}
                             actualizarEstadoCrud={actualizarEstadoCrud}
+                            token={token}
                         />
                     </div>
 
@@ -45,6 +49,7 @@ const GestionCatalogo = () => {
                                         <CreateCatalogo
                                           cambiaEstadoLlenar={cambiaEstadoLlenar}
                                           actualizarEstadoCrud={actualizarEstadoCrud}
+                                          token={token}
                                         /> </div>
                                 </ScrollPanel> : null
 

@@ -5,7 +5,7 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 
-const SeleccionarServicio = ({ servicios, cargarServicios, cargaEstado }) => {
+const SeleccionarServicio = ({ servicios, cargarServicios, cargaEstado, token }) => {
 
     const [catalogoLista, llenaListado] = useState([])
     const [selectServices, setSelectServices] = useState([]);
@@ -14,11 +14,12 @@ const SeleccionarServicio = ({ servicios, cargarServicios, cargaEstado }) => {
 
 
     const llenarLista = () => {
-        getCatalogoList().then(data => llenaListado(data));
+        getCatalogoList(token).then(data => llenaListado(data));
     }
 
     useEffect(() => {
         llenarLista();
+         // eslint-disable-next-line
     }, []
     );
 

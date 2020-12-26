@@ -9,7 +9,7 @@ import swal from 'sweetalert';
 
 
 
-const ListaCatalogo = ({llenaLista, cambiaEstadoLlenar, actualizarEstadoCrud}) => {
+const ListaCatalogo = ({llenaLista, cambiaEstadoLlenar, actualizarEstadoCrud, token}) => {
 
 
     const [catalogoLista, llenaListado] = useState([])
@@ -26,7 +26,7 @@ const ListaCatalogo = ({llenaLista, cambiaEstadoLlenar, actualizarEstadoCrud}) =
     ];
 
     const llenarLista = () => {
-        getCatalogoList().then(data => llenaListado(data));
+        getCatalogoList(token).then(data => llenaListado(data));
     }
 
     let editingCellRows = {};
@@ -36,7 +36,7 @@ const ListaCatalogo = ({llenaLista, cambiaEstadoLlenar, actualizarEstadoCrud}) =
         if (llenaLista) {
             llenarLista();
             cambiaEstadoLlenar(false);
-        }
+        } // eslint-disable-next-line
     }, [llenaLista, cambiaEstadoLlenar]
     );
 
@@ -66,7 +66,7 @@ const ListaCatalogo = ({llenaLista, cambiaEstadoLlenar, actualizarEstadoCrud}) =
         })
 
         if (editarObjeto) {
-            editCatalogo(editarObjeto).then(res => {
+            editCatalogo(editarObjeto, token).then(res => {
                 if (res.status === 200) {
                     swal("Servicio Editado!", "Se ha editado el Servicio: ", "success");
                     llenarLista();

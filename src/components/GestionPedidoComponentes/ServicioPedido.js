@@ -9,7 +9,7 @@ import { Button } from 'primereact/button';
 import { guardarPedidoServicio } from '../../service/PedidoService';
 import { editarPedidoServicio } from '../../service/PedidoService';
 
-const ServicioPedido = ({ pedidoInfo }) => {
+const ServicioPedido = ({ pedidoInfo, token }) => {
 
     const [pedidos, setPedidos] = useState(pedidoInfo.hoPedidoServicioList);
     const [proceso, setProceso] = useState('')
@@ -55,14 +55,14 @@ const ServicioPedido = ({ pedidoInfo }) => {
         if (name === 'yes') {
             if (proceso === 'editar') {
                 const listaAux = pedidos.filter(n => n.psCodigo !== pedido.psCodigo)
-                editarPedidoServicio(pedido).then((res) => { setPedido(res) });
+                editarPedidoServicio(pedido, token).then((res) => { setPedido(res) });
                 listaAux.push(pedido);
                 setPedidos(listaAux);
                 swal("Comentario Editado", "Se ha editado un Comentario", "success");
             }
             if (proceso === 'crear') {
                 const listaAux = pedidos
-                guardarPedidoServicio(pedido).then((res) => { setPedido(res) })
+                guardarPedidoServicio(pedido, token).then((res) => { setPedido(res) })
                 listaAux.push(pedido);
                 setPedidos(listaAux)
                 swal("Comentario Creado", "Se añadió un Comentario", "success");

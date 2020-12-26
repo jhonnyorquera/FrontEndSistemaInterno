@@ -1,6 +1,6 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect, useContext } from 'react';
 import { buscarPedidoByCodigo } from '../../service/PedidoService';
-
+import AuthContext from '../../context/autenticacion/authContext';
 import Busqueda from './Busqueda';
 import ListaBusqueda from './ListaBusqueda';
 import DetallePedido from './DetallePedido';
@@ -11,18 +11,20 @@ const GestionPedido = () => {
     const [pedidoSelected, setPedidoSelected] = useState([])
     const [pedidoInfo, setPedidoInfoSelected] = useState([])
 
+    const authContext = useContext(AuthContext);
+    const {  token } = authContext;
 
     useEffect(() => {
 
         if (pedidoSelected) {
-            buscarPedidoByCodigo(pedidoSelected.peCodigo)
+            buscarPedidoByCodigo(pedidoSelected.peCodigo, token)
                 .then(
                     (res) => {
                         setPedidoInfoSelected(res)
                     })
 
         }
-        console.log('sale')
+        // eslint-disable-next-line
     }, [pedidoSelected]);
 
 
@@ -35,6 +37,7 @@ const GestionPedido = () => {
                 <div className="card">
                     <Busqueda
                         setBusqueda={setBusqueda}
+                        token={token}
                     />
                 </div>
             </div>
@@ -58,7 +61,8 @@ const GestionPedido = () => {
             <div className="p-col-12 p-lg-12">
                 <div className="card">
                     <DetallePedido
-                        pedidoInfo={pedidoInfo} />
+                        pedidoInfo={pedidoInfo} 
+                        token={token}/>
                 </div>
             </div> : null}
 

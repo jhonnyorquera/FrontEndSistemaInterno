@@ -1,14 +1,15 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useContext } from 'react';
 import CrearPedido from './CrearPedido';
 import SeleccionHomie from './SeleccionHomie';
 import SeleccionCliente from './SeleccionCliente';
 import SeleccionarServicio from './SeleccionarServicio';
-
+import AuthContext from '../../context/autenticacion/authContext';
 import { Button } from 'primereact/button';
 import { Panel } from 'primereact/panel';
 
 const GestionCrearPedido = () => {
-
+    const authContext = useContext(AuthContext);
+    const {  token } = authContext;
     const [estado, cargaEstado] = useState('')
     const [clienteSelect, seleccionarCliente] = useState();
     const [homies, cargarHomies] = useState([]);
@@ -50,6 +51,7 @@ const GestionCrearPedido = () => {
                                 pagos ={pagos}
                                 cargarPagos ={cargarPagos}
                                 cargarServicios={cargarServicios}
+                                token={token}
                             />
 
 
@@ -64,6 +66,7 @@ const GestionCrearPedido = () => {
                                         seleccionarCliente={seleccionarCliente}
                                         cargaEstado={cargaEstado}
                                         clienteSelect={clienteSelect}
+                                        token={token}
                                     />
                                 </Panel> : null
 
@@ -88,6 +91,7 @@ const GestionCrearPedido = () => {
                                     servicios={servicios}
                                     cargarServicios={cargarServicios}
                                     cargaEstado={cargaEstado}
+                                    token={token}
                                 />
                             </Panel> : null
 

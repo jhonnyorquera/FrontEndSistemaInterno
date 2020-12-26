@@ -1,8 +1,8 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useContext } from 'react'
 import { getClientesByNombre } from '../../service/ClientesService';
 import { getEstados } from '../../service/VariablesService';
 import { buscarListaPedido } from '../../service/PedidoService';
-
+import AuthContext from '../../context/autenticacion/authContext';
 import { InputText } from 'primereact/inputtext';
 import { AutoComplete } from 'primereact/autocomplete';
 import { Dropdown } from 'primereact/dropdown';
@@ -18,6 +18,8 @@ const Busqueda = ({ setBusqueda }) => {
     const [filteredCliente, setFilteredCliente] = useState(null);
     const [estados] = useState(getEstados);
 
+    const authContext = useContext(AuthContext);
+    const {  token } = authContext;
 
 
 
@@ -25,7 +27,7 @@ const Busqueda = ({ setBusqueda }) => {
 
     const searchCliente = (event) => {
         setTimeout(() => {
-            getClientesByNombre(event.query.toUpperCase()).then(res => setFilteredCliente(res));
+            getClientesByNombre(event.query.toUpperCase(), token).then(res => setFilteredCliente(res));
         }, 250);
     }
     const [camposBusqueda, setCamposBusqueda] = useState({
@@ -47,7 +49,7 @@ const Busqueda = ({ setBusqueda }) => {
         }
     
        
-        buscarListaPedido(camposBusqueda).then(res => {
+        buscarListaPedido(camposBusqueda, token).then(res => {
             setBusqueda(res)
             if(res.length === 0){
                 swal("No existen Registros", "No existen registros con esos campos de busqueda", "info");

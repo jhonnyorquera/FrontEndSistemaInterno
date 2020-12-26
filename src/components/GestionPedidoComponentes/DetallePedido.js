@@ -10,7 +10,7 @@ import { Panel } from 'primereact/panel';
 
 
 
-const DetallePedido = ({ pedidoInfo }) => {
+const DetallePedido = ({ pedidoInfo, token }) => {
 
 
 
@@ -37,6 +37,7 @@ const DetallePedido = ({ pedidoInfo }) => {
 
                                     <DetallesPedido
                                         pedidoInfo={pedidoInfo}
+                                        token={token}
                                     ></DetallesPedido>
 
                                 </div>
@@ -51,6 +52,7 @@ const DetallePedido = ({ pedidoInfo }) => {
 
                                         <PedidoHomie
                                             pedidoInfo={pedidoInfo}
+                                            token={token}
                                         ></PedidoHomie>
 
                                     </div>
@@ -63,6 +65,7 @@ const DetallePedido = ({ pedidoInfo }) => {
 
                                         <ServicioPedido
                                           pedidoInfo={pedidoInfo}
+                                          token={token}
                                         ></ServicioPedido>
 
                                     </div>
@@ -76,6 +79,7 @@ const DetallePedido = ({ pedidoInfo }) => {
                                         <DetallePagos
 
                                             pedidoInfo={pedidoInfo}
+                                            token={token}
                                         ></DetallePagos>
 
                                     </div> </Panel>
@@ -88,6 +92,7 @@ const DetallePedido = ({ pedidoInfo }) => {
 
                             <ComentarioPedido
                                 pedidoInfo={pedidoInfo}
+                                token={token}
                             ></ComentarioPedido>
                         </div>
 

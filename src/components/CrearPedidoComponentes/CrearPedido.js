@@ -11,7 +11,7 @@ import { InputTextarea } from 'primereact/inputtextarea';
 import SeleccionarEstado from './SeleccionarEstado';
 import swal from 'sweetalert';
 
-const CrearPedido = ({ cargaEstado, clienteSelect, homies, servicios, cargaModo, cargarServicios }) => {
+const CrearPedido = ({ cargaEstado, clienteSelect, homies, servicios, cargaModo, cargarServicios, token }) => {
 
    
     useEffect(() => {
@@ -76,7 +76,7 @@ const CrearPedido = ({ cargaEstado, clienteSelect, homies, servicios, cargaModo,
         if (pedido.peEstado !== '' && pedido.peCliente !== 0 && pedido.peServicios.length !== 0 && pedido.peFechaPedido !== '' && pedido.peCantidadHoras !== 0) {
             e.preventDefault();
             //asgina atributos a objeto
-            crearPedido(pedido).then(res => {
+            crearPedido(pedido, token).then(res => {
                 swal("Se registra Pedido", "Se ha registrado el PEDIDO: " + res, "success");
             }).catch(error => {
                 if (error.response) {
@@ -102,7 +102,7 @@ const CrearPedido = ({ cargaEstado, clienteSelect, homies, servicios, cargaModo,
         peObservacion: '',
         peValor: 0,
         peTipo: '',
-        peEstado: 'REGISTRADO',
+        peEstado: 'PENDIENTE',
         peFactura:'',
         cedulasHomies: [],
         peDireccion: '',

@@ -1,14 +1,16 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useContext } from 'react';
 import { InputText } from 'primereact/inputtext';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { saveClient } from '../../service/ClientesService';
 import { Button } from 'primereact/button';
 import swal from 'sweetalert';
+import AuthContext from '../../context/autenticacion/authContext';
 
 const CreateCliente = ({ estadoCrud, seleccionarCliente, isProcesando }) => {
+    const authContext = useContext(AuthContext);
+    const {  token } = authContext;
 
     const [clCliente, actualizaHomie] = useState({
-
         clId:'', clCedulaRuc: '',  clNombre: '', clSector: '', clDireccion: '', clTelefono: '', clCorreo: '', obFactura:''
     });
 
@@ -26,7 +28,7 @@ const CreateCliente = ({ estadoCrud, seleccionarCliente, isProcesando }) => {
 
         e.preventDefault();
 
-        saveClient(clCliente).then(res => {
+        saveClient(clCliente, token).then(res => {
             seleccionarCliente(res);
             swal("Se registra cliente", "Se ha registrado el usuario: "+res.clId, "success");
             isProcesando(true);

@@ -1,6 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import AuthContext from '../../context/autenticacion/authContext';
 import swal from 'sweetalert';
+import { InputText } from 'primereact/inputtext';
+import { Button } from 'primereact/button';
 
 const Login = (props) => {
 
@@ -65,15 +67,20 @@ const Login = (props) => {
 
     return (
         <div className="form-usuario">
-            <div className="contenedor-form sombra-dark">
-                <h1>Iniciar Sesión</h1>
 
+            <div className="contenedor-form">
+
+                <div class="myDiv">
+                <img src="assets/layout/images/logo-white.svg" alt="Logo" width="180" />
+                </div>
+                <br></br>
+                <div>
                 <form
                     onSubmit={onSubmit}
                 >
                     <div className="campo-form">
-                        <label htmlFor="user">user</label>
-                        <input
+                    <div class="label-form"> <label htmlFor="user">Cédula</label></div>
+                        <InputText
                             type="text"
                             id="user"
                             name="user"
@@ -84,8 +91,8 @@ const Login = (props) => {
                     </div>
 
                     <div className="campo-form">
-                        <label htmlFor="pwd">Password</label>
-                        <input
+                    <div class="label-form"> <label htmlFor="pwd">Password</label></div>
+                    <InputText
                             type="password"
                             id="pwd"
                             name="pwd"
@@ -95,12 +102,11 @@ const Login = (props) => {
                         />
                     </div>
 
-                    <div className="campo-form">
-                        <input type="submit" className="btn btn-primario btn-block" value="Iniciar Sesión" />
+                    <div className="campo-form" class="myDiv">
+                        <Button type="submit" label="INICIAR SESIÓN" />
                     </div>
                 </form>
-
-
+                </div>
             </div>
         </div>
     );

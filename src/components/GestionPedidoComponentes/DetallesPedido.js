@@ -13,7 +13,7 @@ import 'moment/locale/es';
 import moment from "moment";
 import 'moment-timezone';
 
-const DetallesPedido = ({ pedidoInfo }) => {
+const DetallesPedido = ({ pedidoInfo, token }) => {
 
 
     const [displayBasic, setDisplayBasic] = useState(false);
@@ -60,7 +60,7 @@ const DetallesPedido = ({ pedidoInfo }) => {
         delete pedidoEditar.hoPedidoPagoList
         delete pedidoEditar.hoPedidoServicioList
         if (name === 'yes') {
-            editarPedidoDetalle(pedidoEditar).then((res) => { setPedidoEditar(res) })
+            editarPedidoDetalle(pedidoEditar, token).then((res) => { setPedidoEditar(res) })
             swal("Item Editado", "Se ha editado un Pedido", "success");
         } else {
            

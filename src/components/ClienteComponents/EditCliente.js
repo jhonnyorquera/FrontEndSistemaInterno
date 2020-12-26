@@ -1,15 +1,17 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect, useContext } from 'react';
 import { editClient } from '../../service/ClientesService';
 import { InputText } from 'primereact/inputtext';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
 import swal from 'sweetalert';
+import AuthContext from '../../context/autenticacion/authContext';
 
 
 
 const EditCliente = ({ selectedCliente, estadoCrud, isProcesando }) => {
-
+    const authContext = useContext(AuthContext);
+    const {  token } = authContext;
 
     useEffect(() => {
         actualizaCliente(selectedCliente)
@@ -31,7 +33,7 @@ const EditCliente = ({ selectedCliente, estadoCrud, isProcesando }) => {
 
     const editarCliente = (e) => {
         e.preventDefault();
-        editClient(clClienteEdit);
+        editClient(clClienteEdit, token);
         estadoCrud('');
         swal("Cliente Editado!", "Se ha editado el cliente: "+clClienteEdit.clNombre, "success");
         isProcesando(true);

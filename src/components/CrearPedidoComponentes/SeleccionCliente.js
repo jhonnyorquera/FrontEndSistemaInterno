@@ -6,7 +6,7 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 
-const SeleccionCliente = ({ clienteSelect, seleccionarCliente, cargaEstado }) => {
+const SeleccionCliente = ({ clienteSelect, seleccionarCliente, cargaEstado, token }) => {
 
     const [clientesLista, llenaListado] = useState([])
     const [modo, seleccionarModo] = useState('seleccion');
@@ -22,7 +22,7 @@ const SeleccionCliente = ({ clienteSelect, seleccionarCliente, cargaEstado }) =>
 
 
         if (!procesando) {
-            getClientesList().then(data => llenaListado(data));
+            getClientesList(token).then(data => llenaListado(data));
             seleccionarModo('seleccion')
         } else {
             isProcesando(true)
