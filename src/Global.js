@@ -15,6 +15,7 @@ var Global = {
     urlPedidoServicio: fatherLink + '/api/HoPedidoServicio',
     urlResumenPedidoPago: fatherLink + '/api/HoPedidoPagos/saldo',
     urlResumenPedidosXHomie: fatherLink + '/api/HoPedidoHomie/HoPedidosPorHomieFecha',
+    urlResumenDashboard: fatherLink+'/api/HoDash/',
     urlLogin: fatherLink + '/'
 };
 
