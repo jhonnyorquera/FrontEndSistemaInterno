@@ -11,18 +11,28 @@ import { editHomie } from '../../service/HomieService';
 import { getNodalidadesContrato } from '../../service/VariablesService';
 import swal from 'sweetalert';
 import AuthContext from '../../context/autenticacion/authContext';
+import 'moment/locale/es';
+import 'moment-timezone';
+import Moment from 'react-moment';
 
 
 const EditarHomie = ({ homieEditar, updated, estadoCrud }) => {
-    
+
     const authContext = useContext(AuthContext);
-    const {  token } = authContext;
+    const { token } = authContext;
 
     const [modalidades] = useState(getNodalidadesContrato());
+
+    const [fechaUno, setFechaUno] =useState('')
 
 
 
     useEffect(() => {
+
+
+        const timezoneOffset = (new Date()).getTimezoneOffset();
+
+console.log("aaaaaaaaa"+timezoneOffset);
         actualizaHomieAEditar(homieEditar);
     }, [homieEditar]);
 
@@ -35,6 +45,15 @@ const EditarHomie = ({ homieEditar, updated, estadoCrud }) => {
             ...homieEditado,
             [e.target.name]: e.target.value
         })
+    }
+
+    const fecha = (fecha) => {
+        return (
+
+            <Moment format="dddd DD MMMM YYYY HH:mm">
+                {fecha}
+            </Moment>
+        )
     }
 
     const enviarActualizarSubmit = (e) => {
@@ -168,7 +187,8 @@ const EditarHomie = ({ homieEditar, updated, estadoCrud }) => {
                             <div className="p-grid">
                                 <div style={{ fontWeight: 'bold' }} className="p-col-6">Nro de Hijos</div>
                                 <div className="p-col-6">
-                                    <InputText id="hoHijos" name="hoHijos" placeholder="Ej. 3" onChange={actualizarState} value={hoHijos} />
+                                    <InputText id="hoHijos" name="hoHijos" placeholder="Ej. 3" onChange={actualizarState}
+                                        value={hoHijos} />
                                 </div>
                             </div>
                         </li>
@@ -178,9 +198,12 @@ const EditarHomie = ({ homieEditar, updated, estadoCrud }) => {
                                     <label htmlFor="hoFechaIngreso">Fecha de Ingreso</label>
                                 </div>
                                 <div className="p-col-6">
-                                    <Calendar placeholder={hoFechaIngreso}   defaultValue ={hoFechaIngreso}
-                                    name="hoFechaIngreso" id="hoFechaIngreso" 
-                                    onChange={actualizarState} value={hoFechaIngreso} />
+                                    <InputText
+                                    type="date"
+                                        name="hoFechaIngreso" id="hoFechaIngreso"
+                                        onChange={actualizarState} value={hoFechaIngreso} />
+                                    <label htmlhtmlFor="hoFechaIngreso" style={{ fontWeight: 'bold' }} >{fecha(hoFechaIngreso)}</label>
+
                                 </div>
                             </div>
                         </li>
@@ -189,8 +212,8 @@ const EditarHomie = ({ homieEditar, updated, estadoCrud }) => {
                             <div className="p-grid">
                                 <div style={{ fontWeight: 'bold' }} className="p-col-6">Sueldo</div>
                                 <div className="p-col-6">
-                                    <InputText maxLength="5" id="hoSueldo" name="hoSueldo" 
-                                    placeholder="Ej. 400" onChange={actualizarState} value={hoSueldo} />
+                                    <InputText maxLength="5" id="hoSueldo" name="hoSueldo"
+                                        placeholder="Ej. 400" onChange={actualizarState} value={hoSueldo} />
                                 </div>
                             </div>
                         </li>
@@ -200,9 +223,11 @@ const EditarHomie = ({ homieEditar, updated, estadoCrud }) => {
                             <div className="p-grid">
                                 <div style={{ fontWeight: 'bold' }} className="p-col-6">Fecha Nacimiento</div>
                                 <div className="p-col-6">
-                                    <Calendar type="time" placeholder={hoFechaNacimiento} 
-                                    name="hoFechaNacimiento" id="hoFechaNacimiento" 
-                                    onChange={actualizarState} value={hoFechaNacimiento} />
+                                    <Calendar type="time"
+                                        name="hoFechaNacimiento" id="hoFechaNacimiento"
+                                        onChange={actualizarState} value={hoFechaNacimiento} />
+                                    <label htmlhtmlFor="hoFechaNacimiento" style={{ fontWeight: 'bold' }} >{fecha(hoFechaNacimiento)}</label>
+
 
                                 </div>
                             </div>
@@ -222,7 +247,8 @@ const EditarHomie = ({ homieEditar, updated, estadoCrud }) => {
                             <div className="p-grid">
                                 <div style={{ fontWeight: 'bold' }} className="p-col-6">Fecha Salida</div>
                                 <div className="p-col-6">
-                                    <Calendar placeholder="07/15/2020" name="hoFechaSalida" id="hoFechaSalida" onChange={actualizarState} value={hoFechaSalida} />
+                                    <Calendar name="hoFechaSalida" id="hoFechaSalida" onChange={actualizarState} value={hoFechaSalida} />
+                                    <label htmlhtmlFor="hoFechaSalida" style={{ fontWeight: 'bold' }} >{fecha(hoFechaSalida)}</label>
 
                                 </div>
                             </div>

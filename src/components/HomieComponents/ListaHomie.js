@@ -1,17 +1,19 @@
-import React, { useState, Fragment, useEffect, useContext} from 'react';
+import React, { useState, Fragment, useEffect, useContext } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import AuthContext from '../../context/autenticacion/authContext';
 import { getHomiesList } from '../../service/HomieService';
-
+import 'moment/locale/es';
+import moment from "moment";
+import 'moment-timezone';
 
 
 
 const ListarHomie = ({ homieSeleccion, actualizarEstadoCrud, procesando, isProcesando }) => {
-  
-  
+
+
     const authContext = useContext(AuthContext);
-    const {  token } = authContext;
+    const { token } = authContext;
 
     const [listaHomie, setListaHomie] = useState([]);
 
@@ -31,7 +33,18 @@ const ListarHomie = ({ homieSeleccion, actualizarEstadoCrud, procesando, isProce
     }, [procesando, isProcesando]);
 
 
+    const dateBodyTemplate = (rowData) => {
 
+        if (rowData.hoFechaNacimiento) {
+            return (
+                <React.Fragment>
+
+                    {moment.utc(rowData.hoFechaNacimiento).format("dddd, DD MMMM YYYY")}{" "}
+                </React.Fragment>
+            );
+        }
+
+    }
 
     return (
         <Fragment>
@@ -50,7 +63,7 @@ const ListarHomie = ({ homieSeleccion, actualizarEstadoCrud, procesando, isProce
             >
                 <Column field="hoCedula" header="Cédula" sortable={true} filter={true} filterPlaceholder="Digita un número" filterMatchMode="contains" />
                 <Column field="hoNombre" header="Nombre" sortable={true} filter={true} filterPlaceholder="Digita una letra" filterMatchMode="contains" />
-                <Column field="hoFechaNacimiento" header="Fecha Nacimiento" sortable={true} />
+                <Column field="hoFechaNacimiento" body={dateBodyTemplate} header="Fecha Nacimiento" sortable={true} />
                 <Column field="hoTelefono" header="Teléfono" sortable={true} />
             </DataTable>
             <div />
