@@ -68,10 +68,10 @@ const Login = (props) => {
     return (
         <div className="form-usuario">
 
-            <div className="contenedor-form">
+            <div className="contenedor-form sombra-dark">
 
                 <div class="myDiv">
-                <img src="assets/layout/images/logo-white.svg" alt="Logo" width="180" />
+                <img src="assets/layout/images/logo-white.svg" alt="Logo" width="200" />
                 </div>
                 <br></br>
                 <div>

@@ -7,7 +7,7 @@ import AuthContext from '../../context/autenticacion/authContext';
 const Dashboard = () => {
 
     const [dash, setDash] = useState({});
-    const [mostrar, setMostrar] = useState(false)
+    const [mostrar, setMostrar] = useState(true)
 
     const authContext = useContext(AuthContext);
     const { token } = authContext;
@@ -30,7 +30,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         if (dash.cantPedidos && dash.cantClientes && dash.dineroRecaudado && dash.calificacion && dash.dineroRecaudado) {
-            setMostrar(true)
+            setMostrar(false)
         }
     }, [dash])
 
@@ -66,7 +66,7 @@ const Dashboard = () => {
                         <div className="card summary">
                             <span className="title">Dinero</span>
                             <span className="detail">Dinero Recaudado en el mes</span>
-                            <span className="count revenue">{dineroRecaudado}</span>
+                            <span className="count revenue">${dineroRecaudado}</span>
                         </div>
                     </div>
 
@@ -122,7 +122,7 @@ const Dashboard = () => {
                                         <div>
                                             <div className="card summary">
                                                 <span className="title">{vari.nombre}</span>
-                                                <span className="count revenue">{vari.cantidad}</span>
+                                                <span className="count revenue">${vari.cantidad}</span>
                                                 <br></br>
 
                                             </div>

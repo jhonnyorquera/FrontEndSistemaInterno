@@ -23,16 +23,9 @@ const EditarHomie = ({ homieEditar, updated, estadoCrud }) => {
 
     const [modalidades] = useState(getNodalidadesContrato());
 
-    const [fechaUno, setFechaUno] =useState('')
-
 
 
     useEffect(() => {
-
-
-        const timezoneOffset = (new Date()).getTimezoneOffset();
-
-console.log("aaaaaaaaa"+timezoneOffset);
         actualizaHomieAEditar(homieEditar);
     }, [homieEditar]);
 
@@ -50,7 +43,7 @@ console.log("aaaaaaaaa"+timezoneOffset);
     const fecha = (fecha) => {
         return (
 
-            <Moment format="dddd DD MMMM YYYY HH:mm">
+            <Moment format="dddd DD MMMM YYYY">
                 {fecha}
             </Moment>
         )
@@ -198,8 +191,7 @@ console.log("aaaaaaaaa"+timezoneOffset);
                                     <label htmlFor="hoFechaIngreso">Fecha de Ingreso</label>
                                 </div>
                                 <div className="p-col-6">
-                                    <InputText
-                                    type="date"
+                                   <Calendar type="time"
                                         name="hoFechaIngreso" id="hoFechaIngreso"
                                         onChange={actualizarState} value={hoFechaIngreso} />
                                     <label htmlhtmlFor="hoFechaIngreso" style={{ fontWeight: 'bold' }} >{fecha(hoFechaIngreso)}</label>
