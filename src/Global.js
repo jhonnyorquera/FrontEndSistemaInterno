@@ -1,4 +1,4 @@
-var fatherLink = 'http://localhost:9000'
+var fatherLink = 'https://homiebackend.herokuapp.com'
 var Global = {
 
     urlHomie: fatherLink + '/api/HoHomie/',
