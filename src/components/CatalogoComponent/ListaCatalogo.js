@@ -121,7 +121,7 @@ const ListaCatalogo = ({llenaLista, cambiaEstadoLlenar, actualizarEstadoCrud, to
         }
         str = str.replace(/^0+/, "") || "0";
         var n = Math.floor(Number(str));
-        return n !== Infinity && String(n) === str && n >= 0;
+        return n !== Infinity && n >= 0;
     }
 
     const emptyValueValidator = (props) => {
@@ -141,7 +141,7 @@ const ListaCatalogo = ({llenaLista, cambiaEstadoLlenar, actualizarEstadoCrud, to
                     columns.map(col => {
                         const { field, header } = col;
                         const validator = (field === 'seValor') ? positiveIntegerValidator : emptyValueValidator;
-                        return <Column key={field} field={field} header={header}
+                        return <Column key={field} field={field} header={header} filterMatchMode="contains" sortable={true} filter={true}   
                             editor={(props) =>
                                 inputTextEditor(catalogoLista, props, field)}
                             editorValidator={validator}

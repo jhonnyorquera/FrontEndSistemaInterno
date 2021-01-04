@@ -30,7 +30,7 @@ const ListaBusqueda = ({ busqueda, pedidoSelected, setPedidoSelected }) => {
             onSelectionChange={e => setPedidoSelected(e.value)} selectionMode="single"
         >
 
-            <Column field="peCodigo" header="Código" sortable={true} filter={true} filterPlaceholder="Digita una letra" filterMatchMode="contains" />
+            <Column field="peCodigo" header="Código"  filterPlaceholder="Digita una letra" filterMatchMode="contains" sortable={true} filter={true} />
             <Column field="peTipo" header="Tipo" sortable={true} />
             <Column field="clCliente" header="Cliente" sortable={true} filter={true} filterPlaceholder="Digita una letra" filterMatchMode="contains" />
             <Column field="peEstado" header="Estado" sortable={true} />

@@ -64,7 +64,7 @@ const CreateCliente = ({ estadoCrud, seleccionarCliente, isProcesando }) => {
                 </div>
                 <div className="p-col-12">
                     <InputText id="clCedulaRuc" required={true}
-                        minLength="10" maxLength="10" name="clCedulaRuc" placeholder="Ej. 1720508888"
+                        minLength="10" maxLength="13" name="clCedulaRuc" placeholder="Ej. 1720508888"
                         onChange={actualizarState} value={clCedulaRuc} />
                 </div>
 

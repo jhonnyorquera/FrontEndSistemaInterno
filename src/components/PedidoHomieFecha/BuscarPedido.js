@@ -70,7 +70,7 @@ const BuscarPedido = ({ setBusqueda, token }) => {
         <form onSubmit={buscar}>
 
             <div className="p-col-12">
-                <label htmlFor="cliente" >Cliente</label>
+                <label htmlFor="cliente" >Homie</label>
             </div>
             <div className="p-col-12">
                 <Dropdown value={homieSelected} optionLabel="hoNombre" filter={true}

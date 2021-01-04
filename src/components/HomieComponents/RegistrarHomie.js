@@ -138,7 +138,7 @@ const RegistrarHomie = ({  actualizarEstadoCrud, isProcesando }) => {
                 </div>
                 <div className="p-col-12">
                     <Calendar type="time" placeholder="07/15/2020" required={true} name="hoFechaIngreso" id="hoFechaIngreso"
-                    onChange={actualizarState} value={hoFechaIngreso} monthNavigator />
+                    onChange={actualizarState} value={hoFechaIngreso} monthNavigator yearNavigator  yearRange="2020:2022"/>
                 </div>
 
 

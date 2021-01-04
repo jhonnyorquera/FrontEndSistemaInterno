@@ -192,7 +192,7 @@ const EditarHomie = ({ homieEditar, updated, estadoCrud }) => {
                                 </div>
                                 <div className="p-col-6">
                                    <Calendar type="time"
-                                        name="hoFechaIngreso" id="hoFechaIngreso"
+                                        name="hoFechaIngreso" id="hoFechaIngreso" monthNavigator yearNavigator  yearRange="2020:2021"
                                         onChange={actualizarState} value={hoFechaIngreso} />
                                     <label htmlhtmlFor="hoFechaIngreso" style={{ fontWeight: 'bold' }} >{fecha(hoFechaIngreso)}</label>
 
@@ -217,7 +217,7 @@ const EditarHomie = ({ homieEditar, updated, estadoCrud }) => {
                                 <div className="p-col-6">
                                     <Calendar type="time"
                                         name="hoFechaNacimiento" id="hoFechaNacimiento"
-                                        onChange={actualizarState} value={hoFechaNacimiento} />
+                                        onChange={actualizarState} value={hoFechaNacimiento}  monthNavigator yearNavigator  yearRange="1960:2006"/>
                                     <label htmlhtmlFor="hoFechaNacimiento" style={{ fontWeight: 'bold' }} >{fecha(hoFechaNacimiento)}</label>
 
 
@@ -229,8 +229,11 @@ const EditarHomie = ({ homieEditar, updated, estadoCrud }) => {
                             <div className="p-grid">
                                 <div style={{ fontWeight: 'bold' }} className="p-col-6">Cuenta Bancaria</div>
                                 <div className="p-col-6">
-                                    <InputText maxLength="5" id="hoNroCuenta" name="hoNroCuenta" placeholder="Ej. 400" onChange={actualizarState} value={hoNroCuenta} />
 
+                                <InputTextarea rows={5} cols={30} maxLength="150" id="hoNroCuenta" name="hoNroCuenta" 
+                                    onChange={actualizarState} value={hoNroCuenta} />
+
+                                   
                                 </div>
                             </div>
                         </li>

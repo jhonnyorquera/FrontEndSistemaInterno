@@ -26,13 +26,15 @@ const PedidoPago = () => {
 
     
     const valor= (rowData) => {
+        
+        var faltante= rowData.peValor - rowData.peValorPagado
      
 
         return (
             <React.Fragment>
                
                 
-        <label htmlFor="psNombre" > ${rowData.peValorPagado} de ${rowData.peValor} 
+        <label htmlFor="psNombre" > ${faltante} 
            </label>
                
             </React.Fragment>
@@ -62,11 +64,12 @@ const PedidoPago = () => {
                 >
                  <Column field="peCliente" header="Nombre" > </Column>
                     <Column field="peCodigo" header="Código Pedido" > </Column>
+                    <Column field="peValor" header="Valor Total" > </Column>
+                    <Column field="peValorPagado" header="Valor Pagado" > </Column>
 
-                    <Column field="peValor" header="Valores"  body={valor}></Column> 
+                    <Column field="peValor" header="Faltante"  body={valor}></Column> 
                 
-                    <Column field="peValorPagado"  body={activityBodyTemplate} header="Faltante"></Column>
-
+        
 
 
                 </DataTable>
