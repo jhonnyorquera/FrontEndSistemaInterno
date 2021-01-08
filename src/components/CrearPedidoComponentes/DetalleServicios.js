@@ -69,7 +69,7 @@ const DetalleServicios = ({ cargaEstado, servicios, cargarServicios }) => {
         }
         str = str.replace(/^0+/, "") || "0";
         var n = Math.floor(Number(str));
-        return n !== Infinity && String(n) === str && n >= 0;
+        return n !== Infinity && n >= 0;
     }
 
     const onEditorValueChange = (productKey, props, value) => {

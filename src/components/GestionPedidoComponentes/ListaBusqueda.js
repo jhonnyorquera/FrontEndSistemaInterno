@@ -31,12 +31,12 @@ const ListaBusqueda = ({ busqueda, pedidoSelected, setPedidoSelected }) => {
         >
 
             <Column field="peCodigo" header="Código"  filterPlaceholder="Digita una letra" filterMatchMode="contains" sortable={true} filter={true} />
-            <Column field="peTipo" header="Tipo" sortable={true} />
+            <Column field="peTipo" header="Tipo" filterMatchMode="contains" sortable={true} filter={true} />
             <Column field="clCliente" header="Cliente" sortable={true} filter={true} filterPlaceholder="Digita una letra" filterMatchMode="contains" />
-            <Column field="peEstado" header="Estado" sortable={true} />
-            <Column field="peCantidadHoras" header="Cantidad Horas" sortable={true} />
+            <Column field="peEstado" header="Estado" filterMatchMode="contains" sortable={true} filter={true} />
+            <Column field="peCantidadHoras" header="Cantidad Horas" filterMatchMode="contains" sortable={true} filter={true} />
             <Column field="peFecha" header="Fecha" body={dateBodyTemplate} sortable={true} />
-            <Column field="pePadre" header="Orden Padre" sortable={true} />
+            <Column field="pePadre" header="Orden Padre" filterMatchMode="contains" sortable={true} filter={true} />
         </DataTable>
     </Fragment>);
 }
