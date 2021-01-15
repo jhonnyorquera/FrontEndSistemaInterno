@@ -16,6 +16,8 @@ const ListaPedidosXHomie = ({ busqueda }) => {
         );
     }
 
+     
+
 
     return (<Fragment>
 
@@ -27,6 +29,7 @@ const ListaPedidosXHomie = ({ busqueda }) => {
                 sortField="peCodigo" sortOrder={-1}
                 rows={10}
                 responsive={true} 
+                columnKey="peCodigo"
 
             >
                 <Column field="peCodigo" header="Código" sortable={true} filter={true} filterPlaceholder="Digita un número" filterMatchMode="contains" />

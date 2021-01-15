@@ -10,9 +10,25 @@ const BuscarPedido = ({ setBusqueda, token }) => {
 
     const [camposBusqueda, setCamposBusqueda] = useState({
         cliente: '',
-        fechaInicio: '',
-        fechaFin: ''
+        fechaInicio: fechaInicial(),
+        fechaFin: fechaFinal()
     });
+
+
+
+    function fechaInicial(){
+        var a= new Date();
+        a.setDate(1);
+        return a
+       }
+
+
+
+       function fechaFinal(){
+        var date = new Date();
+        return new Date(date.getFullYear(), date.getMonth() + 1, 0)
+       }
+
 
     const [inicio, setInicio] = useState(true);
 
@@ -54,6 +70,7 @@ const BuscarPedido = ({ setBusqueda, token }) => {
                 if(res.length === 0){
                     swal("No existen Registros", "No existen registros con esos campos de busqueda", "info");
                 }
+              
             })
 
         }
@@ -73,7 +90,7 @@ const BuscarPedido = ({ setBusqueda, token }) => {
                 <label htmlFor="cliente" >Homie</label>
             </div>
             <div className="p-col-12">
-                <Dropdown value={homieSelected} optionLabel="hoNombre" filter={true}
+                <Dropdown dataKey="hoCedula" value={homieSelected} optionLabel="hoNombre" filter={true}
                     options={homie} onChange={(e) => setHomieSelected(e.value)}
                 ></Dropdown>
             </div>

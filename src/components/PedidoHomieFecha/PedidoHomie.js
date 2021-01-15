@@ -2,14 +2,15 @@ import React, { Fragment, useState, useContext } from 'react';
 import BuscarPedido from './BuscarPedido';
 import ListaPedidosXHomie from './ListaPedidosXHomie';
 import AuthContext from '../../context/autenticacion/authContext';
+import ResumeHorasTotal from './ResumeHorasTotal';
 
 const PedidoPago = () => {
 
     const [busqueda, setBusqueda] = useState({});
     const authContext = useContext(AuthContext);
-    const {  token } = authContext;
+    const { token } = authContext;
 
-
+  
 
     return (<Fragment>
         <div className="p-grid p-fluid dashboard">
@@ -20,15 +21,21 @@ const PedidoPago = () => {
                         setBusqueda={setBusqueda}
                         token={token}
                     /></div>
+                <div className="card">
+                    <ResumeHorasTotal
+                        busqueda={busqueda} />
+
+                </div>
+
             </div>
             <div className="p-col-10">
                 <div className="card">
                     <ListaPedidosXHomie
                         busqueda={busqueda}
-                        
+
                     /></div>
-                </div>
             </div>
+        </div>
 
     </Fragment>);
 }
