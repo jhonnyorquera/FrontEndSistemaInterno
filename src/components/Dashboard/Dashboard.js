@@ -89,7 +89,11 @@ const Dashboard = () => {
                                         <div>
                                             <div className="card summary">
                                                 <span className="title">{vari.nombre}</span>
-                                                <span className="count visitors">{vari.cantidad}/5</span>
+                                               
+                                                <span className="count visitors">{
+                                                vari.cantidad ?
+                                                vari.cantidad.toFixed(2) :0
+                                                }/5</span>
                                                 <br></br>
 
                                             </div>
