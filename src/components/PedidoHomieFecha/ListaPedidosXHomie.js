@@ -37,6 +37,7 @@ const ListaPedidosXHomie = ({ busqueda }) => {
                 <Column field="plCantidadHoras" header="Horas" sortable={true} />
                 <Column field="plFechaPedido" header="Fecha" body={dateBodyTemplate} sortable={true} />
                 <Column field="plEstado" header="Estado" sortable={true} />
+                <Column field="peCalificacion" header="Calificación" sortable={true} />
             </DataTable>
     </Fragment>);
 }

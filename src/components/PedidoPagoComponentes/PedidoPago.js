@@ -42,6 +42,8 @@ const PedidoPago = () => {
         );
     }
 
+
+
     const activityBodyTemplate = (rowData) => {
         var progreso = rowData.peValor - rowData.peValorPagado
 
@@ -78,6 +80,7 @@ const PedidoPago = () => {
                     <Column field="peValorPagado" header="Valor Pagado"  > </Column>
 
                     <Column field="peValor" header="Faltante" body={valor}></Column>
+                    <Column field="peStatusPago"  header="Status Pago" sortable={true} sortable={true} filter={true} filterMatchMode="contains" ></Column>
 
 
 
