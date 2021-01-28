@@ -11,6 +11,15 @@ export function getResumenPagos (token)  {
         return listado;
 }
 
+export function getPagosInformacion (token, requestBody)  {
+    let listado = [];
+    listado=axios.put( Global.urlPagos, requestBody, { 
+        headers: {"Authorization" : `Bearer ${token}`}, }
+     )
+        .then(res =>res.data
+        )
+        return listado;
+}
 
 export function getPedidosHomieFecha(requestBody, token)  {
     let listado = [];

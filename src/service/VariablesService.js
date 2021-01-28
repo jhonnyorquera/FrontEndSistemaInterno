@@ -14,6 +14,18 @@ export function getEstados() {
 }
 
 
+export function getEstadosCobro() {
+    const opciones = [
+         { estado: '', value: 'TODOS' },  
+        { estado: 'POR COBRAR', value: 'POR COBRAR' },        
+        { estado: 'PAGADO', value: 'PAGADO' }
+    ]
+    return opciones;
+
+}
+
+
+
 
 export function getPagos() {
     const opciones = [
