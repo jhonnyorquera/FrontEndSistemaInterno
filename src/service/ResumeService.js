@@ -3,14 +3,6 @@ import axios from 'axios';
 
 
 
-export function getResumenPagos (token)  {
-    let listado = [];
-    listado=axios.get( Global.urlResumenPedidoPago,  { headers: {"Authorization" : `Bearer ${token}`} })
-        .then(res =>res.data
-        )
-        return listado;
-}
-
 export function getPagosInformacion (token, requestBody)  {
     let listado = [];
     listado=axios.put( Global.urlPagos, requestBody, { 
