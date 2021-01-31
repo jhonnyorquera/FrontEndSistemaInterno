@@ -21,9 +21,9 @@ export function getPedidosHomieFecha(requestBody, token)  {
         return listado;
 }
 
-export function getDashboard(token)  {
+export function getDashboard(token, camposBusqueda)  {
     let listado = [];
-    listado=axios.get( Global.urlResumenDashboard,  { headers: {"Authorization" : `Bearer ${token}`} })
+    listado=axios.put( Global.urlResumenDashboard, camposBusqueda, { headers: {"Authorization" : `Bearer ${token}`} })
         .then(res =>res.data
         )
         return listado;
